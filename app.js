@@ -75,6 +75,60 @@
     return E(path) + '>' + esc(t(path));
   }
 
+  /* --- Mini-formato para textos largos ----------------------------------- */
+  /* Un markdown reducido y SEGURO. Regla de oro: primero escapamos TODO el
+     texto (esc), y recién después transformamos los tokens en etiquetas
+     propias. Como el texto ya viene escapado, no puede colarse HTML del
+     usuario; las únicas etiquetas que aparecen son las que generamos acá.
+     Los colores salen por clase (no por style=""), así funciona con la CSP.
+
+       **negrita**        _cursiva_
+       ## Subtítulo       (línea que arranca con ##)
+       - ítem de lista    (líneas que arrancan con -)
+       [green]texto[/green]  (colores: green, teal, amber, blue, ink, muted)
+       línea en blanco = párrafo nuevo    salto simple = <br> */
+  var FMT_COLORS = { green: 1, teal: 1, amber: 1, blue: 1, ink: 1, muted: 1 };
+
+  function fmtInline(s) {
+    s = s.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+    s = s.replace(/_([^_\n]+)_/g, '<em>$1</em>');
+    s = s.replace(/\[(green|teal|amber|blue|ink|muted)\]([\s\S]*?)\[\/\1\]/g,
+      function (m, color, inner) { return '<span class="fmt-c-' + color + '">' + inner + '</span>'; });
+    return s;
+  }
+
+  function fmt(raw) {
+    var text = esc(raw == null ? '' : String(raw)).replace(/\r\n?/g, '\n');
+    var lines = text.split('\n');
+    var html = '', para = [], list = [];
+    function flushPara() {
+      if (para.length) { html += '<p class="fmt-p">' + para.join('<br>') + '</p>'; para = []; }
+    }
+    function flushList() {
+      if (list.length) {
+        html += '<ul class="fmt-ul">' +
+          list.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>';
+        list = [];
+      }
+    }
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (!line.trim()) { flushPara(); flushList(); continue; }
+      var h = /^\s*##\s+(.*)$/.exec(line);
+      var li = /^\s*-\s+(.*)$/.exec(line);
+      if (h) { flushPara(); flushList(); html += '<h4 class="fmt-h">' + fmtInline(h[1]) + '</h4>'; }
+      else if (li) { flushPara(); list.push(fmtInline(li[1])); }
+      else { flushList(); para.push(fmtInline(line)); }
+    }
+    flushPara(); flushList();
+    return html;
+  }
+
+  /* Campo editable con mini-formato: el editor lo trata aparte (data-rich). */
+  function edRich(path) {
+    return E(path) + ' data-rich="1">' + fmt(t(path));
+  }
+
   var TONES = ['green', 'blue', 'amber'];
   function toneClass(tone) {
     return TONES.indexOf(tone) === -1 ? 'green' : tone;
@@ -259,7 +313,7 @@
             '<span class="work-code">' + esc(w.code) + '</span>' +
           '</div>' +
           '<div class="work-title"' + ed('working.' + i + '.title') + '</div>' +
-          '<div class="work-desc"' + ed('working.' + i + '.desc') + '</div>' +
+          '<div class="work-desc"' + edRich('working.' + i + '.desc') + '</div>' +
           bar +
         '</div>';
     }).join('');

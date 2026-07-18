@@ -259,6 +259,38 @@ window.BRAVOS_CONTENT = {
         {
           "es": "Personalización de fondo de pantalla en los chats.",
           "en": "Chat wallpaper customization."
+        },
+        {
+          "es": "Integración de Meta PIXEL.",
+          "en": "Meta Pixel integration."
+        },
+        {
+          "es": "Métricas e informes de: PIXEL, SLA y Satisfacción (webchat).",
+          "en": "Metrics and reports for Pixel, SLA and satisfaction (web chat)."
+        },
+        {
+          "es": "Correcciones menores de idiomas.",
+          "en": "Minor translation fixes."
+        },
+        {
+          "es": "Incorporación de Meta PIXEL.",
+          "en": "Meta Pixel support."
+        },
+        {
+          "es": "Informes y métricas de: PIXEL, encuestas de satisfacción (webchat) y SLA.",
+          "en": "Reports and metrics for Pixel, satisfaction surveys (web chat) and SLA."
+        },
+        {
+          "es": "Panel de aplicaciones personalizable.",
+          "en": "Customizable apps panel."
+        },
+        {
+          "es": "Integración opcional de Dialogflow.",
+          "en": "Optional Dialogflow integration."
+        },
+        {
+          "es": "Nombres de usuario.",
+          "en": "Usernames."
         }
       ]
     },
@@ -305,24 +337,24 @@ window.BRAVOS_CONTENT = {
       },
       "changes": [
         {
-          "es": "Creación de Entradas: Twilio, Whatsapp Cloud y SMS.",
-          "en": "Channel creation: Twilio, WhatsApp Cloud and SMS."
+          "es": "Creación de Entradas: Twilio, Whatsapp Cloud, SMS, TelegramBot y Webchat.",
+          "en": "Channel creation: Twilio, WhatsApp Cloud, SMS, Telegram Bot and web chat."
         },
         {
-          "es": "Creación de Agentes y verificación por correo electrónico.",
-          "en": "Agent creation and email verification."
+          "es": "Creador de Agentes y verificador por correo electrónico.",
+          "en": "Agent creator with email verification."
         },
         {
-          "es": "Variedad de idiomas agregada.",
-          "en": "Added support for multiple languages."
+          "es": "Variedad de idiomas.",
+          "en": "Multi-language support."
         },
         {
-          "es": "Menú de contactos agregado.",
-          "en": "Added contacts menu."
+          "es": "Menú de contactos.",
+          "en": "Contacts menu."
         },
         {
-          "es": "Macros, Respuestas Predefinidas, automatización y más.",
-          "en": "Macros, predefined replies, automation and more."
+          "es": "Macros, Respuestas Predefinidas y automatizaciones.",
+          "en": "Macros, predefined replies and automations."
         },
         {
           "es": "Menú de ajustes de perfil y cambio de diseño.",
@@ -333,8 +365,12 @@ window.BRAVOS_CONTENT = {
           "en": "Reports menu: track chats, agents and bots."
         },
         {
-          "es": "Auto-Asignación en las líneas: se dividen las conversaciones automáticamente entre colaboradores.",
-          "en": "Auto-assignment on lines: conversations are split automatically between team members."
+          "es": "Auto-Asignación de chats entre colaboradores.",
+          "en": "Auto-assignment of chats between team members."
+        },
+        {
+          "es": "Etiquetado en clientes, prioridad de chats y urgencias.",
+          "en": "Customer tagging, chat priority and urgency levels."
         }
       ]
     }
@@ -356,6 +392,27 @@ window.BRAVOS_CONTENT = {
   "working": [
     {
       "code": "AA-03",
+      "tone": "green",
+      "progress": 93,
+      "status": {
+        "es": "En implementación",
+        "en": "Rolling out"
+      },
+      "title": {
+        "es": "Update 0.015.2",
+        "en": "Update 0.015.2"
+      },
+      "desc": {
+        "es": "**Update 0.015.2** suma dos grandes incorporaciones: **moderación** e **inteligencia artificial**.\n\n## Inteligencia artificial\nAprende de cada conversación entre clientes y agentes para adaptarse a su forma de escribir. Tres herramientas:\n\n- **Resúmenes de conversación** — condensa los mensajes del cliente para leer más rápido.\n- **Respuestas sugeridas** — propone una respuesta según todo el historial y el último mensaje.\n- **Corrección de palabras** — con un diccionario de términos prohibidos, reemplaza automáticamente lo que no debería enviarse.\n\n## Moderación\nUn nuevo rol, el **moderador**, queda a cargo del grupo de agentes y líneas que se le asigne: se comunica con los agentes, suma o quita colaboradores, elimina chats, integra píxeles y sigue las métricas de sus chats, agentes y píxeles.",
+        "en": "**Update 0.015.2** brings two big additions: **moderation** and **artificial intelligence**.\n\n## Artificial intelligence\nIt learns from every conversation between customers and agents to adapt to their writing style. Three tools:\n\n- **Conversation summaries** — condense the customer's messages so agents read faster.\n- **Suggested replies** — propose an answer based on the full history and the latest message.\n- **Word correction** — with a dictionary of banned terms, it automatically replaces anything that shouldn't be sent.\n\n## Moderation\nA new role, the **moderator**, takes charge of the assigned group of agents and lines: they talk to agents, add or remove collaborators, delete chats, integrate pixels and track the metrics of their chats, agents and pixels."
+      },
+      "progressLabel": {
+        "es": "93% Completado",
+        "en": "93% complete"
+      }
+    },
+    {
+      "code": "AA-02",
       "tone": "amber",
       "progress": 26,
       "status": {
@@ -373,27 +430,6 @@ window.BRAVOS_CONTENT = {
       "progressLabel": {
         "es": "26% completado",
         "en": "26% complete"
-      }
-    },
-    {
-      "code": "AA-02",
-      "tone": "green",
-      "progress": 73,
-      "status": {
-        "es": "BETA",
-        "en": "Beta"
-      },
-      "title": {
-        "es": "IA para respuestas sugeridas",
-        "en": "AI suggested replies"
-      },
-      "desc": {
-        "es": "Sugerencias de respuesta y resúmenes de conversación con inteligencia artificial.",
-        "en": "Reply suggestions and conversation summaries powered by AI."
-      },
-      "progressLabel": {
-        "es": "73% completado",
-        "en": "73% complete"
       }
     },
     {

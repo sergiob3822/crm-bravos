@@ -32,7 +32,14 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   color: var(--ink);
+  /* El puntero se queda como flecha sobre el texto — nada de cursor de
+     "edición de texto" (I-beam) sobre títulos, párrafos, etc. El texto sigue
+     siendo seleccionable; solo cambia el ícono del cursor. */
+  cursor: default;
 }
+
+/* Los elementos que se clickean sí muestran la manito. */
+a[href], button, [data-go], [data-lang], [role="button"] { cursor: pointer; }
 
 a { color: var(--teal-mid); text-decoration: none; }
 a:hover { color: var(--teal); }
@@ -343,6 +350,36 @@ main { flex: 1; }
   color: var(--muted); margin: 8px 0 0; flex: 1;
 }
 .work-bar-wrap { margin-top: 18px; }
+
+/* ============================================================================
+   Mini-formato de textos (lo genera fmt() en app.js: subtítulos, listas,
+   negrita, cursiva y colores). Pensado para que un bloque largo deje de ser
+   un muro de gris y se lea por partes.
+   ========================================================================== */
+.fmt-p { margin: 0 0 10px; }
+.fmt-p:last-child { margin-bottom: 0; }
+.fmt-h {
+  margin: 16px 0 7px; font-size: 13px; font-weight: 800;
+  letter-spacing: .04em; text-transform: uppercase;
+  color: var(--ink);
+}
+.fmt-h:first-child { margin-top: 0; }
+.fmt-ul { margin: 4px 0 10px; padding: 0; list-style: none; }
+.fmt-ul li {
+  position: relative; padding-left: 16px; margin: 5px 0;
+}
+.fmt-ul li::before {
+  content: ''; position: absolute; left: 2px; top: 8px;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--green);
+}
+.work-desc strong, .feature-desc strong { color: var(--ink); font-weight: 700; }
+.fmt-c-green { color: var(--green-dark); font-weight: 600; }
+.fmt-c-teal  { color: var(--teal); font-weight: 600; }
+.fmt-c-amber { color: #8A5A12; font-weight: 600; }
+.fmt-c-blue  { color: #1E6FB8; font-weight: 600; }
+.fmt-c-ink   { color: var(--ink); }
+.fmt-c-muted { color: var(--muted-2); }
 .work-bar-track {
   height: 7px; border-radius: 999px;
   background: #EDF1F3; overflow: hidden;
