@@ -255,6 +255,10 @@ window.BRAVOS_CONTENT = {
         {
           "es": "Menú de centro de notificaciones.",
           "en": "Notification center menu."
+        },
+        {
+          "es": "Personalización de fondo de pantalla en los chats.",
+          "en": "Chat wallpaper customization."
         }
       ]
     },
