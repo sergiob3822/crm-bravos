@@ -42,24 +42,54 @@ window.BRAVOS_CONTENT = {
     },
     "chips": [
       {
-        "es": "WhatsApp API Cloud",
-        "en": "WhatsApp Cloud API"
+        "label": {
+          "es": "WhatsApp API Cloud",
+          "en": "WhatsApp Cloud API"
+        },
+        "tip": {
+          "es": "La API oficial de WhatsApp (Meta) para empresas: máxima estabilidad y escala.",
+          "en": "WhatsApp's official Cloud API (Meta) for business: built for scale and reliability."
+        }
       },
       {
-        "es": "Twilio",
-        "en": "Twilio"
+        "label": {
+          "es": "Twilio",
+          "en": "Twilio"
+        },
+        "tip": {
+          "es": "Proveedor global de mensajería para SMS y WhatsApp con cobertura internacional.",
+          "en": "Global messaging provider for SMS and WhatsApp with international coverage."
+        }
       },
       {
-        "es": "Whatsapp Business",
-        "en": "WhatsApp Business"
+        "label": {
+          "es": "Whatsapp Business",
+          "en": "WhatsApp Business"
+        },
+        "tip": {
+          "es": "WhatsApp Business a través de Evolution API, sin costo por conversación.",
+          "en": "WhatsApp Business via Evolution API, with no per-conversation fee."
+        }
       },
       {
-        "es": "Whatsapp Messenger",
-        "en": "WhatsApp Messenger"
+        "label": {
+          "es": "Whatsapp Messenger",
+          "en": "WhatsApp Messenger"
+        },
+        "tip": {
+          "es": "WhatsApp común vinculado para gestionar sus chats desde el CRM.",
+          "en": "Regular WhatsApp linked to manage its chats from the CRM."
+        }
       },
       {
-        "es": "SMS",
-        "en": "SMS"
+        "label": {
+          "es": "SMS",
+          "en": "SMS"
+        },
+        "tip": {
+          "es": "Enviá y recibí mensajes de texto tradicionales a cualquier número.",
+          "en": "Send and receive traditional text messages to any number."
+        }
       }
     ],
     "online": {
@@ -424,8 +454,8 @@ window.BRAVOS_CONTENT = {
         "en": "Mobile app for agents"
       },
       "desc": {
-        "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM quedó obsoleta.",
-        "en": "BravosCRM from your pocket! We are working hard to improve our customer experience — the previous version of the CRM is now obsolete."
+        "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.",
+        "en": "BravosCRM from your pocket! We are working hard to improve our customer experience — the previous version of the CRM mobile is now obsolete."
       },
       "progressLabel": {
         "es": "26% completado",

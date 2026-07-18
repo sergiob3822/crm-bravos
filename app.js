@@ -135,9 +135,21 @@
   }
 
   /* --- Contenido ---------------------------------------------------------- */
+  /* Los chips pasaron de {es,en} a {label:{es,en}, tip:{es,en}}. Esto acepta
+     las dos formas (por si queda un content.js viejo) y deja todo en la nueva. */
+  function normalizeChips(c) {
+    if (c && c.home && Array.isArray(c.home.chips)) {
+      c.home.chips = c.home.chips.map(function (ch) {
+        if (ch && ch.label) return { label: ch.label, tip: ch.tip || { es: '', en: '' } };
+        return { label: { es: (ch && ch.es) || '', en: (ch && ch.en) || '' }, tip: { es: '', en: '' } };
+      });
+    }
+    return c;
+  }
+
   /* La página muestra content.js y nada más. Es la única fuente de verdad. */
   function loadContent() {
-    return deepClone(window.BRAVOS_CONTENT);
+    return normalizeChips(deepClone(window.BRAVOS_CONTENT));
   }
 
   /* --- Bloques reutilizables --------------------------------------------- */
@@ -198,7 +210,9 @@
     var c = state.content;
 
     var chips = c.home.chips.map(function (_, i) {
-      return '<span class="chip"' + ed('home.chips.' + i) + '</span>';
+      var tip = t('home.chips.' + i + '.tip');
+      var tipAttr = tip.trim() ? ' data-tip="' + esc(tip) + '"' : '';
+      return '<span class="chip"' + tipAttr + ed('home.chips.' + i + '.label') + '</span>';
     }).join('');
 
     var bubbles = c.home.chat.map(function (m, i) {
@@ -259,23 +273,41 @@
   }
 
   /* --- Página: Versiones ------------------------------------------------- */
+  /* Lista de versiones apiladas (títulos). Al hacer clic en una, se abre un
+     modal ancho con el detalle. Los modales se rinden ocultos junto a la lista
+     para que la edición inline del changelog siga funcionando en el editor. */
   function versionsPage() {
     var c = state.content;
-    var items = c.versions.map(function (x, i) {
+    var changesWord = state.lang === 'es' ? 'cambios' : 'changes';
+    var changeWord = state.lang === 'es' ? 'cambio' : 'change';
+
+    var rows = c.versions.map(function (x, i) {
+      var n = x.changes.length;
+      return '' +
+        '<button type="button" class="ver-row" data-modal="ver-' + i + '">' +
+          '<span class="ver-row-v">' + esc(x.v) + '</span>' +
+          '<span class="badge badge--' + toneClass(x.tone) + '">' + esc(t('versions.' + i + '.tag')) + '</span>' +
+          '<span class="ver-row-date">' + esc(t('versions.' + i + '.date')) + '</span>' +
+          '<span class="ver-row-count">' + n + ' ' + (n === 1 ? changeWord : changesWord) + '</span>' +
+          '<span class="ver-row-arrow" aria-hidden="true">&rsaquo;</span>' +
+        '</button>';
+    }).join('');
+
+    var modals = c.versions.map(function (x, i) {
       var changes = x.changes.map(function (_, j) {
         return '<div class="tl-change"><span' + ed('versions.' + i + '.changes.' + j) + '</span></div>';
       }).join('');
-      var line = i < c.versions.length - 1 ? '<span class="tl-line"></span>' : '';
       return '' +
-        '<div class="tl-item">' +
-          '<span class="tl-dot"></span>' + line +
-          '<div class="tl-card">' +
-            '<div class="tl-head">' +
+        '<div class="ver-modal" id="ver-' + i + '">' +
+          '<div class="ver-modal-backdrop" data-modal-close></div>' +
+          '<div class="ver-modal-panel" role="dialog" aria-modal="true" aria-label="' + esc(x.v) + '">' +
+            '<button type="button" class="ver-modal-close" data-modal-close aria-label="Cerrar">&times;</button>' +
+            '<div class="ver-modal-head">' +
               '<span class="tl-v">' + esc(x.v) + '</span>' +
               '<span class="badge badge--' + toneClass(x.tone) + '"' + ed('versions.' + i + '.tag') + '</span>' +
-              '<span class="tl-date"' + ed('versions.' + i + '.date') + '</span>' +
+              '<span class="ver-modal-date"' + ed('versions.' + i + '.date') + '</span>' +
             '</div>' +
-            '<div class="tl-changes">' + changes + '</div>' +
+            '<div class="ver-modal-changes tl-changes">' + changes + '</div>' +
           '</div>' +
         '</div>';
     }).join('');
@@ -286,8 +318,9 @@
           '<span class="kicker"' + ed('versionsPage.kicker') + '</span>' +
           '<h1' + ed('versionsPage.title') + '</h1>' +
           '<p class="subpage-sub"' + ed('versionsPage.sub') + '</p>' +
-          '<div class="timeline">' + items + '</div>' +
+          '<div class="ver-list">' + rows + '</div>' +
         '</div>' +
+        modals +
       '</section>';
   }
 
@@ -408,7 +441,28 @@
     var descEl = document.querySelector('meta[name="description"]');
     if (descEl) descEl.setAttribute('content', t('home.sub'));
 
+    /* Cada render arranca sin modal abierto (al navegar/re-render se cierran),
+       así no queda el scroll del fondo bloqueado. */
+    document.body.classList.remove('ver-modal-open');
+
     window.dispatchEvent(new CustomEvent('bravos:rendered'));
+  }
+
+  /* --- Modales ----------------------------------------------------------- */
+  function openModal(id) {
+    var m = document.getElementById(id);
+    if (!m) return;
+    m.classList.add('is-open');
+    document.body.classList.add('ver-modal-open');
+    var close = m.querySelector('.ver-modal-close');
+    if (close) close.focus();
+  }
+
+  function closeModal(m) {
+    if (!m) m = document.querySelector('.ver-modal.is-open');
+    if (!m) return;
+    m.classList.remove('is-open');
+    document.body.classList.remove('ver-modal-open');
   }
 
   /* --- Router ------------------------------------------------------------ */
@@ -443,6 +497,18 @@
   /* --- Eventos ----------------------------------------------------------- */
   function bindGlobalClicks() {
     document.addEventListener('click', function (e) {
+      var closeM = e.target.closest('[data-modal-close]');
+      if (closeM) {
+        e.preventDefault();
+        closeModal(closeM.closest('.ver-modal'));
+        return;
+      }
+      var openM = e.target.closest('[data-modal]');
+      if (openM) {
+        e.preventDefault();
+        openModal(openM.getAttribute('data-modal'));
+        return;
+      }
       var go = e.target.closest('[data-go]');
       if (go) {
         e.preventDefault();
@@ -453,6 +519,13 @@
       if (lang) {
         e.preventDefault();
         setLang(lang.getAttribute('data-lang'));
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        var open = document.querySelector('.ver-modal.is-open');
+        if (open) closeModal(open);
       }
     });
   }
@@ -468,6 +541,7 @@
     nodeAt: nodeAt,
     deepClone: deepClone,
     esc: esc,
+    normalizeChips: normalizeChips,
   };
 
   /* --- Arranque ---------------------------------------------------------- */

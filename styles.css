@@ -159,9 +159,53 @@ main { flex: 1; }
 }
 .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .chip {
+  position: relative;
   font-size: 12.5px; font-weight: 600; color: var(--ink-3);
   background: #fff; border: 1px solid var(--line);
   border-radius: 999px; padding: 6px 12px;
+}
+
+/* --- Tooltip de los chips ------------------------------------------------- */
+/* Globito con la descripción (data-tip). Solo aparece si el chip tiene texto.
+   Puro CSS: sin JS ni style inline, así respeta la CSP. */
+.chip[data-tip] { cursor: help; }
+.chip[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 9px); left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: max-content; max-width: 240px;
+  background: var(--ink); color: #fff;
+  font-size: 12px; font-weight: 500; line-height: 1.45;
+  text-align: center; white-space: normal;
+  padding: 8px 11px; border-radius: 9px;
+  box-shadow: 0 10px 30px -10px rgba(11, 27, 33, .55);
+  opacity: 0; visibility: hidden;
+  transition: opacity .16s ease, transform .16s ease;
+  z-index: 60; pointer-events: none;
+}
+.chip[data-tip]::before {
+  content: ''; position: absolute;
+  bottom: calc(100% + 4px); left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: var(--ink);
+  opacity: 0; visibility: hidden;
+  transition: opacity .16s ease;
+  z-index: 61; pointer-events: none;
+}
+/* Solo en dispositivos con mouse (en touch no hay "dejar quieto"). El
+   transition-delay hace que aparezca recién tras ~0.35s de tener el mouse
+   encima — o sea, cuando lo dejás quieto. */
+@media (hover: hover) {
+  .chip[data-tip]:hover::after {
+    opacity: 1; visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    transition-delay: .35s;
+  }
+  .chip[data-tip]:hover::before {
+    opacity: 1; visibility: visible;
+    transition-delay: .35s;
+  }
 }
 
 /* --- Mockup de chat ------------------------------------------------------ */
@@ -321,6 +365,73 @@ main { flex: 1; }
   flex: none;
 }
 .tl-change span { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+
+/* --- Versiones: lista de títulos apilados -------------------------------- */
+.ver-list { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; }
+.ver-row {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; text-align: left;
+  padding: 18px 22px;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px -16px rgba(11, 27, 33, .35);
+  font-family: inherit; cursor: pointer;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.ver-row:hover {
+  border-color: rgba(37, 211, 102, .55);
+  box-shadow: 0 12px 30px -18px rgba(11, 27, 33, .45);
+  transform: translateY(-1px);
+}
+.ver-row:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.ver-row-v {
+  font-weight: 800; font-size: 19px; letter-spacing: -.02em;
+  color: var(--ink); font-family: ui-monospace, Menlo, monospace;
+}
+.ver-row-date { font-size: 13px; color: var(--muted-2); }
+.ver-row-count {
+  margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--muted);
+  background: var(--wash-2); border-radius: 999px; padding: 4px 11px;
+}
+.ver-row-arrow { font-size: 22px; color: var(--muted-2); line-height: 1; flex: none; }
+
+/* --- Versiones: modal ---------------------------------------------------- */
+body.ver-modal-open { overflow: hidden; }
+.ver-modal { position: fixed; inset: 0; z-index: 200; display: none; }
+.ver-modal.is-open { display: flex; align-items: center; justify-content: center; padding: 24px; }
+.ver-modal-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(11, 27, 33, .45);
+  backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+  animation: verFade .18s ease;
+}
+.ver-modal-panel {
+  position: relative;
+  width: 100%; max-width: 720px;
+  max-height: 85vh; overflow-y: auto;
+  background: #fff; border-radius: 18px;
+  box-shadow: 0 30px 90px -24px rgba(11, 27, 33, .55);
+  padding: 30px 34px 34px;
+  animation: verIn .19s cubic-bezier(.2, .7, .3, 1);
+}
+.ver-modal-close {
+  position: absolute; top: 16px; right: 16px;
+  width: 34px; height: 34px; border-radius: 9px;
+  border: none; background: var(--wash-2); color: var(--ink-3);
+  font-size: 22px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, color .15s;
+}
+.ver-modal-close:hover { background: #E7ECEF; color: var(--ink); }
+.ver-modal-head {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding-right: 40px; margin-bottom: 4px;
+}
+.ver-modal-date { margin-left: auto; font-size: 13px; color: var(--muted-2); }
+.ver-modal-changes { margin-top: 6px; }
+
+@keyframes verFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes verIn { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
 
 /* --- Roadmap ------------------------------------------------------------- */
 .working-shell { max-width: 1080px; margin: 0 auto; padding: 56px 24px 72px; }
@@ -491,12 +602,17 @@ main { flex: 1; }
   .site-footer .shell { justify-content: center; text-align: center; }
   .terms-item { grid-template-columns: 30px 1fr; gap: 10px; }
   .feature-card { width: 100%; }
+  .ver-row { flex-wrap: wrap; gap: 8px 12px; padding: 15px 18px; }
+  .ver-row-count { margin-left: auto; }
+  .ver-row-arrow { display: none; }
+  .ver-modal.is-open { padding: 14px; }
+  .ver-modal-panel { padding: 24px 20px 26px; }
 }
 
 @media (max-width: 420px) {
   .hero h1 { font-size: 30px; }
-  .tl-head { gap: 8px; }
-  .tl-date { margin-left: 0; width: 100%; }
+  .ver-row-date { width: 100%; order: 3; }
+  .ver-modal-date { margin-left: 0; width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
