@@ -326,10 +326,34 @@ main { flex: 1; }
   display: inline-block; padding: 4px 11px;
   border-radius: 999px; font-weight: 700; font-size: 11.5px;
   white-space: nowrap;
+  border: 1px solid transparent;
+  transition: box-shadow .2s;
 }
-.badge--green { background: rgba(37, 211, 102, .13); color: #0B7A3E; }
-.badge--blue  { background: rgba(37, 131, 209, .14); color: #1E6FB8; }
-.badge--amber { background: rgba(214, 158, 46, .16); color: #8A5A12; }
+/* Cada tono define su color de texto/fondo y su --glow (color del flúor). */
+.badge--green  { background: rgba(37, 211, 102, .14); color: #0B7A3E; --glow: 55, 211, 102; }
+.badge--teal   { background: rgba(18, 140, 126, .15); color: #0B6B60; --glow: 20, 184, 166; }
+.badge--blue   { background: rgba(37, 131, 209, .14); color: #1E6FB8; --glow: 46, 127, 209; }
+.badge--cyan   { background: rgba(6, 182, 212, .15);  color: #0E7490; --glow: 6, 182, 212; }
+.badge--purple { background: rgba(139, 92, 246, .15); color: #6D28D9; --glow: 139, 92, 246; }
+.badge--pink   { background: rgba(236, 72, 153, .15); color: #BE185D; --glow: 236, 72, 153; }
+.badge--red    { background: rgba(239, 68, 68, .14);  color: #B91C1C; --glow: 239, 68, 68; }
+.badge--orange { background: rgba(249, 115, 22, .15); color: #C2410C; --glow: 249, 115, 22; }
+.badge--amber  { background: rgba(214, 158, 46, .16); color: #8A5A12; --glow: 240, 180, 41; }
+.badge--gray   { background: rgba(100, 116, 139, .16); color: #475569; --glow: 148, 163, 184; }
+
+/* Flúor de iluminación: resplandor del color del tono + un poco más de brillo. */
+.badge.is-glow {
+  border-color: rgba(var(--glow), .55);
+  color: #fff;
+  background: rgba(var(--glow), .92);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .28);
+  box-shadow: 0 0 10px 0 rgba(var(--glow), .75), 0 0 20px 2px rgba(var(--glow), .45);
+  animation: badgeGlow 2.4s ease-in-out infinite;
+}
+@keyframes badgeGlow {
+  0%, 100% { box-shadow: 0 0 8px 0 rgba(var(--glow), .6), 0 0 16px 1px rgba(var(--glow), .35); }
+  50%      { box-shadow: 0 0 14px 1px rgba(var(--glow), .9), 0 0 26px 4px rgba(var(--glow), .55); }
+}
 
 /* --- Versiones (timeline) ------------------------------------------------ */
 .versions-shell { max-width: 900px; margin: 0 auto; padding: 56px 24px 72px; }
@@ -357,14 +381,41 @@ main { flex: 1; }
   color: var(--ink); font-family: ui-monospace, Menlo, monospace;
 }
 .tl-date { margin-left: auto; font-size: 13px; color: var(--muted-2); }
-.tl-changes { margin-top: 14px; display: flex; flex-direction: column; gap: 3px; }
-.tl-change { display: flex; gap: 10px; align-items: flex-start; padding: 4px 0; }
-.tl-change::before {
-  content: '✓';
-  color: var(--green); font-size: 13px; font-weight: 800; line-height: 1.6;
-  flex: none;
+.tl-changes { margin-top: 14px; display: flex; flex-direction: column; gap: 2px; }
+
+/* --- Notas del changelog (título + descripción desplegable) --------------- */
+.chg { border-radius: 10px; }
+.chg-head {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 7px 8px 7px 2px;
+  border-radius: 10px;
 }
-.tl-change span { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+.chg--expandable > .chg-head { cursor: pointer; transition: background .14s; }
+.chg--expandable > .chg-head:hover { background: rgba(37, 211, 102, .07); }
+.chg.is-open > .chg-head { background: rgba(37, 211, 102, .09); }
+.chg-check {
+  color: var(--green); font-size: 13px; font-weight: 800; line-height: 1.6; flex: none;
+}
+.chg-title { flex: 1; font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+.chg.is-open > .chg-head .chg-title { font-weight: 600; color: var(--ink); }
+.chg-arrow {
+  flex: none; width: 24px; height: 24px; border-radius: 7px;
+  border: none; background: transparent; color: var(--muted-2);
+  font-size: 19px; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transform: rotate(90deg); transition: transform .2s ease, background .14s, color .14s;
+}
+.chg-head:hover .chg-arrow { background: rgba(11, 27, 33, .06); color: var(--ink-3); }
+.chg.is-open .chg-arrow { transform: rotate(-90deg); color: var(--green-dark); }
+
+/* Desplegado por max-height: el truco de grid (0fr→1fr) no sirve acá porque el
+   overflow:hidden del hijo anula su mínimo automático y la fila queda en 0. */
+.chg-desc { max-height: 0; overflow: hidden; transition: max-height .26s ease; }
+.chg.is-open .chg-desc { max-height: 3000px; }
+.chg-desc-inner {
+  padding: 2px 10px 12px 25px;
+  font-size: 13.5px; line-height: 1.6; color: var(--muted);
+}
 
 /* --- Versiones: lista de títulos apilados -------------------------------- */
 .ver-list { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; }
@@ -388,12 +439,14 @@ main { flex: 1; }
   font-weight: 800; font-size: 19px; letter-spacing: -.02em;
   color: var(--ink); font-family: ui-monospace, Menlo, monospace;
 }
+.ver-row-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .ver-row-date { font-size: 13px; color: var(--muted-2); }
 .ver-row-count {
   margin-left: auto; font-size: 12.5px; font-weight: 600; color: var(--muted);
   background: var(--wash-2); border-radius: 999px; padding: 4px 11px;
 }
 .ver-row-arrow { font-size: 22px; color: var(--muted-2); line-height: 1; flex: none; }
+.ver-modal-tags { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
 
 /* --- Versiones: modal ---------------------------------------------------- */
 body.ver-modal-open { overflow: hidden; }
@@ -407,60 +460,68 @@ body.ver-modal-open { overflow: hidden; }
 }
 .ver-modal-panel {
   position: relative;
-  width: 100%; max-width: 720px;
-  max-height: 85vh; overflow-y: auto;
+  width: 100%; max-width: 880px;
+  max-height: 88vh;
+  display: flex; flex-direction: column;   /* cabecera fija + cuerpo scrolleable */
   background: #fff; border-radius: 18px;
   box-shadow: 0 30px 90px -24px rgba(11, 27, 33, .55);
-  padding: 30px 34px 34px;
   animation: verIn .19s cubic-bezier(.2, .7, .3, 1);
 }
+/* Cabecera fija: no scrollea, así el título y la cruz quedan siempre a la vista. */
+.ver-modal-top {
+  flex: none;
+  padding: 26px 34px 16px;
+  border-bottom: 1px solid var(--line-2);
+  border-radius: 18px 18px 0 0;
+}
+/* Cuerpo scrolleable: solo la lista de cambios se desplaza. */
+.ver-modal-body {
+  flex: 1 1 auto; overflow-y: auto;
+  padding: 18px 34px 30px;
+}
+/* Cruz sobre la esquina superior derecha del panel, fuera del área que scrollea:
+   nunca desaparece por más que bajes en la lista. */
 .ver-modal-close {
-  position: absolute; top: 16px; right: 16px;
-  width: 34px; height: 34px; border-radius: 9px;
-  border: none; background: var(--wash-2); color: var(--ink-3);
+  position: absolute; top: 18px; right: 22px; z-index: 2;
+  width: 36px; height: 36px; border-radius: 10px;
+  border: 1px solid var(--line); background: #fff; color: var(--ink-3);
   font-size: 22px; line-height: 1; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: background .15s, color .15s;
+  box-shadow: 0 4px 14px -6px rgba(11, 27, 33, .4);
+  transition: background .15s, color .15s, transform .12s;
 }
-.ver-modal-close:hover { background: #E7ECEF; color: var(--ink); }
+.ver-modal-close:hover { background: var(--ink); color: #fff; transform: scale(1.05); }
 .ver-modal-head {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
-  padding-right: 40px; margin-bottom: 4px;
+  padding-right: 44px;
 }
 .ver-modal-date { margin-left: auto; font-size: 13px; color: var(--muted-2); }
-.ver-modal-changes { margin-top: 6px; }
+.ver-modal-changes { margin-top: 0; }
 
 @keyframes verFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes verIn { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
 
 /* --- Roadmap ------------------------------------------------------------- */
-.working-shell { max-width: 1080px; margin: 0 auto; padding: 56px 24px 72px; }
-.work-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 18px; margin-top: 38px;
-}
-.work-card {
+/* --- Próximamente: bloques (estilo Versiones) ---------------------------- */
+.working-shell { max-width: 900px; margin: 0 auto; padding: 56px 24px 72px; }
+.work-list { margin-top: 34px; display: flex; flex-direction: column; gap: 16px; }
+.work-block {
   background: #fff; border: 1px solid var(--line);
   border-radius: 16px; padding: 22px 24px;
   box-shadow: 0 8px 24px -18px rgba(11, 27, 33, .35);
-  display: flex; flex-direction: column;
 }
-.work-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+.work-block-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.work-block-title {
+  font-weight: 700; font-size: 18.5px; line-height: 1.25;
+  color: var(--ink); margin: 0; letter-spacing: -.01em;
 }
 .work-code {
+  margin-left: auto;
   font-family: ui-monospace, Menlo, monospace;
   font-size: 12px; color: #B4C0C7; font-weight: 700;
 }
-.work-title {
-  font-weight: 700; font-size: 18px; line-height: 1.25;
-  color: var(--ink); margin: 14px 0 0; letter-spacing: -.01em;
-}
-.work-desc {
-  font-size: 14px; line-height: 1.55;
-  color: var(--muted); margin: 8px 0 0; flex: 1;
-}
-.work-bar-wrap { margin-top: 18px; }
+.work-block-desc { font-size: 14px; line-height: 1.55; color: var(--muted); margin: 11px 0 18px; }
+.work-block-desc .fmt-p:last-child { margin-bottom: 0; }
 
 /* ============================================================================
    Mini-formato de textos (lo genera fmt() en app.js: subtítulos, listas,
@@ -484,23 +545,83 @@ body.ver-modal-open { overflow: hidden; }
   width: 5px; height: 5px; border-radius: 50%;
   background: var(--green);
 }
-.work-desc strong, .feature-desc strong { color: var(--ink); font-weight: 700; }
+.work-block-desc strong, .feature-desc strong { color: var(--ink); font-weight: 700; }
+/* Imágenes/videos dentro de una descripción: se adaptan al ancho (mobile y PC). */
+.fmt-media {
+  display: block; max-width: 100%; height: auto;
+  margin: 12px 0; border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px -16px rgba(11, 27, 33, .4);
+}
+video.fmt-media { width: 100%; background: #000; }
 .fmt-c-green { color: var(--green-dark); font-weight: 600; }
 .fmt-c-teal  { color: var(--teal); font-weight: 600; }
 .fmt-c-amber { color: #8A5A12; font-weight: 600; }
 .fmt-c-blue  { color: #1E6FB8; font-weight: 600; }
 .fmt-c-ink   { color: var(--ink); }
 .fmt-c-muted { color: var(--muted-2); }
+/* --- Próximamente: barra de progreso ------------------------------------- */
+.work-progress { position: relative; margin-top: 4px; }
+.work-progress.has-items { cursor: pointer; }
 .work-bar-track {
-  height: 7px; border-radius: 999px;
-  background: #EDF1F3; overflow: hidden;
+  height: 12px; border-radius: 999px;
+  background: #EAEEF1; overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(11, 27, 33, .12);
 }
-/* El ancho lo pone applyBars() en app.js desde data-bar */
+/* El ancho lo pone applyBars() en app.js desde data-bar. El color y su
+   resplandor salen de la clase work-bar--<color> según el porcentaje. */
 .work-bar-fill {
-  height: 7px; border-radius: 999px;
-  background: linear-gradient(90deg, #25D366, #128C7E);
+  height: 100%; border-radius: 999px;
+  transition: width .5s cubic-bezier(.2, .7, .3, 1), background .3s, box-shadow .3s;
+  background-image: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0) 55%);
+  background-color: var(--barc, #25D366);
+  box-shadow: 0 0 10px 0 rgba(var(--barg, 37,211,102), .8), 0 0 3px rgba(var(--barg, 37,211,102), .9);
 }
-.work-progress-label { font-size: 11.5px; color: var(--muted-2); margin-top: 6px; }
+.work-bar--red    { --barc: #EF4444; --barg: 239,68,68; }
+.work-bar--orange { --barc: #F97316; --barg: 249,115,22; }
+.work-bar--yellow { --barc: #F5C518; --barg: 245,197,24; }
+.work-bar--lime   { --barc: #4ADE5B; --barg: 74,222,91; }
+.work-bar--green  { --barc: #17B84A; --barg: 33,190,90; }
+.work-progress-label {
+  font-size: 12px; font-weight: 600; color: var(--ink-3); margin-top: 9px;
+}
+
+/* Ítems logrados: aparecen al pasar el mouse (desktop) o tocar la barra. */
+.work-items {
+  position: absolute; left: 0; right: 0; top: calc(100% + 10px);
+  z-index: 5;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 13px; padding: 14px 16px;
+  box-shadow: 0 18px 44px -18px rgba(11, 27, 33, .5);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .16s, transform .16s, visibility .16s;
+}
+.work-progress.is-open .work-items { opacity: 1; visibility: visible; transform: none; }
+@media (hover: hover) {
+  .work-progress.has-items:hover .work-items { opacity: 1; visibility: visible; transform: none; }
+}
+.work-items-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--muted); margin-bottom: 8px;
+}
+.work-items ul { list-style: none; margin: 0; padding: 0; }
+.work-items li {
+  display: flex; gap: 9px; align-items: flex-start; padding: 4px 0;
+  font-size: 13.5px; line-height: 1.5; color: var(--ink-2);
+}
+.work-item-check { color: var(--green); font-weight: 800; flex: none; line-height: 1.5; }
+
+/* --- Confeti (barra al 100%) --------------------------------------------- */
+.confetti-layer { position: fixed; inset: 0; z-index: 9998; pointer-events: none; overflow: hidden; }
+.confetti-piece {
+  position: fixed; width: 9px; height: 13px; display: block;
+  will-change: transform, opacity;
+  animation: confettiFly 1.5s cubic-bezier(.15, .6, .4, 1) forwards;
+}
+@keyframes confettiFly {
+  0%   { transform: translate(-50%, -50%) rotate(0deg); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 320px)) rotate(var(--rot)); opacity: 0; }
+}
 
 /* --- Términos ------------------------------------------------------------ */
 .terms-shell { max-width: 760px; margin: 0 auto; padding: 56px 24px 72px; }
@@ -577,7 +698,6 @@ body.ver-modal-open { overflow: hidden; }
   }
   .hero h1 { font-size: 36px; }
   .hero-sub { font-size: 16px; max-width: none; }
-  .work-grid { grid-template-columns: 1fr; }
   .subpage h1 { font-size: 32px; }
   .features h2 { font-size: 25px; }
 }
@@ -605,8 +725,10 @@ body.ver-modal-open { overflow: hidden; }
   .ver-row { flex-wrap: wrap; gap: 8px 12px; padding: 15px 18px; }
   .ver-row-count { margin-left: auto; }
   .ver-row-arrow { display: none; }
-  .ver-modal.is-open { padding: 14px; }
-  .ver-modal-panel { padding: 24px 20px 26px; }
+  .ver-modal.is-open { padding: 12px; }
+  .ver-modal-top { padding: 22px 18px 14px; }
+  .ver-modal-body { padding: 14px 18px 22px; }
+  .ver-modal-close { top: 14px; right: 16px; width: 34px; height: 34px; }
 }
 
 @media (max-width: 420px) {

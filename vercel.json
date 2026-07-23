@@ -14,7 +14,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; script-src 'self' https://api.bravos.com.ar; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.bravos.com.ar; font-src 'self' data: https://api.bravos.com.ar; connect-src 'self' https://api.bravos.com.ar wss://api.bravos.com.ar; frame-src https://api.bravos.com.ar; media-src https://api.bravos.com.ar; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+          "value": "default-src 'none'; script-src 'self' https://api.bravos.com.ar; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.bravos.com.ar; font-src 'self' data: https://api.bravos.com.ar; connect-src 'self' https://api.bravos.com.ar wss://api.bravos.com.ar; frame-src https://api.bravos.com.ar; media-src 'self' https://api.bravos.com.ar; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
         },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },

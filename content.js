@@ -141,8 +141,8 @@ window.BRAVOS_CONTENT = {
           "en": "Multichannel WhatsApp"
         },
         "desc": {
-          "es": "Conectá WhatsApp API, Twilio o Evolution API: Whatsapp Business y Messenger en un solo panel.",
-          "en": "Connect WhatsApp API, Twilio or Evolution API — WhatsApp Business and Messenger in a single panel."
+          "es": "Conectá WhatsApp API, Twilio o WAME: Whatsapp Business y Messenger en un solo panel.",
+          "en": "Connect WhatsApp API, Twilio or WAME — WhatsApp Business and Messenger in a single panel."
         }
       },
       {
@@ -243,164 +243,308 @@ window.BRAVOS_CONTENT = {
   },
   "versions": [
     {
-      "v": "v0.015.1",
-      "tone": "green",
+      "v": "v0.015.2",
       "date": {
         "es": "Jul 2026",
         "en": "Jul 2026"
       },
-      "tag": {
-        "es": "Nuevo",
-        "en": "New"
+      "tags": [
+        {
+          "label": {
+            "es": "Novedad",
+            "en": "New"
+          },
+          "tone": "purple",
+          "glow": true
+        }
+      ],
+      "changes": [
+        {
+          "t": {
+            "es": "WAMessengerEngine (WAME)",
+            "en": "WAMessengerEngine (WAME)"
+          },
+          "desc": {
+            "es": "Se dejó de depender del EvolutionAPI genérico: ahora es un **motor creado de 0** basado en Baileys (rc13).\n\n- **Conexión estable** — se terminó el loop de \"Iniciando sesión…\" / QR que rebotaba y el device_removed.\n- **Recepción instantánea** — los mensajes del cliente entran enseguida (antes tardaban 58s por Baileys).\n- **Envío arreglado** — se corrigió el error 463 que provocaba fallos en los envíos 1 a 1.\n- **Import de historial** — se importan miles de mensajes al vincular (con EvolutionAPI antes no funcionaba).\n- **LID resuelto** — los contactos y grupos con identificador interno (LID) ahora se resuelven al número real: se ven con nombre y número del usuario, y **se les puede enviar mensajes** (antes daba \"no es un número de WhatsApp válido\").\n- **Sin chats duplicados** — se normaliza el sufijo de dispositivo para que el chat importado y el chat en vivo sean el mismo.\n- **Contactos con nombre de agenda** — al vincular, sincroniza tu agenda y trae los contactos con el nombre que vos les pusiste, no solo el número.\n- **Sin crasheos en el import** — se deduplican los contactos antes de guardarlos (antes un choque de duplicados abortaba todo el import).",
+            "en": "We stopped relying on the generic EvolutionAPI: it's now a **from-scratch engine** built on Baileys (rc13).\n\n- **Stable connection** — the \"Signing in…\" / bouncing-QR loop and the device_removed are gone.\n- **Instant receiving** — customer messages come in right away (they used to take 58s on Baileys).\n- **Fixed sending** — fixed the 463 error that caused failures in one-to-one messages.\n- **History import** — thousands of messages are imported when you link a line (this didn't work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) now resolve to the real number: they show the user's name and number, and **you can message them** (it used to say \"not a valid WhatsApp number\").\n- **No duplicate chats** — the device suffix is normalized so the imported chat and the live chat are the same one.\n- **Contacts with address-book names** — on linking, it syncs your address book and brings contacts with the name you gave them, not just the number.\n- **No crashes on import** — contacts are deduplicated before saving (a duplicate clash used to abort the whole import)."
+          }
+        },
+        {
+          "t": {
+            "es": "Wizard de vinculación de líneas",
+            "en": "Line-linking wizard"
+          },
+          "desc": {
+            "es": "- **Solo QR** — se quitó la opción de código por número (poco estable en WhatsApp Web).\n- **Historial de importación (días)** — un campo para definir cuántos días de chats importar.\n- **Pantalla de carga con progreso** — tras escanear, muestra el avance de la carga de contactos y mensajes.\n- **Cancelar y eliminar** — elimina las líneas más rápido y sin dejarlas huérfanas.",
+            "en": "- **QR only** — the phone-code option was removed (unstable on WhatsApp Web).\n- **Import history (days)** — a field to set how many days of chats to import.\n- **Loading screen with progress** — after scanning, it shows the progress of loading contacts and messages.\n- **Cancel and delete** — removes lines faster and without leaving them orphaned."
+          }
+        },
+        {
+          "t": {
+            "es": "Rol Moderador",
+            "en": "Moderator role"
+          },
+          "desc": {
+            "es": "Un rol intermedio, asignado por equipos y líneas, que ve y controla solo su entorno.\n\n- Ve y gestiona solo **sus líneas** y los **agentes de sus equipos**.\n- Tiene habilitadas las métricas de informes, contactos y campañas, acotadas a sus líneas.\n- Puede crear y borrar **solo líneas de WhatsApp** (WAME), no otros canales, para evitar problemas.\n- Se corrigieron 6 bugs, incluido un **agujero de seguridad** (el moderador llegaba a ver los tokens de la línea).",
+            "en": "An intermediate role, assigned by teams and lines, that sees and controls only its own scope.\n\n- Sees and manages only **its lines** and the **agents of its teams**.\n- Has reports, contacts and campaign metrics enabled, scoped to its lines.\n- Can create and delete **only WhatsApp lines** (WAME), not other channels, to avoid issues.\n- Fixed 6 bugs, including a **security hole** (the moderator could see the line's tokens)."
+          }
+        },
+        {
+          "t": {
+            "es": "Chat interno del equipo (Chat CRM)",
+            "en": "Internal team chat (CRM Chat)"
+          },
+          "desc": {
+            "es": "Mensajería interna de usuario a usuario dentro del CRM.\n\n- Chat en tiempo real entre agentes, moderadores y administradores.\n- **Adjuntar archivos** (imágenes y documentos).\n- **Notificaciones** con sonido, información del contacto y del mensaje.",
+            "en": "Internal user-to-user messaging inside the CRM.\n\n- Real-time chat between agents, moderators and admins.\n- **File attachments** (images and documents).\n- **Notifications** with sound, plus contact and message info."
+          }
+        },
+        {
+          "t": {
+            "es": "Updates menores (desde el reskin)",
+            "en": "Minor updates (since the reskin)"
+          },
+          "desc": {
+            "es": "- **Español completo** — barrido de traducción de toda la interfaz (~1600 textos).\n- **2FA** — verificación en dos pasos obligatoria según el rol.\n- **Login por usuario o correo** — el nombre de usuario ahora es único; podés entrar con el usuario o el correo.\n- **Métrica \"Ventas\"** — se cargan con el comando #cliente monto.\n- **Menú móvil** — se corrigió la interfaz para celular.\n- **Optimización completa** — CRM más liviano para móviles de pocos recursos.\n- **Sesión persistente** — ya no se cierra sola si vos no lo permitís.",
+            "en": "- **Full Spanish** — a translation sweep across the whole interface (~1600 strings).\n- **2FA** — mandatory two-step verification depending on the role.\n- **Login by username or email** — the username is now unique; you can sign in with either.\n- **\"Sales\" metric** — logged with the #cliente amount command.\n- **Mobile menu** — fixed the phone interface.\n- **Full optimization** — a lighter CRM for low-end phones.\n- **Persistent session** — it no longer logs you out on its own unless you allow it."
+          }
+        }
+      ]
+    },
+    {
+      "v": "v0.015.1",
+      "date": {
+        "es": "Jul 2026",
+        "en": "Jul 2026"
       },
       "changes": [
         {
-          "es": "Reskin completo del software.",
-          "en": "Full software reskin."
+          "t": {
+            "es": "Reskin completo del software.",
+            "en": "Full software reskin."
+          }
         },
         {
-          "es": "Implementación de 2FA (Verificación en dos pasos) al crear agentes.",
-          "en": "2FA (two-step verification) when creating agents."
+          "t": {
+            "es": "Implementación de 2FA (Verificación en dos pasos) al crear agentes.",
+            "en": "2FA (two-step verification) when creating agents."
+          }
         },
         {
-          "es": "Campañas SMS masivas con segmentación por etiquetas.",
-          "en": "Bulk SMS campaigns with tag-based segmentation."
+          "t": {
+            "es": "Campañas SMS masivas con segmentación por etiquetas.",
+            "en": "Bulk SMS campaigns with tag-based segmentation."
+          }
         },
         {
-          "es": "Grupos de agentes y asignación automática de conversaciones.",
-          "en": "Agent groups and automatic conversation assignment."
+          "t": {
+            "es": "Grupos de agentes y asignación automática de conversaciones.",
+            "en": "Agent groups and automatic conversation assignment."
+          }
         },
         {
-          "es": "Respuestas automáticas privadas para cada agente.",
-          "en": "Private automated replies for each agent."
+          "t": {
+            "es": "Respuestas automáticas privadas para cada agente.",
+            "en": "Private automated replies for each agent."
+          }
         },
         {
-          "es": "Función \"Bloquear Contacto\".",
-          "en": "\"Block contact\" feature."
+          "t": {
+            "es": "Función \"Bloquear Contacto\".",
+            "en": "\"Block contact\" feature."
+          }
         },
         {
-          "es": "Bandeja \"Grupos\" separada para cada línea.",
-          "en": "Separate \"Groups\" inbox for each line."
+          "t": {
+            "es": "Bandeja \"Grupos\" separada para cada línea.",
+            "en": "Separate \"Groups\" inbox for each line."
+          }
         },
         {
-          "es": "Menú de centro de notificaciones.",
-          "en": "Notification center menu."
+          "t": {
+            "es": "Menú de centro de notificaciones.",
+            "en": "Notification center menu."
+          }
         },
         {
-          "es": "Personalización de fondo de pantalla en los chats.",
-          "en": "Chat wallpaper customization."
+          "t": {
+            "es": "Personalización de fondo de pantalla en los chats.",
+            "en": "Chat wallpaper customization."
+          }
         },
         {
-          "es": "Integración de Meta PIXEL.",
-          "en": "Meta Pixel integration."
+          "t": {
+            "es": "Integración de Meta PIXEL.",
+            "en": "Meta Pixel integration."
+          }
         },
         {
-          "es": "Métricas e informes de: PIXEL, SLA y Satisfacción (webchat).",
-          "en": "Metrics and reports for Pixel, SLA and satisfaction (web chat)."
+          "t": {
+            "es": "Métricas e informes de: PIXEL, SLA y Satisfacción (webchat).",
+            "en": "Metrics and reports for Pixel, SLA and satisfaction (web chat)."
+          }
         },
         {
-          "es": "Correcciones menores de idiomas.",
-          "en": "Minor translation fixes."
+          "t": {
+            "es": "Correcciones menores de idiomas.",
+            "en": "Minor translation fixes."
+          }
         },
         {
-          "es": "Incorporación de Meta PIXEL.",
-          "en": "Meta Pixel support."
+          "t": {
+            "es": "Incorporación de Meta PIXEL.",
+            "en": "Meta Pixel support."
+          }
         },
         {
-          "es": "Informes y métricas de: PIXEL, encuestas de satisfacción (webchat) y SLA.",
-          "en": "Reports and metrics for Pixel, satisfaction surveys (web chat) and SLA."
+          "t": {
+            "es": "Informes y métricas de: PIXEL, encuestas de satisfacción (webchat) y SLA.",
+            "en": "Reports and metrics for Pixel, satisfaction surveys (web chat) and SLA."
+          }
         },
         {
-          "es": "Panel de aplicaciones personalizable.",
-          "en": "Customizable apps panel."
+          "t": {
+            "es": "Panel de aplicaciones personalizable.",
+            "en": "Customizable apps panel."
+          }
         },
         {
-          "es": "Integración opcional de Dialogflow.",
-          "en": "Optional Dialogflow integration."
+          "t": {
+            "es": "Integración opcional de Dialogflow.",
+            "en": "Optional Dialogflow integration."
+          }
         },
         {
-          "es": "Nombres de usuario.",
-          "en": "Usernames."
+          "t": {
+            "es": "Nombres de usuario.",
+            "en": "Usernames."
+          }
+        }
+      ],
+      "tags": [
+        {
+          "label": {
+            "es": "Nuevo",
+            "en": "New"
+          },
+          "tone": "green",
+          "glow": true
         }
       ]
     },
     {
       "v": "v0.015.0",
-      "tone": "blue",
       "date": {
         "es": "Jun 2026",
         "en": "Jun 2026"
       },
-      "tag": {
-        "es": "Seguridad",
-        "en": "Security"
-      },
       "changes": [
         {
-          "es": "Se corrigió el bug \"Eliminar chat\" para los agentes. Acción permitida solo para administradores.",
-          "en": "Fixed the \"Delete chat\" bug for agents. The action is now restricted to administrators."
+          "t": {
+            "es": "Se corrigió el bug \"Eliminar chat\" para los agentes. Acción permitida solo para administradores.",
+            "en": "Fixed the \"Delete chat\" bug for agents. The action is now restricted to administrators."
+          }
         },
         {
-          "es": "Corrección del bug \"missing messages\" (algunos agentes no veían ciertos mensajes en el chat).",
-          "en": "Fixed the \"missing messages\" bug (some agents could not see certain messages in a chat)."
+          "t": {
+            "es": "Corrección del bug \"missing messages\" (algunos agentes no veían ciertos mensajes en el chat).",
+            "en": "Fixed the \"missing messages\" bug (some agents could not see certain messages in a chat)."
+          }
         },
         {
-          "es": "Corrección de Baileys: no vinculaba Whatsapp Business pero sí Whatsapp Messenger.",
-          "en": "Baileys fix: it linked WhatsApp Messenger but failed to link WhatsApp Business."
+          "t": {
+            "es": "Corrección de Baileys: no vinculaba Whatsapp Business pero sí Whatsapp Messenger.",
+            "en": "Baileys fix: it linked WhatsApp Messenger but failed to link WhatsApp Business."
+          }
         },
         {
-          "es": "Corrección \"Exportar Contactos\": no leía el correo empresarial y lanzaba error.",
-          "en": "\"Export contacts\" fix: it failed to read the business email and threw an error."
+          "t": {
+            "es": "Corrección \"Exportar Contactos\": no leía el correo empresarial y lanzaba error.",
+            "en": "\"Export contacts\" fix: it failed to read the business email and threw an error."
+          }
+        }
+      ],
+      "tags": [
+        {
+          "label": {
+            "es": "Seguridad",
+            "en": "Security"
+          },
+          "tone": "blue",
+          "glow": false
         }
       ]
     },
     {
       "v": "v0.014.0",
-      "tone": "green",
       "date": {
         "es": "Mar 2026",
         "en": "Mar 2026"
       },
-      "tag": {
-        "es": "Inicio",
-        "en": "Launch"
-      },
       "changes": [
         {
-          "es": "Creación de Entradas: Twilio, Whatsapp Cloud, SMS, TelegramBot y Webchat.",
-          "en": "Channel creation: Twilio, WhatsApp Cloud, SMS, Telegram Bot and web chat."
+          "t": {
+            "es": "Creación de Entradas: Twilio, Whatsapp Cloud, SMS, TelegramBot y Webchat.",
+            "en": "Channel creation: Twilio, WhatsApp Cloud, SMS, Telegram Bot and web chat."
+          }
         },
         {
-          "es": "Creador de Agentes y verificador por correo electrónico.",
-          "en": "Agent creator with email verification."
+          "t": {
+            "es": "Creador de Agentes y verificador por correo electrónico.",
+            "en": "Agent creator with email verification."
+          }
         },
         {
-          "es": "Variedad de idiomas.",
-          "en": "Multi-language support."
+          "t": {
+            "es": "Variedad de idiomas.",
+            "en": "Multi-language support."
+          }
         },
         {
-          "es": "Menú de contactos.",
-          "en": "Contacts menu."
+          "t": {
+            "es": "Menú de contactos.",
+            "en": "Contacts menu."
+          }
         },
         {
-          "es": "Macros, Respuestas Predefinidas y automatizaciones.",
-          "en": "Macros, predefined replies and automations."
+          "t": {
+            "es": "Macros, Respuestas Predefinidas y automatizaciones.",
+            "en": "Macros, predefined replies and automations."
+          }
         },
         {
-          "es": "Menú de ajustes de perfil y cambio de diseño.",
-          "en": "Profile settings menu and redesign."
+          "t": {
+            "es": "Menú de ajustes de perfil y cambio de diseño.",
+            "en": "Profile settings menu and redesign."
+          }
         },
         {
-          "es": "Menú de informes: seguimiento de chats, agentes y bots.",
-          "en": "Reports menu: track chats, agents and bots."
+          "t": {
+            "es": "Menú de informes: seguimiento de chats, agentes y bots.",
+            "en": "Reports menu: track chats, agents and bots."
+          }
         },
         {
-          "es": "Auto-Asignación de chats entre colaboradores.",
-          "en": "Auto-assignment of chats between team members."
+          "t": {
+            "es": "Auto-Asignación de chats entre colaboradores.",
+            "en": "Auto-assignment of chats between team members."
+          }
         },
         {
-          "es": "Etiquetado en clientes, prioridad de chats y urgencias.",
-          "en": "Customer tagging, chat priority and urgency levels."
+          "t": {
+            "es": "Etiquetado en clientes, prioridad de chats y urgencias.",
+            "en": "Customer tagging, chat priority and urgency levels."
+          }
+        }
+      ],
+      "tags": [
+        {
+          "label": {
+            "es": "Inicio",
+            "en": "Launch"
+          },
+          "tone": "green",
+          "glow": false
         }
       ]
     }
@@ -423,23 +567,51 @@ window.BRAVOS_CONTENT = {
     {
       "code": "AA-03",
       "tone": "green",
-      "progress": 93,
+      "progress": 100,
       "status": {
-        "es": "En implementación",
-        "en": "Rolling out"
+        "es": "Lanzado",
+        "en": "Released"
       },
       "title": {
         "es": "Update 0.015.2",
         "en": "Update 0.015.2"
       },
       "desc": {
-        "es": "**Update 0.015.2** suma dos grandes incorporaciones: **moderación** e **inteligencia artificial**.\n\n## Inteligencia artificial\nAprende de cada conversación entre clientes y agentes para adaptarse a su forma de escribir. Tres herramientas:\n\n- **Resúmenes de conversación** — condensa los mensajes del cliente para leer más rápido.\n- **Respuestas sugeridas** — propone una respuesta según todo el historial y el último mensaje.\n- **Corrección de palabras** — con un diccionario de términos prohibidos, reemplaza automáticamente lo que no debería enviarse.\n\n## Moderación\nUn nuevo rol, el **moderador**, queda a cargo del grupo de agentes y líneas que se le asigne: se comunica con los agentes, suma o quita colaboradores, elimina chats, integra píxeles y sigue las métricas de sus chats, agentes y píxeles.",
-        "en": "**Update 0.015.2** brings two big additions: **moderation** and **artificial intelligence**.\n\n## Artificial intelligence\nIt learns from every conversation between customers and agents to adapt to their writing style. Three tools:\n\n- **Conversation summaries** — condense the customer's messages so agents read faster.\n- **Suggested replies** — propose an answer based on the full history and the latest message.\n- **Word correction** — with a dictionary of banned terms, it automatically replaces anything that shouldn't be sent.\n\n## Moderation\nA new role, the **moderator**, takes charge of the assigned group of agents and lines: they talk to agents, add or remove collaborators, delete chats, integrate pixels and track the metrics of their chats, agents and pixels."
+        "es": "Ya disponible: nuevo motor de WhatsApp (WAME), rol Moderador, chat interno del equipo y una tanda de mejoras.",
+        "en": "Now live: a new WhatsApp engine (WAME), the Moderator role, internal team chat and a batch of improvements."
       },
-      "progressLabel": {
-        "es": "93% Completado",
-        "en": "93% complete"
-      }
+      "items": [
+        {
+          "t": {
+            "es": "Motor WAMessengerEngine (WAME) propio, basado en Baileys.",
+            "en": "In-house WAMessengerEngine (WAME), built on Baileys."
+          }
+        },
+        {
+          "t": {
+            "es": "Wizard de vinculación de líneas (solo QR, con import de historial).",
+            "en": "Line-linking wizard (QR only, with history import)."
+          }
+        },
+        {
+          "t": {
+            "es": "Rol Moderador por equipos y líneas.",
+            "en": "Moderator role scoped by teams and lines."
+          }
+        },
+        {
+          "t": {
+            "es": "Chat interno del equipo (Chat CRM).",
+            "en": "Internal team chat (CRM Chat)."
+          }
+        },
+        {
+          "t": {
+            "es": "Español completo, 2FA, login por usuario/correo y más.",
+            "en": "Full Spanish, 2FA, username/email login and more."
+          }
+        }
+      ]
     },
     {
       "code": "AA-02",
@@ -457,10 +629,7 @@ window.BRAVOS_CONTENT = {
         "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.",
         "en": "BravosCRM from your pocket! We are working hard to improve our customer experience — the previous version of the CRM mobile is now obsolete."
       },
-      "progressLabel": {
-        "es": "26% completado",
-        "en": "26% complete"
-      }
+      "items": []
     },
     {
       "code": "AA-01",
@@ -478,10 +647,7 @@ window.BRAVOS_CONTENT = {
         "es": "Unificá WhatsApp, SMS, Instagram y Messenger en una sola bandeja de entrada.",
         "en": "Unify WhatsApp, SMS, Instagram and Messenger in a single inbox."
       },
-      "progressLabel": {
-        "es": "2% completado",
-        "en": "2% complete"
-      }
+      "items": []
     }
   ],
   "termsPage": {

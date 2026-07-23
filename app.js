@@ -97,6 +97,24 @@
     return s;
   }
 
+  /* Imagen o video de una línea "![alt](url)". El texto ya viene escapado, así
+     que la URL no puede tener <>&"'; además solo aceptamos assets/… o https://
+     (cualquier otra cosa cae a texto literal). El src de img/video no ejecuta JS
+     y una URL externa la corta la CSP, así que es seguro. */
+  function mediaTag(url, alt) {
+    url = String(url).trim();
+    /* Local: solo un archivo dentro de assets/, sin subcarpetas ni "..".
+       Externo: solo https. Cualquier otra cosa (javascript:, traversal, etc.)
+       cae a null → se muestra como texto literal. */
+    var okLocal = /^assets\/[A-Za-z0-9._-]+$/.test(url);
+    var okHttps = /^https:\/\/[^\s]+$/.test(url) && url.indexOf('..') === -1;
+    if (!okLocal && !okHttps) return null;
+    if (/\.(mp4|webm|ogg|mov|m4v)(\?|#|$)/i.test(url)) {
+      return '<video class="fmt-media" src="' + url + '" controls preload="metadata"></video>';
+    }
+    return '<img class="fmt-media" src="' + url + '" alt="' + alt + '">';
+  }
+
   function fmt(raw) {
     var text = esc(raw == null ? '' : String(raw)).replace(/\r\n?/g, '\n');
     var lines = text.split('\n');
@@ -114,9 +132,12 @@
     for (var i = 0; i < lines.length; i++) {
       var line = lines[i];
       if (!line.trim()) { flushPara(); flushList(); continue; }
+      var media = /^!\[([^\]]*)\]\(([^)]+)\)\s*$/.exec(line);
       var h = /^\s*##\s+(.*)$/.exec(line);
       var li = /^\s*-\s+(.*)$/.exec(line);
-      if (h) { flushPara(); flushList(); html += '<h4 class="fmt-h">' + fmtInline(h[1]) + '</h4>'; }
+      var mtag = media ? mediaTag(media[2], media[1]) : null;
+      if (mtag) { flushPara(); flushList(); html += mtag; }
+      else if (h) { flushPara(); flushList(); html += '<h4 class="fmt-h">' + fmtInline(h[1]) + '</h4>'; }
       else if (li) { flushPara(); list.push(fmtInline(li[1])); }
       else { flushList(); para.push(fmtInline(line)); }
     }
@@ -129,19 +150,45 @@
     return E(path) + ' data-rich="1">' + fmt(t(path));
   }
 
-  var TONES = ['green', 'blue', 'amber'];
+  var TONES = ['green', 'teal', 'blue', 'cyan', 'purple', 'pink', 'red', 'orange', 'amber', 'gray'];
   function toneClass(tone) {
     return TONES.indexOf(tone) === -1 ? 'green' : tone;
   }
 
   /* --- Contenido ---------------------------------------------------------- */
-  /* Los chips pasaron de {es,en} a {label:{es,en}, tip:{es,en}}. Esto acepta
-     las dos formas (por si queda un content.js viejo) y deja todo en la nueva. */
-  function normalizeChips(c) {
+  /* Dos estructuras cambiaron de forma con el tiempo. Esto acepta la vieja y la
+     nueva (por si queda un content.js o un borrador viejo) y deja todo normalizado:
+       chips:   {es,en}  →  {label:{es,en}, tip:{es,en}}
+       changes: {es,en}  →  {t:{es,en}}  (+ desc opcional) */
+  function normalize(c) {
     if (c && c.home && Array.isArray(c.home.chips)) {
       c.home.chips = c.home.chips.map(function (ch) {
         if (ch && ch.label) return { label: ch.label, tip: ch.tip || { es: '', en: '' } };
         return { label: { es: (ch && ch.es) || '', en: (ch && ch.en) || '' }, tip: { es: '', en: '' } };
+      });
+    }
+    if (c && Array.isArray(c.versions)) {
+      c.versions.forEach(function (v) {
+        if (Array.isArray(v.changes)) {
+          v.changes = v.changes.map(function (ch) {
+            if (ch && ch.t) return ch;
+            return { t: { es: (ch && ch.es) || '', en: (ch && ch.en) || '' } };
+          });
+        }
+        /* Una etiqueta {tag,tone,glow} → un array de etiquetas tags[]. */
+        if (!Array.isArray(v.tags)) {
+          v.tags = [{
+            label: v.tag || { es: '', en: '' },
+            tone: v.tone || 'green',
+            glow: !!v.glow,
+          }];
+          delete v.tag; delete v.tone; delete v.glow;
+        }
+      });
+    }
+    if (c && Array.isArray(c.working)) {
+      c.working.forEach(function (w) {
+        if (!Array.isArray(w.items)) w.items = [];
       });
     }
     return c;
@@ -149,7 +196,7 @@
 
   /* La página muestra content.js y nada más. Es la única fuente de verdad. */
   function loadContent() {
-    return normalizeChips(deepClone(window.BRAVOS_CONTENT));
+    return normalize(deepClone(window.BRAVOS_CONTENT));
   }
 
   /* --- Bloques reutilizables --------------------------------------------- */
@@ -276,38 +323,73 @@
   /* Lista de versiones apiladas (títulos). Al hacer clic en una, se abre un
      modal ancho con el detalle. Los modales se rinden ocultos junto a la lista
      para que la edición inline del changelog siga funcionando en el editor. */
+  /* Todas las etiquetas de una versión como badges (con su color y flúor). */
+  function versionBadges(x, i) {
+    return (x.tags || []).map(function (tg, k) {
+      return '<span class="badge badge--' + toneClass(tg.tone) + (tg.glow ? ' is-glow' : '') + '">' +
+        esc(t('versions.' + i + '.tags.' + k + '.label')) + '</span>';
+    }).join('');
+  }
+
   function versionsPage() {
     var c = state.content;
     var changesWord = state.lang === 'es' ? 'cambios' : 'changes';
     var changeWord = state.lang === 'es' ? 'cambio' : 'change';
 
+    /* data-mirror: la fila muestra tag/fecha en modo lectura. Si en el editor se
+       editan inline dentro del modal, el editor refresca estos nodos para que la
+       fila no quede desactualizada. */
     var rows = c.versions.map(function (x, i) {
       var n = x.changes.length;
       return '' +
         '<button type="button" class="ver-row" data-modal="ver-' + i + '">' +
           '<span class="ver-row-v">' + esc(x.v) + '</span>' +
-          '<span class="badge badge--' + toneClass(x.tone) + '">' + esc(t('versions.' + i + '.tag')) + '</span>' +
-          '<span class="ver-row-date">' + esc(t('versions.' + i + '.date')) + '</span>' +
+          '<span class="ver-row-tags">' + versionBadges(x, i) + '</span>' +
+          '<span class="ver-row-date" data-mirror="versions.' + i + '.date">' + esc(t('versions.' + i + '.date')) + '</span>' +
           '<span class="ver-row-count">' + n + ' ' + (n === 1 ? changeWord : changesWord) + '</span>' +
           '<span class="ver-row-arrow" aria-hidden="true">&rsaquo;</span>' +
         '</button>';
     }).join('');
 
     var modals = c.versions.map(function (x, i) {
-      var changes = x.changes.map(function (_, j) {
-        return '<div class="tl-change"><span' + ed('versions.' + i + '.changes.' + j) + '</span></div>';
+      /* Cada cambio es una "nota": título con ✓ y, si tiene descripción, se
+         despliega al hacer clic (flechita a la derecha para plegar/desplegar). */
+      var changes = x.changes.map(function (ch, j) {
+        var base = 'versions.' + i + '.changes.' + j;
+        var hasDesc = !!(ch.desc && t(base + '.desc').trim());
+        if (!hasDesc) {
+          return '<div class="chg"><div class="chg-head chg-head--plain">' +
+            '<span class="chg-check" aria-hidden="true">✓</span>' +
+            '<span class="chg-title"' + ed(base + '.t') + '</span>' +
+            '</div></div>';
+        }
+        return '' +
+          '<div class="chg chg--expandable">' +
+            '<div class="chg-head" data-chg-toggle>' +
+              '<span class="chg-check" aria-hidden="true">✓</span>' +
+              '<span class="chg-title"' + ed(base + '.t') + '</span>' +
+              '<button type="button" class="chg-arrow" data-chg-toggle aria-expanded="false" aria-label="Ver descripción">&rsaquo;</button>' +
+            '</div>' +
+            '<div class="chg-desc"><div class="chg-desc-inner"' + edRich(base + '.desc') + '</div></div>' +
+          '</div>';
       }).join('');
       return '' +
         '<div class="ver-modal" id="ver-' + i + '">' +
           '<div class="ver-modal-backdrop" data-modal-close></div>' +
           '<div class="ver-modal-panel" role="dialog" aria-modal="true" aria-label="' + esc(x.v) + '">' +
+            /* La cruz vive en la cabecera fija (fuera del área que scrollea),
+               así queda siempre visible por más que bajes en la lista. */
             '<button type="button" class="ver-modal-close" data-modal-close aria-label="Cerrar">&times;</button>' +
-            '<div class="ver-modal-head">' +
-              '<span class="tl-v">' + esc(x.v) + '</span>' +
-              '<span class="badge badge--' + toneClass(x.tone) + '"' + ed('versions.' + i + '.tag') + '</span>' +
-              '<span class="ver-modal-date"' + ed('versions.' + i + '.date') + '</span>' +
+            '<div class="ver-modal-top">' +
+              '<div class="ver-modal-head">' +
+                '<span class="tl-v">' + esc(x.v) + '</span>' +
+                '<span class="ver-modal-tags">' + versionBadges(x, i) + '</span>' +
+                '<span class="ver-modal-date"' + ed('versions.' + i + '.date') + '</span>' +
+              '</div>' +
             '</div>' +
-            '<div class="ver-modal-changes tl-changes">' + changes + '</div>' +
+            '<div class="ver-modal-body">' +
+              '<div class="ver-modal-changes tl-changes">' + changes + '</div>' +
+            '</div>' +
           '</div>' +
         '</div>';
     }).join('');
@@ -324,30 +406,52 @@
       '</section>';
   }
 
+  /* Color de la barra según el porcentaje (rojo → verde oscuro). */
+  function barColor(pct) {
+    if (pct <= 25) return 'red';
+    if (pct <= 38) return 'orange';
+    if (pct <= 56) return 'yellow';
+    if (pct <= 78) return 'lime';
+    return 'green';
+  }
+
   /* --- Página: Próximamente ---------------------------------------------- */
+  /* Cada proyecto es un bloque (estilo Versiones): estado + título + descripción
+     breve + barra de progreso. La barra se colorea según el %, muestra
+     "x% Completado" automático, y al pasar el mouse/tocarla despliega los ítems
+     ya logrados (con ✓). Al llegar a 100% lanza confeti. */
   function workingPage() {
     var c = state.content;
-    var items = c.working.map(function (w, i) {
-      /* El ancho va en data-bar y lo aplica applyBars() por JS: así no queda
-         ningún style="" inline y la CSP puede prohibir 'unsafe-inline'. */
+    var doneWord = state.lang === 'es' ? 'Completado' : 'complete';
+
+    var blocks = c.working.map(function (w, i) {
       var pct = Math.max(0, Math.min(100, Number(w.progress) || 0));
-      var bar = pct > 0
-        ? '<div class="work-bar-wrap">' +
-            '<div class="work-bar-track">' +
-              '<div class="work-bar-fill" data-bar="' + pct + '"></div>' +
-            '</div>' +
-            '<div class="work-progress-label"' + ed('working.' + i + '.progressLabel') + '</div>' +
+      var items = (w.items || []);
+      var itemsHtml = items.length
+        ? '<div class="work-items">' +
+            '<div class="work-items-title">' + (state.lang === 'es' ? 'Ya implementado' : 'Already done') + '</div>' +
+            '<ul>' + items.map(function (_, k) {
+              return '<li><span class="work-item-check" aria-hidden="true">✓</span>' +
+                '<span' + ed('working.' + i + '.items.' + k + '.t') + '</span></li>';
+            }).join('') + '</ul>' +
           '</div>'
         : '';
+      var hasItems = items.length > 0;
       return '' +
-        '<div class="work-card">' +
-          '<div class="work-head">' +
+        '<div class="work-block">' +
+          '<div class="work-block-head">' +
             '<span class="badge badge--' + toneClass(w.tone) + '"' + ed('working.' + i + '.status') + '</span>' +
+            '<h3 class="work-block-title"' + ed('working.' + i + '.title') + '</h3>' +
             '<span class="work-code">' + esc(w.code) + '</span>' +
           '</div>' +
-          '<div class="work-title"' + ed('working.' + i + '.title') + '</div>' +
-          '<div class="work-desc"' + edRich('working.' + i + '.desc') + '</div>' +
-          bar +
+          '<div class="work-block-desc"' + edRich('working.' + i + '.desc') + '</div>' +
+          '<div class="work-progress' + (hasItems ? ' has-items' : '') + '"' + (hasItems ? ' data-progress-toggle tabindex="0"' : '') + '>' +
+            '<div class="work-bar-track">' +
+              '<div class="work-bar-fill work-bar--' + barColor(pct) + '" data-bar="' + pct + '" data-key="w' + i + '"></div>' +
+            '</div>' +
+            '<div class="work-progress-label">' + pct + '% ' + doneWord + '</div>' +
+            itemsHtml +
+          '</div>' +
         '</div>';
     }).join('');
 
@@ -357,7 +461,7 @@
           '<span class="kicker"' + ed('workingPage.kicker') + '</span>' +
           '<h1' + ed('workingPage.title') + '</h1>' +
           '<p class="subpage-sub"' + ed('workingPage.sub') + '</p>' +
-          '<div class="work-grid">' + items + '</div>' +
+          '<div class="work-list">' + blocks + '</div>' +
         '</div>' +
       '</section>';
   }
@@ -417,16 +521,63 @@
 
   /* Los anchos de las barras se aplican por CSSOM (no los bloquea la CSP,
      a diferencia de un atributo style="" en el HTML). */
+  /* Recordamos qué barras ya festejaron el 100%, y las re-armamos si bajan,
+     para no lanzar confeti en cada re-render (p. ej. al tipear en el editor). */
+  var celebrated = {};
+
   function applyBars(root) {
     var bars = root.querySelectorAll('[data-bar]');
     for (var i = 0; i < bars.length; i++) {
-      bars[i].style.width = bars[i].getAttribute('data-bar') + '%';
+      var bar = bars[i];
+      var pct = Number(bar.getAttribute('data-bar')) || 0;
+      bar.style.width = pct + '%';
+      var key = bar.getAttribute('data-key') || ('b' + i);
+      if (pct >= 100) {
+        if (!celebrated[key]) { celebrated[key] = true; celebrate(bar); }
+      } else {
+        delete celebrated[key];
+      }
     }
+  }
+
+  /* --- Confeti (al 100%) -------------------------------------------------- */
+  function celebrate(anchor) {
+    /* Diferido para que la barra ya esté ubicada en pantalla. */
+    setTimeout(function () { confettiBurst(anchor); }, 70);
+  }
+
+  function confettiBurst(anchor) {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var rect = anchor.getBoundingClientRect();
+    if (!rect.width) return;
+    var cx = rect.left + rect.width / 2, cy = rect.top + rect.height / 2;
+    var colors = ['#25D366', '#F0B429', '#EF4444', '#2E7FD1', '#8B5CF6', '#EC4899', '#06B6D4', '#F97316'];
+    var layer = document.createElement('div');
+    layer.className = 'confetti-layer';
+    document.body.appendChild(layer);
+    for (var i = 0; i < 90; i++) {
+      var p = document.createElement('i');
+      p.className = 'confetti-piece';
+      var ang = Math.random() * Math.PI * 2;
+      var vel = 120 + Math.random() * 240;
+      p.style.left = cx + 'px';
+      p.style.top = cy + 'px';
+      p.style.background = colors[i % colors.length];
+      p.style.setProperty('--dx', (Math.cos(ang) * vel).toFixed(1) + 'px');
+      p.style.setProperty('--dy', (Math.sin(ang) * vel - (120 + Math.random() * 140)).toFixed(1) + 'px');
+      p.style.setProperty('--rot', Math.round(Math.random() * 900 - 450) + 'deg');
+      p.style.animationDelay = (Math.random() * 0.06).toFixed(3) + 's';
+      if (Math.random() < 0.5) p.style.borderRadius = '50%';
+      layer.appendChild(p);
+    }
+    setTimeout(function () { layer.remove(); }, 1700);
   }
 
   function render() {
     var root = document.getElementById('app');
     if (!root) return;
+    /* Fuera de Próximamente re-armamos el confeti, así al volver vuelve a lanzarse. */
+    if (state.page !== 'working') celebrated = {};
     root.innerHTML =
       '<div class="page">' +
         header() +
@@ -442,27 +593,73 @@
     if (descEl) descEl.setAttribute('content', t('home.sub'));
 
     /* Cada render arranca sin modal abierto (al navegar/re-render se cierran),
-       así no queda el scroll del fondo bloqueado. */
+       así no queda el scroll del fondo bloqueado ni referencias a nodos muertos. */
     document.body.classList.remove('ver-modal-open');
+    activeModal = null;
+    modalTrigger = null;
 
     window.dispatchEvent(new CustomEvent('bravos:rendered'));
   }
 
   /* --- Modales ----------------------------------------------------------- */
-  function openModal(id) {
+  /* Solo puede haber UN modal abierto. Guardamos cuál y quién lo abrió, para
+     cerrar el correcto y devolverle el foco a la fila al salir. */
+  var activeModal = null;
+  var modalTrigger = null;
+
+  function focusables(root) {
+    return [].slice.call(root.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [contenteditable]'
+    )).filter(function (el) { return el.offsetParent !== null || el === document.activeElement; });
+  }
+
+  function openModal(id, trigger) {
     var m = document.getElementById(id);
     if (!m) return;
+    if (activeModal && activeModal !== m) closeModal(activeModal, true);
+    modalTrigger = trigger || null;
+    activeModal = m;
     m.classList.add('is-open');
     document.body.classList.add('ver-modal-open');
     var close = m.querySelector('.ver-modal-close');
     if (close) close.focus();
   }
 
-  function closeModal(m) {
-    if (!m) m = document.querySelector('.ver-modal.is-open');
+  function closeModal(m, keepLock) {
+    if (!m) m = activeModal || document.querySelector('.ver-modal.is-open');
     if (!m) return;
     m.classList.remove('is-open');
-    document.body.classList.remove('ver-modal-open');
+    if (m === activeModal) activeModal = null;
+    /* El scroll del fondo se libera solo si ya no queda ningún modal abierto. */
+    if (!keepLock && !document.querySelector('.ver-modal.is-open')) {
+      document.body.classList.remove('ver-modal-open');
+    }
+    if (!keepLock && modalTrigger && document.contains(modalTrigger)) {
+      modalTrigger.focus();
+      modalTrigger = null;
+    }
+  }
+
+  /* Focus trap: con el modal abierto, Tab no se escapa al fondo. */
+  function trapFocus(e) {
+    if (e.key !== 'Tab' || !activeModal || !activeModal.classList.contains('is-open')) return;
+    var f = focusables(activeModal);
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && (document.activeElement === first || !activeModal.contains(document.activeElement))) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && (document.activeElement === last || !activeModal.contains(document.activeElement))) {
+      e.preventDefault(); first.focus();
+    }
+  }
+
+  /* Despliega / pliega una nota del changelog. */
+  function toggleChange(head) {
+    var box = head.closest('.chg');
+    if (!box) return;
+    var open = box.classList.toggle('is-open');
+    var arrow = box.querySelector('.chg-arrow');
+    if (arrow) arrow.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
   /* --- Router ------------------------------------------------------------ */
@@ -497,6 +694,20 @@
   /* --- Eventos ----------------------------------------------------------- */
   function bindGlobalClicks() {
     document.addEventListener('click', function (e) {
+      /* Tocar la barra de progreso despliega/oculta los ítems (para touch).
+         En desktop también se muestran al pasar el mouse (CSS). No cuenta si el
+         clic fue dentro de la lista de ítems. */
+      var pt = e.target.closest('[data-progress-toggle]');
+      if (pt && !e.target.closest('.work-items')) {
+        pt.classList.toggle('is-open');
+        return;
+      }
+      var chg = e.target.closest('[data-chg-toggle]');
+      if (chg) {
+        e.preventDefault();
+        toggleChange(chg);
+        return;
+      }
       var closeM = e.target.closest('[data-modal-close]');
       if (closeM) {
         e.preventDefault();
@@ -506,7 +717,7 @@
       var openM = e.target.closest('[data-modal]');
       if (openM) {
         e.preventDefault();
-        openModal(openM.getAttribute('data-modal'));
+        openModal(openM.getAttribute('data-modal'), openM);
         return;
       }
       var go = e.target.closest('[data-go]');
@@ -524,9 +735,12 @@
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
-        var open = document.querySelector('.ver-modal.is-open');
+        /* Cierra el que está realmente abierto (no el primero del DOM). */
+        var open = activeModal || document.querySelector('.ver-modal.is-open');
         if (open) closeModal(open);
+        return;
       }
+      trapFocus(e);
     });
   }
 
@@ -541,7 +755,7 @@
     nodeAt: nodeAt,
     deepClone: deepClone,
     esc: esc,
-    normalizeChips: normalizeChips,
+    normalize: normalize,
   };
 
   /* --- Arranque ---------------------------------------------------------- */
