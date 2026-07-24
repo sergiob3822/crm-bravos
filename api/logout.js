@@ -1,4 +1,3 @@
-/* POST /api/logout — cierra la sesión (borra las cookies). */
 module.exports = function (req, res) {
   res.setHeader('Set-Cookie', [
     'bx_sess=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0',
