@@ -3,14 +3,12 @@
 
   var LANG_KEY = 'bravos:lang';
 
-  /* --- Estado ------------------------------------------------------------ */
   var state = {
     lang: 'es',
     page: 'home',
     content: null,
   };
 
-  /* --- Utilidades -------------------------------------------------------- */
   function deepClone(o) {
     return JSON.parse(JSON.stringify(o));
   }
@@ -24,7 +22,6 @@
       .replace(/'/g, '&#39;');
   }
 
-  /* Resuelve una ruta tipo "home.features.2.title" sobre el contenido. */
   function nodeAt(path, root) {
     var parts = String(path).split('.');
     var node = root || state.content;
@@ -35,7 +32,6 @@
     return node;
   }
 
-  /* Lee un texto i18n en el idioma actual. */
   function t(path) {
     var node = nodeAt(path);
     if (node == null) return '';
@@ -45,7 +41,6 @@
     return v == null ? '' : v;
   }
 
-  /* Escribe un texto i18n en el idioma actual. */
   function setText(path, value) {
     var parts = String(path).split('.');
     var last = parts.pop();
@@ -60,28 +55,14 @@
     return true;
   }
 
-  /* Marca un nodo como editable: data-edit="ruta" */
   function E(path) {
     return ' data-edit="' + esc(path) + '"';
   }
 
-  /* Texto editable ya escapado + su ruta. */
   function ed(path) {
     return E(path) + '>' + esc(t(path));
   }
 
-  /* --- Mini-formato para textos largos ----------------------------------- */
-  /* Un markdown reducido y SEGURO. Regla de oro: primero escapamos TODO el
-     texto (esc), y recién después transformamos los tokens en etiquetas
-     propias. Como el texto ya viene escapado, no puede colarse HTML del
-     usuario; las únicas etiquetas que aparecen son las que generamos acá.
-     Los colores salen por clase (no por style=""), así funciona con la CSP.
-
-       **negrita**        _cursiva_
-       ## Subtítulo       (línea que arranca con ##)
-       - ítem de lista    (líneas que arrancan con -)
-       [green]texto[/green]  (colores: green, teal, amber, blue, ink, muted)
-       línea en blanco = párrafo nuevo    salto simple = <br> */
   var FMT_COLORS = { green: 1, teal: 1, amber: 1, blue: 1, ink: 1, muted: 1 };
 
   function fmtInline(s) {
@@ -92,15 +73,9 @@
     return s;
   }
 
-  /* Imagen o video de una línea "![alt](url)". El texto ya viene escapado, así
-     que la URL no puede tener <>&"'; además solo aceptamos assets/… o https://
-     (cualquier otra cosa cae a texto literal). El src de img/video no ejecuta JS
-     y una URL externa la corta la CSP, así que es seguro. */
   function mediaTag(url, alt) {
     url = String(url).trim();
-    /* Local: solo un archivo dentro de assets/, sin subcarpetas ni "..".
-       Externo: solo https. Cualquier otra cosa (javascript:, traversal, etc.)
-       cae a null → se muestra como texto literal. */
+
     var okLocal = /^assets\/[A-Za-z0-9._-]+$/.test(url);
     var okHttps = /^https:\/\/[^\s]+$/.test(url) && url.indexOf('..') === -1;
     if (!okLocal && !okHttps) return null;
@@ -140,7 +115,6 @@
     return html;
   }
 
-  /* Campo editable con mini-formato: el editor lo trata aparte (data-rich). */
   function edRich(path) {
     return E(path) + ' data-rich="1">' + fmt(t(path));
   }
@@ -150,11 +124,6 @@
     return TONES.indexOf(tone) === -1 ? 'green' : tone;
   }
 
-  /* --- Contenido ---------------------------------------------------------- */
-  /* Dos estructuras cambiaron de forma con el tiempo. Esto acepta la vieja y la
-     nueva (por si queda un content.js o un borrador viejo) y deja todo normalizado:
-       chips:   {es,en}  →  {label:{es,en}, tip:{es,en}}
-       changes: {es,en}  →  {t:{es,en}}  (+ desc opcional) */
   function normalize(c) {
     if (c && c.home && Array.isArray(c.home.chips)) {
       c.home.chips = c.home.chips.map(function (ch) {
@@ -170,7 +139,7 @@
             return { t: { es: (ch && ch.es) || '', en: (ch && ch.en) || '' } };
           });
         }
-        /* Una etiqueta {tag,tone,glow} → un array de etiquetas tags[]. */
+
         if (!Array.isArray(v.tags)) {
           v.tags = [{
             label: v.tag || { es: '', en: '' },
@@ -189,12 +158,10 @@
     return c;
   }
 
-  /* La página muestra content.js y nada más. Es la única fuente de verdad. */
   function loadContent() {
     return normalize(deepClone(window.BRAVOS_CONTENT));
   }
 
-  /* --- Bloques reutilizables --------------------------------------------- */
   function logoMark() {
     return '<div class="logo-mark"><i></i></div>';
   }
@@ -211,8 +178,7 @@
               '<span>' + esc(c.brand.suffix) + '</span>' +
             '</div>' +
           '</button>' +
-          /* El selector de idioma es hermano del nav (no hijo) para que en
-             mobile pueda quedar arriba junto al logo y los links pasen abajo. */
+
           '<nav class="header-nav">' +
             '<button class="nav-btn' + (pg === 'versions' ? ' is-active' : '') + '" data-go="#/versions"' + ed('nav.versions') + '</button>' +
             '<button class="nav-btn' + (pg === 'working' ? ' is-active' : '') + '" data-go="#/working"' + ed('nav.coming') + '</button>' +
@@ -247,7 +213,6 @@
       '</footer>';
   }
 
-  /* --- Página: Home ------------------------------------------------------ */
   function homePage() {
     var c = state.content;
 
@@ -314,11 +279,6 @@
       '</section>';
   }
 
-  /* --- Página: Versiones ------------------------------------------------- */
-  /* Lista de versiones apiladas (títulos). Al hacer clic en una, se abre un
-     modal ancho con el detalle. Los modales se rinden ocultos junto a la lista
-     para que la edición inline del changelog siga funcionando en el editor. */
-  /* Todas las etiquetas de una versión como badges (con su color y flúor). */
   function versionBadges(x, i) {
     return (x.tags || []).map(function (tg, k) {
       return '<span class="badge badge--' + toneClass(tg.tone) + (tg.glow ? ' is-glow' : '') + '">' +
@@ -331,9 +291,6 @@
     var changesWord = state.lang === 'es' ? 'cambios' : 'changes';
     var changeWord = state.lang === 'es' ? 'cambio' : 'change';
 
-    /* data-mirror: la fila muestra tag/fecha en modo lectura. Si en el editor se
-       editan inline dentro del modal, el editor refresca estos nodos para que la
-       fila no quede desactualizada. */
     var rows = c.versions.map(function (x, i) {
       var n = x.changes.length;
       return '' +
@@ -347,8 +304,7 @@
     }).join('');
 
     var modals = c.versions.map(function (x, i) {
-      /* Cada cambio es una "nota": título con ✓ y, si tiene descripción, se
-         despliega al hacer clic (flechita a la derecha para plegar/desplegar). */
+
       var changes = x.changes.map(function (ch, j) {
         var base = 'versions.' + i + '.changes.' + j;
         var hasDesc = !!(ch.desc && t(base + '.desc').trim());
@@ -372,8 +328,7 @@
         '<div class="ver-modal" id="ver-' + i + '">' +
           '<div class="ver-modal-backdrop" data-modal-close></div>' +
           '<div class="ver-modal-panel" role="dialog" aria-modal="true" aria-label="' + esc(x.v) + '">' +
-            /* La cruz vive en la cabecera fija (fuera del área que scrollea),
-               así queda siempre visible por más que bajes en la lista. */
+
             '<button type="button" class="ver-modal-close" data-modal-close aria-label="Cerrar">&times;</button>' +
             '<div class="ver-modal-top">' +
               '<div class="ver-modal-head">' +
@@ -401,7 +356,6 @@
       '</section>';
   }
 
-  /* Color de la barra según el porcentaje (rojo → verde oscuro). */
   function barColor(pct) {
     if (pct <= 25) return 'red';
     if (pct <= 38) return 'orange';
@@ -410,11 +364,6 @@
     return 'green';
   }
 
-  /* --- Página: Próximamente ---------------------------------------------- */
-  /* Cada proyecto es un bloque (estilo Versiones): estado + título + descripción
-     breve + barra de progreso. La barra se colorea según el %, muestra
-     "x% Completado" automático, y al pasar el mouse/tocarla despliega los ítems
-     ya logrados (con ✓). Al llegar a 100% lanza confeti. */
   function workingPage() {
     var c = state.content;
     var doneWord = state.lang === 'es' ? 'Completado' : 'complete';
@@ -461,7 +410,6 @@
       '</section>';
   }
 
-  /* --- Página: Términos -------------------------------------------------- */
   function termsPage() {
     var c = state.content;
     var items = c.terms.map(function (_, i) {
@@ -475,7 +423,6 @@
         '</div>';
     }).join('');
 
-    /* La nota es opcional: si termsPage.note está vacío, el cartel no se dibuja. */
     var note = t('termsPage.note').trim()
       ? '<div class="terms-note"><span' + ed('termsPage.note') + '</span></div>'
       : '';
@@ -492,7 +439,6 @@
       '</section>';
   }
 
-  /* --- Página: Login del editor online ----------------------------------- */
   function loginPage() {
     return '' +
       '<section class="subpage subpage--white login-page">' +
@@ -509,7 +455,6 @@
       '</section>';
   }
 
-  /* --- Render ------------------------------------------------------------ */
   var PAGES = {
     home: homePage,
     versions: versionsPage,
@@ -518,8 +463,6 @@
     login: loginPage,
   };
 
-  /* El título de la pestaña sale del contenido, no está escrito acá: así sigue
-     a la marca y a los textos que edites, en los dos idiomas. */
   var TITLE_NAV = {
     versions: 'nav.versions',
     working: 'nav.coming',
@@ -533,10 +476,6 @@
     return t(TITLE_NAV[state.page]) + ' · ' + b;
   }
 
-  /* Los anchos de las barras se aplican por CSSOM (no los bloquea la CSP,
-     a diferencia de un atributo style="" en el HTML). */
-  /* Recordamos qué barras ya festejaron el 100%, y las re-armamos si bajan,
-     para no lanzar confeti en cada re-render (p. ej. al tipear en el editor). */
   var celebrated = {};
 
   function applyBars(root) {
@@ -554,9 +493,8 @@
     }
   }
 
-  /* --- Confeti (al 100%) -------------------------------------------------- */
   function celebrate(anchor) {
-    /* Diferido para que la barra ya esté ubicada en pantalla. */
+
     setTimeout(function () { confettiBurst(anchor); }, 70);
   }
 
@@ -590,7 +528,7 @@
   function render() {
     var root = document.getElementById('app');
     if (!root) return;
-    /* Fuera de Próximamente re-armamos el confeti, así al volver vuelve a lanzarse. */
+
     if (state.page !== 'working') celebrated = {};
     root.innerHTML =
       '<div class="page">' +
@@ -606,8 +544,6 @@
     var descEl = document.querySelector('meta[name="description"]');
     if (descEl) descEl.setAttribute('content', t('home.sub'));
 
-    /* Cada render arranca sin modal abierto (al navegar/re-render se cierran),
-       así no queda el scroll del fondo bloqueado ni referencias a nodos muertos. */
     document.body.classList.remove('ver-modal-open');
     activeModal = null;
     modalTrigger = null;
@@ -615,9 +551,6 @@
     window.dispatchEvent(new CustomEvent('bravos:rendered'));
   }
 
-  /* --- Modales ----------------------------------------------------------- */
-  /* Solo puede haber UN modal abierto. Guardamos cuál y quién lo abrió, para
-     cerrar el correcto y devolverle el foco a la fila al salir. */
   var activeModal = null;
   var modalTrigger = null;
 
@@ -644,7 +577,7 @@
     if (!m) return;
     m.classList.remove('is-open');
     if (m === activeModal) activeModal = null;
-    /* El scroll del fondo se libera solo si ya no queda ningún modal abierto. */
+
     if (!keepLock && !document.querySelector('.ver-modal.is-open')) {
       document.body.classList.remove('ver-modal-open');
     }
@@ -654,7 +587,6 @@
     }
   }
 
-  /* Focus trap: con el modal abierto, Tab no se escapa al fondo. */
   function trapFocus(e) {
     if (e.key !== 'Tab' || !activeModal || !activeModal.classList.contains('is-open')) return;
     var f = focusables(activeModal);
@@ -667,7 +599,6 @@
     }
   }
 
-  /* Despliega / pliega una nota del changelog. */
   function toggleChange(head) {
     var box = head.closest('.chg');
     if (!box) return;
@@ -676,7 +607,6 @@
     if (arrow) arrow.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
 
-  /* --- Router ------------------------------------------------------------ */
   function pageFromHash() {
     var h = (location.hash || '').replace(/^#\/?/, '');
     if (h === 'versions') return 'versions';
@@ -706,12 +636,9 @@
     render();
   }
 
-  /* --- Eventos ----------------------------------------------------------- */
   function bindGlobalClicks() {
     document.addEventListener('click', function (e) {
-      /* Tocar la barra de progreso despliega/oculta los ítems (para touch).
-         En desktop también se muestran al pasar el mouse (CSS). No cuenta si el
-         clic fue dentro de la lista de ítems. */
+
       var pt = e.target.closest('[data-progress-toggle]');
       if (pt && !e.target.closest('.work-items')) {
         pt.classList.toggle('is-open');
@@ -753,7 +680,6 @@
       }
     });
 
-    /* Envío del formulario de login (editor online). */
     document.addEventListener('submit', function (e) {
       var form = e.target.closest('[data-login]');
       if (!form) return;
@@ -780,7 +706,7 @@
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
-        /* Cierra el que está realmente abierto (no el primero del DOM). */
+
         var open = activeModal || document.querySelector('.ver-modal.is-open');
         if (open) closeModal(open);
         return;
@@ -789,7 +715,6 @@
     });
   }
 
-  /* --- API pública -------------------------------------------------------- */
   window.Bravos = {
     state: state,
     render: render,
@@ -804,10 +729,6 @@
     logout: doLogout,
   };
 
-  /* --- Editor online ----------------------------------------------------- */
-  /* La cookie bx_on (legible) es solo una pista de "hay sesión". El poder real
-     lo da la cookie firmada bx_sess (HttpOnly), que /api/save verifica del lado
-     del servidor. Cargar el editor sin sesión válida no permite guardar nada. */
   function hasOnlineCookie() {
     return /(?:^|;\s*)bx_on=1(?:;|$)/.test(document.cookie || '');
   }
@@ -825,7 +746,6 @@
       .then(function () { location.href = location.pathname + '#/login'; location.reload(); });
   }
 
-  /* --- Arranque ---------------------------------------------------------- */
   function boot() {
     state.content = loadContent();
     try {
@@ -837,7 +757,7 @@
     bindGlobalClicks();
     window.addEventListener('hashchange', onHash);
     render();
-    /* Si ya hay una sesión abierta, levantamos el editor online solo. */
+
     if (hasOnlineCookie()) startOnlineEditor();
     window.dispatchEvent(new CustomEvent('bravos:ready'));
   }

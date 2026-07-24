@@ -1,8 +1,3 @@
-/* ============================================================================
-   Bravos CRM — estilos del sitio
-   Paleta clonada de WhatsApp: verde #25D366 / teal #075E54 / tinta #111B21
-   ========================================================================== */
-
 :root {
   --green: #25D366;
   --green-dark: #0B7A3E;
@@ -32,13 +27,10 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   color: var(--ink);
-  /* El puntero se queda como flecha sobre el texto — nada de cursor de
-     "edición de texto" (I-beam) sobre títulos, párrafos, etc. El texto sigue
-     siendo seleccionable; solo cambia el ícono del cursor. */
+
   cursor: default;
 }
 
-/* Los elementos que se clickean sí muestran la manito. */
 a[href], button, [data-go], [data-lang], [role="button"] { cursor: pointer; }
 
 a { color: var(--teal-mid); text-decoration: none; }
@@ -49,7 +41,6 @@ a:hover { color: var(--teal); }
 .page { min-height: 100vh; display: flex; flex-direction: column; }
 main { flex: 1; }
 
-/* --- Logo ---------------------------------------------------------------- */
 .logo-mark {
   position: relative;
   width: 36px; height: 36px;
@@ -73,7 +64,6 @@ main { flex: 1; }
 }
 .logo-text span { color: var(--muted-2); font-weight: 600; }
 
-/* --- Header -------------------------------------------------------------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(255, 255, 255, .9);
@@ -89,7 +79,7 @@ main { flex: 1; }
   display: flex; align-items: center; gap: 11px;
   background: none; border: none; padding: 0; cursor: pointer;
 }
-/* margin-left:auto empuja nav + idioma a la derecha, pegados entre sí */
+
 .header-nav { display: flex; align-items: center; gap: 5px; margin-left: auto; }
 
 .nav-btn {
@@ -101,7 +91,7 @@ main { flex: 1; }
   background: none; color: var(--ink-3);
   white-space: nowrap;
 }
-/* El original solo cambia el fondo en hover (style-hover="background:#F0F2F5") */
+
 .nav-btn:hover { background: var(--panel); }
 .nav-btn.is-active {
   background: rgba(37, 211, 102, .12);
@@ -109,7 +99,6 @@ main { flex: 1; }
   font-weight: 700;
 }
 
-/* 15px = el gap:5px del contenedor del original + su margin-left:10px */
 .lang-switch {
   display: flex; align-items: center; gap: 2px;
   padding: 3px; background: var(--panel);
@@ -126,7 +115,6 @@ main { flex: 1; }
   box-shadow: 0 1px 3px rgba(0, 0, 0, .16);
 }
 
-/* --- Hero ---------------------------------------------------------------- */
 .hero {
   background: linear-gradient(180deg, #ffffff, var(--wash));
   border-bottom: 1px solid var(--line-2);
@@ -165,9 +153,6 @@ main { flex: 1; }
   border-radius: 999px; padding: 6px 12px;
 }
 
-/* --- Tooltip de los chips ------------------------------------------------- */
-/* Globito con la descripción (data-tip). Solo aparece si el chip tiene texto.
-   Puro CSS: sin JS ni style inline, así respeta la CSP. */
 .chip[data-tip] { cursor: help; }
 .chip[data-tip]::after {
   content: attr(data-tip);
@@ -193,9 +178,7 @@ main { flex: 1; }
   transition: opacity .16s ease;
   z-index: 61; pointer-events: none;
 }
-/* Solo en dispositivos con mouse (en touch no hay "dejar quieto"). El
-   transition-delay hace que aparezca recién tras ~0.35s de tener el mouse
-   encima — o sea, cuando lo dejás quieto. */
+
 @media (hover: hover) {
   .chip[data-tip]:hover::after {
     opacity: 1; visibility: visible;
@@ -208,7 +191,6 @@ main { flex: 1; }
   }
 }
 
-/* --- Mockup de chat ------------------------------------------------------ */
 .phone {
   border-radius: 16px; overflow: hidden;
   box-shadow: 0 24px 60px -22px rgba(11, 27, 33, .42);
@@ -275,7 +257,6 @@ main { flex: 1; }
   color: #fff; font-size: 14px; flex: none;
 }
 
-/* --- Features ------------------------------------------------------------ */
 .features { background: #fff; }
 .features .shell { padding: 56px 24px 64px; }
 .features h2 {
@@ -303,7 +284,6 @@ main { flex: 1; }
 .feature-title { font-weight: 700; font-size: 15px; color: var(--green-dark); }
 .feature-desc { font-size: 13px; line-height: 1.5; color: var(--muted); }
 
-/* --- Encabezados de subpáginas ------------------------------------------ */
 .subpage { background: var(--wash-2); min-height: 70vh; }
 .subpage--white { background: #fff; }
 .kicker {
@@ -321,7 +301,6 @@ main { flex: 1; }
   color: var(--muted); margin: 12px 0 0; max-width: 56ch;
 }
 
-/* --- Badges -------------------------------------------------------------- */
 .badge {
   display: inline-block; padding: 4px 11px;
   border-radius: 999px; font-weight: 700; font-size: 11.5px;
@@ -329,7 +308,7 @@ main { flex: 1; }
   border: 1px solid transparent;
   transition: box-shadow .2s;
 }
-/* Cada tono define su color de texto/fondo y su --glow (color del flúor). */
+
 .badge--green  { background: rgba(37, 211, 102, .14); color: #0B7A3E; --glow: 55, 211, 102; }
 .badge--teal   { background: rgba(18, 140, 126, .15); color: #0B6B60; --glow: 20, 184, 166; }
 .badge--blue   { background: rgba(37, 131, 209, .14); color: #1E6FB8; --glow: 46, 127, 209; }
@@ -341,7 +320,6 @@ main { flex: 1; }
 .badge--amber  { background: rgba(214, 158, 46, .16); color: #8A5A12; --glow: 240, 180, 41; }
 .badge--gray   { background: rgba(100, 116, 139, .16); color: #475569; --glow: 148, 163, 184; }
 
-/* Flúor de iluminación: resplandor del color del tono + un poco más de brillo. */
 .badge.is-glow {
   border-color: rgba(var(--glow), .55);
   color: #fff;
@@ -355,7 +333,6 @@ main { flex: 1; }
   50%      { box-shadow: 0 0 14px 1px rgba(var(--glow), .9), 0 0 26px 4px rgba(var(--glow), .55); }
 }
 
-/* --- Versiones (timeline) ------------------------------------------------ */
 .versions-shell { max-width: 900px; margin: 0 auto; padding: 56px 24px 72px; }
 .timeline { margin-top: 40px; }
 .tl-item { position: relative; padding-left: 36px; padding-bottom: 26px; }
@@ -383,7 +360,6 @@ main { flex: 1; }
 .tl-date { margin-left: auto; font-size: 13px; color: var(--muted-2); }
 .tl-changes { margin-top: 14px; display: flex; flex-direction: column; gap: 2px; }
 
-/* --- Notas del changelog (título + descripción desplegable) --------------- */
 .chg { border-radius: 10px; }
 .chg-head {
   display: flex; gap: 10px; align-items: flex-start;
@@ -408,8 +384,6 @@ main { flex: 1; }
 .chg-head:hover .chg-arrow { background: rgba(11, 27, 33, .06); color: var(--ink-3); }
 .chg.is-open .chg-arrow { transform: rotate(-90deg); color: var(--green-dark); }
 
-/* Desplegado por max-height: el truco de grid (0fr→1fr) no sirve acá porque el
-   overflow:hidden del hijo anula su mínimo automático y la fila queda en 0. */
 .chg-desc { max-height: 0; overflow: hidden; transition: max-height .26s ease; }
 .chg.is-open .chg-desc { max-height: 3000px; }
 .chg-desc-inner {
@@ -417,7 +391,6 @@ main { flex: 1; }
   font-size: 13.5px; line-height: 1.6; color: var(--muted);
 }
 
-/* --- Versiones: lista de títulos apilados -------------------------------- */
 .ver-list { margin-top: 34px; display: flex; flex-direction: column; gap: 12px; }
 .ver-row {
   display: flex; align-items: center; gap: 14px;
@@ -448,7 +421,6 @@ main { flex: 1; }
 .ver-row-arrow { font-size: 22px; color: var(--muted-2); line-height: 1; flex: none; }
 .ver-modal-tags { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
 
-/* --- Versiones: modal ---------------------------------------------------- */
 body.ver-modal-open { overflow: hidden; }
 .ver-modal { position: fixed; inset: 0; z-index: 200; display: none; }
 .ver-modal.is-open { display: flex; align-items: center; justify-content: center; padding: 24px; }
@@ -462,25 +434,24 @@ body.ver-modal-open { overflow: hidden; }
   position: relative;
   width: 100%; max-width: 880px;
   max-height: 88vh;
-  display: flex; flex-direction: column;   /* cabecera fija + cuerpo scrolleable */
+  display: flex; flex-direction: column;
   background: #fff; border-radius: 18px;
   box-shadow: 0 30px 90px -24px rgba(11, 27, 33, .55);
   animation: verIn .19s cubic-bezier(.2, .7, .3, 1);
 }
-/* Cabecera fija: no scrollea, así el título y la cruz quedan siempre a la vista. */
+
 .ver-modal-top {
   flex: none;
   padding: 26px 34px 16px;
   border-bottom: 1px solid var(--line-2);
   border-radius: 18px 18px 0 0;
 }
-/* Cuerpo scrolleable: solo la lista de cambios se desplaza. */
+
 .ver-modal-body {
   flex: 1 1 auto; overflow-y: auto;
   padding: 18px 34px 30px;
 }
-/* Cruz sobre la esquina superior derecha del panel, fuera del área que scrollea:
-   nunca desaparece por más que bajes en la lista. */
+
 .ver-modal-close {
   position: absolute; top: 18px; right: 22px; z-index: 2;
   width: 36px; height: 36px; border-radius: 10px;
@@ -501,8 +472,6 @@ body.ver-modal-open { overflow: hidden; }
 @keyframes verFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes verIn { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
 
-/* --- Roadmap ------------------------------------------------------------- */
-/* --- Próximamente: bloques (estilo Versiones) ---------------------------- */
 .working-shell { max-width: 900px; margin: 0 auto; padding: 56px 24px 72px; }
 .work-list { margin-top: 34px; display: flex; flex-direction: column; gap: 16px; }
 .work-block {
@@ -523,11 +492,6 @@ body.ver-modal-open { overflow: hidden; }
 .work-block-desc { font-size: 14px; line-height: 1.55; color: var(--muted); margin: 11px 0 18px; }
 .work-block-desc .fmt-p:last-child { margin-bottom: 0; }
 
-/* ============================================================================
-   Mini-formato de textos (lo genera fmt() en app.js: subtítulos, listas,
-   negrita, cursiva y colores). Pensado para que un bloque largo deje de ser
-   un muro de gris y se lea por partes.
-   ========================================================================== */
 .fmt-p { margin: 0 0 10px; }
 .fmt-p:last-child { margin-bottom: 0; }
 .fmt-h {
@@ -546,7 +510,7 @@ body.ver-modal-open { overflow: hidden; }
   background: var(--green);
 }
 .work-block-desc strong, .feature-desc strong { color: var(--ink); font-weight: 700; }
-/* Imágenes/videos dentro de una descripción: se adaptan al ancho (mobile y PC). */
+
 .fmt-media {
   display: block; max-width: 100%; height: auto;
   margin: 12px 0; border-radius: 12px;
@@ -560,7 +524,7 @@ video.fmt-media { width: 100%; background: #000; }
 .fmt-c-blue  { color: #1E6FB8; font-weight: 600; }
 .fmt-c-ink   { color: var(--ink); }
 .fmt-c-muted { color: var(--muted-2); }
-/* --- Próximamente: barra de progreso ------------------------------------- */
+
 .work-progress { position: relative; margin-top: 4px; }
 .work-progress.has-items { cursor: pointer; }
 .work-bar-track {
@@ -568,8 +532,7 @@ video.fmt-media { width: 100%; background: #000; }
   background: #EAEEF1; overflow: hidden;
   box-shadow: inset 0 1px 2px rgba(11, 27, 33, .12);
 }
-/* El ancho lo pone applyBars() en app.js desde data-bar. El color y su
-   resplandor salen de la clase work-bar--<color> según el porcentaje. */
+
 .work-bar-fill {
   height: 100%; border-radius: 999px;
   transition: width .5s cubic-bezier(.2, .7, .3, 1), background .3s, box-shadow .3s;
@@ -586,7 +549,6 @@ video.fmt-media { width: 100%; background: #000; }
   font-size: 12px; font-weight: 600; color: var(--ink-3); margin-top: 9px;
 }
 
-/* Ítems logrados: aparecen al pasar el mouse (desktop) o tocar la barra. */
 .work-items {
   position: absolute; left: 0; right: 0; top: calc(100% + 10px);
   z-index: 5;
@@ -611,7 +573,6 @@ video.fmt-media { width: 100%; background: #000; }
 }
 .work-item-check { color: var(--green); font-weight: 800; flex: none; line-height: 1.5; }
 
-/* --- Confeti (barra al 100%) --------------------------------------------- */
 .confetti-layer { position: fixed; inset: 0; z-index: 9998; pointer-events: none; overflow: hidden; }
 .confetti-piece {
   position: fixed; width: 9px; height: 13px; display: block;
@@ -623,7 +584,6 @@ video.fmt-media { width: 100%; background: #000; }
   100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy) + 320px)) rotate(var(--rot)); opacity: 0; }
 }
 
-/* --- Términos ------------------------------------------------------------ */
 .terms-shell { max-width: 760px; margin: 0 auto; padding: 56px 24px 72px; }
 .terms-updated { font-size: 13.5px; color: var(--muted-2); margin: 12px 0 0; }
 .terms-note {
@@ -659,14 +619,12 @@ video.fmt-media { width: 100%; background: #000; }
   color: var(--ink-3); margin: 8px 0 0; text-wrap: pretty;
 }
 
-/* --- Sin JavaScript ------------------------------------------------------ */
 .noscript {
   max-width: 640px; margin: 64px auto; padding: 0 24px;
 }
 .noscript h1 { font-size: 28px; letter-spacing: -.02em; }
 .noscript p { color: var(--muted); line-height: 1.6; }
 
-/* --- Login del editor online --------------------------------------------- */
 .login-page { min-height: 74vh; display: flex; align-items: center; justify-content: center; }
 .login-card {
   width: 100%; max-width: 420px; margin: 0 auto;
@@ -699,7 +657,6 @@ video.fmt-media { width: 100%; background: #000; }
 .login-btn:disabled { opacity: .7; cursor: default; }
 .login-error { min-height: 20px; margin-top: 14px; font-size: 13.5px; color: #C2410C; font-weight: 600; }
 
-/* --- Footer -------------------------------------------------------------- */
 .site-footer { background: var(--wash); border-top: 1px solid var(--line); }
 .site-footer .shell {
   padding: 24px;
@@ -719,10 +676,6 @@ video.fmt-media { width: 100%; background: #000; }
 .footer-link:hover { color: var(--ink); }
 .footer-rights { font-size: 13px; color: var(--muted-2); }
 
-/* ============================================================================
-   RESPONSIVE — lo que le faltaba al diseño original
-   ========================================================================== */
-
 @media (max-width: 900px) {
   .hero .shell {
     grid-template-columns: 1fr;
@@ -736,8 +689,7 @@ video.fmt-media { width: 100%; background: #000; }
 }
 
 @media (max-width: 720px) {
-  /* Fila 1: logo + idioma (el switch tiene que quedar siempre a la vista).
-     Fila 2: los links, a lo ancho. */
+
   .site-header .shell { padding: 10px 16px; flex-wrap: wrap; row-gap: 8px; }
   .brand-btn { order: 1; }
   .lang-switch { order: 2; margin-left: auto; }

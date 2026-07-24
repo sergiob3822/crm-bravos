@@ -9,15 +9,11 @@
   var panel = null;
   var saveTimer = null;
   var dirty = false;
-  /* content.js cambió desde que se guardó el borrador, así que lo descartamos
-     y arrancamos del archivo. Se avisa en el panel. */
+
   var draftDiscarded = false;
-  /* Idioma con el que se construyeron los campos del panel. Si el usuario
-     cambia el idioma desde el switch del SITIO, el panel queda mostrando el
-     idioma viejo mientras escribiría en el nuevo → hay que reconstruirlo. */
+
   var panelLang = null;
 
-  /* --- Acceso a valores crudos (números, enums, strings no i18n) ---------- */
   function getRaw(path) {
     return B.nodeAt(path);
   }
@@ -30,15 +26,6 @@
     parent[last] = value;
   }
 
-  /* --- Borrador ----------------------------------------------------------- */
-  /* El borrador vive SOLO acá, en el editor: app.js no lo conoce y la página
-     publicada no tiene una línea de este código. Un visitante muestra
-     content.js y punto — no hay un `if` que pueda fallar.
-
-     Se guarda junto a una huella (djb2) del content.js con el que se empezó a
-     editar. Si el archivo cambia (lo exportaste y lo reemplazaste, o lo
-     editaste a mano), la huella no coincide y el borrador viejo se tira: gana
-     siempre el archivo del proyecto. */
   function stampOf(obj) {
     var s = JSON.stringify(obj);
     var h = 5381;
@@ -59,7 +46,7 @@
       localStorage.removeItem(STORE_KEY);
       draftDiscarded = true;
     } catch (e) {
-      /* localStorage bloqueado o JSON roto: seguimos con content.js */
+
     }
     return null;
   }
@@ -85,7 +72,6 @@
     B.render();
   }
 
-  /* --- Guardado ---------------------------------------------------------- */
   function markDirty() {
     dirty = true;
     updateStatus('Cambios sin exportar…');
@@ -104,14 +90,11 @@
 
   function initialStatus() {
     if (dirty) return 'Guardado en este navegador · falta exportar';
-    /* content.js cambió respecto del borrador: gana el archivo del proyecto. */
+
     if (draftDiscarded) return '↻ content.js cambió — arranqué desde el archivo';
     return 'Sin cambios';
   }
 
-  /* --- Edición inline ---------------------------------------------------- */
-  /* 'plaintext-only' evita que se pegue HTML dentro del sitio. Firefox recién
-     lo soporta desde la v136, así que caemos a 'true' si no está. */
   var CE_MODE = (function () {
     var probe = document.createElement('div');
     probe.setAttribute('contenteditable', 'plaintext-only');
@@ -119,9 +102,7 @@
   })();
 
   function enableInline() {
-    /* Los campos con formato (data-rich) NO se editan sobre la página: su HTML
-       es formato renderizado, no texto plano. Se editan desde el panel, con la
-       barra de formato. Acá se saltean. */
+
     var nodes = document.querySelectorAll('#app [data-edit]:not([data-rich])');
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
@@ -138,9 +119,7 @@
     B.setText(path, el.innerText.replace(/\n+$/, ''));
     var mirror = panel && panel.querySelector('[data-path="' + cssEsc(path) + '"]');
     if (mirror && document.activeElement !== mirror) mirror.value = el.innerText;
-    /* Hay textos que además se muestran en otro lado en modo lectura (p. ej. el
-       tag/fecha de la fila de versión). Se refrescan acá para que no queden
-       desactualizados: la edición inline no re-renderiza la página. */
+
     var mirrors = document.querySelectorAll('#app [data-mirror="' + cssEsc(path) + '"]');
     for (var i = 0; i < mirrors.length; i++) mirrors[i].textContent = el.innerText;
     markDirty();
@@ -156,8 +135,6 @@
     if (e.key === 'Escape') el.blur();
   }
 
-  /* Evita que editar un botón de navegación dispare la navegación.
-     Para cambiar de página en modo edición está el selector del panel. */
   function onInlineClick(e) {
     if (e.target.closest('#app [data-edit]')) {
       e.stopPropagation();
@@ -165,7 +142,6 @@
     }
   }
 
-  /* Con el fallback contenteditable="true" hay que forzar pegado sin formato. */
   function onInlinePaste(e) {
     var el = e.target.closest('#app [data-edit]');
     if (!el) return;
@@ -178,7 +154,6 @@
     return String(s).replace(/"/g, '\\"');
   }
 
-  /* --- Operaciones estructurales ----------------------------------------- */
   function listAt(path) {
     var l = B.nodeAt(path);
     return Array.isArray(l) ? l : null;
@@ -193,8 +168,7 @@
 
   function removeItem(listPath, index) {
     var list = listAt(listPath);
-    /* Etiquetas e ítems pueden quedar en 0. El resto de las listas conserva
-       al menos un elemento. */
+
     var allowEmpty = /\.(tags|items)$/.test(listPath);
     if (!list || (!allowEmpty && list.length <= 1)) {
       alert('Tiene que quedar al menos un elemento.');
@@ -215,8 +189,6 @@
     afterStructuralChange();
   }
 
-  /* Enciende/apaga la descripción de una nota del changelog. Apagarla borra el
-     texto, así que si hay algo escrito se pide confirmación. */
   function toggleDesc(path, on) {
     var item = B.nodeAt(path);
     if (!item) return;
@@ -241,7 +213,6 @@
     updateStatus('Guardado en este navegador · falta exportar');
   }
 
-  /* --- Fábricas de items nuevos ------------------------------------------ */
   function i18n(es, en) {
     return { es: es, en: en };
   }
@@ -262,7 +233,7 @@
         changes: [{ t: i18n('Nuevo cambio.', 'New change.') }],
       };
     },
-    /* Nota nueva: solo título. La descripción se agrega con el switch. */
+
     changes: function () { return { t: i18n('Nuevo cambio.', 'New change.') }; },
     tag: function () { return { label: i18n('Etiqueta', 'Tag'), tone: 'green', glow: false }; },
     working: function (n) {
@@ -281,7 +252,6 @@
     },
   };
 
-  /* --- Construcción de campos del panel ---------------------------------- */
   function fieldText(label, path, multiline) {
     var val = B.t(path);
     var input = multiline
@@ -296,8 +266,6 @@
       '<input class="bx-input" type="text" data-path="' + cssEsc(path) + '" data-kind="raw" value="' + B.esc(val) + '"></label>';
   }
 
-  /* Campo con barra de formato (para textos largos con negrita, cursiva,
-     subtítulos, listas y colores). Se edita acá, no sobre la página. */
   function fieldRich(label, path) {
     var val = B.t(path);
     var color = function (c, name) {
@@ -320,7 +288,6 @@
       '</div>';
   }
 
-  /* --- Barra de formato: inserta el markup en el textarea ----------------- */
   function wrapSelection(ta, before, after) {
     var s = ta.selectionStart, e = ta.selectionEnd, val = ta.value;
     var sel = val.slice(s, e) || 'texto';
@@ -354,10 +321,6 @@
     if (action === 'list') return lineOp(ta, function (l) { return l.trim() ? '- ' + l.replace(/^[-*]\s*/, '') : l; });
   }
 
-  /* --- Imágenes / videos (guardado local vía dev.js) ---------------------- */
-  /* Las imágenes se reescalan en el navegador a un ancho cómodo para web antes
-     de subir; los videos van tal cual (con tope de tamaño). El archivo queda
-     en assets/ y se inserta el token ![media](assets/…) en la descripción. */
   function resizeImage(file, maxW, cb) {
     var reader = new FileReader();
     reader.onload = function () {
@@ -461,7 +424,6 @@
     { value: 'gray', label: 'Gris' },
   ];
 
-  /* Switch de sí/no atado a un valor booleano crudo (glow, etc.). */
   function switchField(label, path) {
     var on = !!getRaw(path);
     return '<label class="bx-switch bx-switch--field">' +
@@ -491,7 +453,6 @@
 
   var openSections = { home: true };
 
-  /* --- Secciones del panel ----------------------------------------------- */
   function sectionHome() {
     var c = B.state.content;
     var body =
@@ -557,8 +518,7 @@
         var changes = x.changes.map(function (ch, j) {
           var base = 'versions.' + i + '.changes.' + j;
           var on = !!ch.desc;
-          /* Título de la nota + switch "¿Descripción?" a la derecha. Si está
-             encendido, abajo aparece el bloque de descripción (con formato). */
+
           return '<div class="bx-note">' +
             '<div class="bx-row">' +
               '<textarea class="bx-input" rows="2" data-path="' + base + '.t" data-kind="i18n">' + B.esc(B.t(base + '.t')) + '</textarea>' +
@@ -658,9 +618,6 @@
     return accordion('brand', 'Marca, nav y footer', null, body);
   }
 
-  /* --- Pestañas del editor ----------------------------------------------- */
-  /* Cada pestaña muestra SOLO sus bloques (no todos juntos). Las 4 primeras
-     además navegan el sitio a esa página; "General" es solo del editor. */
   var PAGE_TABS = [
     { tab: 'home', hash: '#/', label: 'Inicio' },
     { tab: 'versions', hash: '#/versions', label: 'Versiones' },
@@ -686,7 +643,6 @@
     }).join('');
   }
 
-  /* --- Panel ------------------------------------------------------------- */
   function buildPanel() {
     if (!panel) {
       panel = document.createElement('aside');
@@ -695,8 +651,6 @@
     }
     rememberOpenSections();
 
-    /* Guardamos la posición del scroll: al reconstruir el panel (agregar/quitar/
-       mover un bloque) el navegador la resetea a 0 y el menú "saltaba" arriba. */
     var prevBody = panel.querySelector('.bx-body');
     var prevScroll = prevBody ? prevBody.scrollTop : 0;
 
@@ -741,8 +695,6 @@
             '<p class="bx-hint">"Guardar" escribe los cambios y deja una copia en <code>updates/</code> lista para subir al repo.</p>') +
       '</div>';
 
-    /* Restauramos el scroll donde estaba (queda sobre el bloque que tocaste,
-       no arriba de todo). */
     var newBody = panel.querySelector('.bx-body');
     if (newBody) newBody.scrollTop = prevScroll;
 
@@ -757,8 +709,6 @@
     }
   }
 
-  /* --- Eventos del panel ------------------------------------------------- */
-  /* --- Redimensionar el panel (arrastrar el borde izquierdo) -------------- */
   var WIDTH_KEY = 'bravos:editorWidth';
   function setPanelWidth(px) {
     var w = Math.max(380, Math.min(window.innerWidth * 0.72, px));
@@ -782,7 +732,7 @@
       document.documentElement.classList.remove('bx-resizing');
       try { localStorage.setItem(WIDTH_KEY, document.documentElement.style.getPropertyValue('--bx-w')); } catch (e) {}
     });
-    /* Restaurar el ancho elegido. */
+
     try {
       var saved = localStorage.getItem(WIDTH_KEY);
       if (saved) document.documentElement.style.setProperty('--bx-w', saved);
@@ -793,14 +743,14 @@
     bindResize();
     document.addEventListener('change', function (e) {
       if (!e.target.closest) return;
-      /* Switch "¿Descripción?" de cada nota del changelog. */
+
       var sw = e.target.closest('#bx-panel [data-desc-toggle]');
       if (sw) {
         var ok = toggleDesc(sw.getAttribute('data-desc-toggle'), sw.checked);
-        if (ok === false) sw.checked = true; /* canceló el borrado: vuelve a ON */
+        if (ok === false) sw.checked = true;
         return;
       }
-      /* Switch booleano genérico (p. ej. "Iluminar" del tag). */
+
       var bt = e.target.closest('#bx-panel [data-bool-toggle]');
       if (bt) {
         setRaw(bt.getAttribute('data-bool-toggle'), bt.checked);
@@ -862,8 +812,7 @@
       var el = e.target.closest('#bx-panel [data-editlang]');
       if (el) {
         e.preventDefault();
-        /* setLang() re-renderiza; onRendered reconstruye el panel al ver
-           que cambió el idioma. */
+
         B.setLang(el.getAttribute('data-editlang'));
         return;
       }
@@ -872,7 +821,7 @@
         e.preventDefault();
         editorTab = pg.getAttribute('data-edittab');
         var hash = pg.getAttribute('data-editpage');
-        /* Las 4 páginas navegan el sitio; "General" solo cambia el panel. */
+
         if (hash) B.navigate(hash);
         buildPanel();
         return;
@@ -896,24 +845,8 @@
     });
   }
 
-  /* --- Exportar / importar ----------------------------------------------- */
-  /* Mismo encabezado que el content.js del repo: el archivo exportado tiene que
-     ser indistinguible de uno escrito a mano, sin rastros de la herramienta. */
-  var HEADER = [
-    '/* ============================================================================',
-    '   BravosCRM — contenido del sitio',
-    '',
-    '   Todos los textos de la página viven acá. Cada uno lleva su version en',
-    '   español ("es") y en inglés ("en"); el selector del header alterna entre las',
-    '   dos. Para cambiar un texto, editá lo que está entre comillas y desplegá.',
-    '   ========================================================================== */',
-    '',
-    'window.BRAVOS_CONTENT = ',
-  ].join('\n');
+  var HEADER = 'window.BRAVOS_CONTENT = ';
 
-  /* Extrae el objeto de contenido de un .js exportado o de un .json pelado.
-     Ojo: no alcanza con buscar el primer '{' del archivo, porque los
-     comentarios de cabecera pueden contener llaves. */
   function parseContentFile(text) {
     var start = -1;
     var assign = /BRAVOS_CONTENT\s*=\s*/.exec(text);
@@ -938,7 +871,6 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
   }
 
-  /* Texto completo del content.js, idéntico al que se comitea. */
   function contentFileText() {
     return HEADER + JSON.stringify(B.state.content, null, 2) + ';\n';
   }
@@ -949,11 +881,6 @@
     updateStatus('✓ Descargado — reemplazá content.js y desplegá');
   }
 
-  /* Guarda el contenido.
-     · Online (window.BX_ONLINE): POST /api/save → commit al repo de GitHub,
-       Vercel redespliega solo y el sitio en vivo se actualiza.
-     · Local (dev.js): POST /save → escribe content.js y copia a updates/.
-     · Sin servidor: cae a la descarga del archivo. */
   function saveToDisk() {
     var btn = document.getElementById('bx-save');
     if (btn) btn.disabled = true;
@@ -995,8 +922,7 @@
     }).then(function (res) {
       if (btn) btn.disabled = false;
       if (res.ok) {
-        /* El archivo ahora coincide con lo editado: realineamos el sello del
-           borrador para que un reload no lo tire como "content.js cambió". */
+
         baseStamp = stampOf(B.state.content);
         saveDraft();
         dirty = false;
@@ -1009,7 +935,7 @@
       }
     }).catch(function () {
       if (btn) btn.disabled = false;
-      /* No hay servidor con /save (p. ej. abriste el HTML sin dev.js). */
+
       updateStatus('Sin servidor para guardar — descargo el archivo…');
       exportContent();
     });
@@ -1044,7 +970,6 @@
     input.click();
   }
 
-  /* --- Estilos del editor (solo se inyectan en modo edición) -------------- */
   var CSS = `
   html.bx-on { --bx-w: 520px; }
   html.bx-on body { margin-right: var(--bx-w); }
@@ -1067,7 +992,6 @@
   }
   #bx-panel * { box-sizing: border-box; }
 
-  /* Barra para arrastrar y agrandar/achicar el panel. */
   .bx-resize {
     position: absolute; left: -3px; top: 0; bottom: 0; width: 10px;
     cursor: ew-resize; z-index: 3; touch-action: none;
@@ -1186,7 +1110,6 @@
   select.bx-input { cursor: pointer; }
   .bx-range { width: 100%; accent-color: #25D366; }
 
-  /* Campo con formato + su barra */
   .bx-rich { display: block; margin-bottom: 10px; }
   .bx-toolbar {
     display: flex; align-items: center; gap: 3px; flex-wrap: wrap;
@@ -1212,7 +1135,6 @@
   .bx-rich-help { font-size: 10px; line-height: 1.5; color: #5E7684; margin: 5px 0 0; }
   .bx-rich-help code { background: #16242C; padding: 0 3px; border-radius: 3px; color: #8FA6B3; }
 
-  /* Nota del changelog: título + switch de descripción */
   .bx-note {
     border: 1px solid #22323B; border-radius: 9px;
     padding: 9px; margin-bottom: 8px; background: #0B141A;
@@ -1294,7 +1216,6 @@
   .bx-btn--primary:hover { background: linear-gradient(180deg, #33E074, #23C763); }
   .bx-btn--ghost { background: transparent; color: #8FA6B3; }
 
-  /* Resaltado de lo editable en el sitio */
   #app .bx-editable {
     outline: 1px dashed rgba(37,211,102,.42);
     outline-offset: 2px;
@@ -1313,7 +1234,7 @@
     #bx-panel { width: min(var(--bx-w), 96vw); }
     .bx-resize { display: none; }
   }
-  `;
+`;
 
   function injectCSS() {
     var style = document.createElement('style');
@@ -1322,18 +1243,13 @@
     document.head.appendChild(style);
   }
 
-  /* Cada vez que el sitio se re-renderiza hay que volver a marcar lo editable.
-     Si además cambió el idioma (p. ej. con el switch ES/EN del propio sitio),
-     el panel se reconstruye para no editar un idioma mostrando el otro. */
   function onRendered() {
     enableInline();
     if (B.state.lang !== panelLang) buildPanel();
   }
 
-  /* --- Arranque ---------------------------------------------------------- */
   function start() {
-    /* app.js ya renderizó content.js. Si hay un borrador vigente, lo pisamos
-       acá y volvemos a renderizar. */
+
     var draft = loadDraft();
     if (draft) {
       B.state.content = draft;
@@ -1341,7 +1257,7 @@
       B.render();
     }
 
-    editorTab = B.state.page;   /* el editor arranca en la página que estás viendo */
+    editorTab = B.state.page;
     injectCSS();
     buildPanel();
     bindPanel();
@@ -1354,8 +1270,6 @@
 
     window.addEventListener('bravos:rendered', onRendered);
 
-    /* Si navegás el sitio (por la nav), el editor sigue a esa página. app.js
-       registró su hashchange primero, así que acá state.page ya cambió. */
     window.addEventListener('hashchange', function () {
       editorTab = B.state.page;
       buildPanel();
