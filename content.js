@@ -1,11 +1,3 @@
-/* ============================================================================
-   BravosCRM — contenido del sitio
-
-   Todos los textos de la página viven acá. Cada uno lleva su version en
-   español ("es") y en inglés ("en"); el selector del header alterna entre las
-   dos. Para cambiar un texto, editá lo que está entre comillas y desplegá.
-   ========================================================================== */
-
 window.BRAVOS_CONTENT = {
   "brand": {
     "name": "Bravos",
