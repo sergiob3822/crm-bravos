@@ -254,7 +254,7 @@ window.BRAVOS_CONTENT = {
             "es": "Novedad",
             "en": "New"
           },
-          "tone": "purple",
+          "tone": "green",
           "glow": true
         }
       ],
@@ -428,7 +428,7 @@ window.BRAVOS_CONTENT = {
             "en": "New"
           },
           "tone": "green",
-          "glow": true
+          "glow": false
         }
       ]
     },

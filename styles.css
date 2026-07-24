@@ -666,6 +666,39 @@ video.fmt-media { width: 100%; background: #000; }
 .noscript h1 { font-size: 28px; letter-spacing: -.02em; }
 .noscript p { color: var(--muted); line-height: 1.6; }
 
+/* --- Login del editor online --------------------------------------------- */
+.login-page { min-height: 74vh; display: flex; align-items: center; justify-content: center; }
+.login-card {
+  width: 100%; max-width: 420px; margin: 0 auto;
+  padding: 40px 34px; text-align: center;
+  background: #fff; border: 1px solid var(--line); border-radius: 20px;
+  box-shadow: 0 24px 60px -28px rgba(11, 27, 33, .45);
+}
+.login-lock { display: flex; justify-content: center; margin-bottom: 18px; }
+.login-lock .logo-mark { width: 48px; height: 48px; border-radius: 14px; }
+.login-lock .logo-mark i { width: 24px; height: 20px; }
+.login-title { font-size: 24px; font-weight: 800; letter-spacing: -.02em; color: var(--ink); margin: 0; }
+.login-sub { font-size: 14.5px; line-height: 1.55; color: var(--muted); margin: 10px 0 24px; }
+.login-form { display: flex; flex-direction: column; gap: 12px; }
+.login-input {
+  width: 100%; padding: 13px 15px;
+  border: 1px solid var(--line); border-radius: 11px;
+  font-size: 15px; font-family: inherit; color: var(--ink);
+  transition: border-color .14s, box-shadow .14s;
+}
+.login-input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(37, 211, 102, .18); }
+.login-btn {
+  width: 100%; padding: 13px 15px; border: none; border-radius: 11px;
+  background: linear-gradient(180deg, #2BD46B, #1FBA59); color: #05271A;
+  font-size: 15px; font-weight: 700; font-family: inherit; cursor: pointer;
+  box-shadow: 0 8px 20px -8px rgba(37, 211, 102, .8);
+  transition: filter .14s, transform .1s;
+}
+.login-btn:hover { filter: brightness(1.05); }
+.login-btn:active { transform: translateY(1px); }
+.login-btn:disabled { opacity: .7; cursor: default; }
+.login-error { min-height: 20px; margin-top: 14px; font-size: 13.5px; color: #C2410C; font-weight: 600; }
+
 /* --- Footer -------------------------------------------------------------- */
 .site-footer { background: var(--wash); border-top: 1px solid var(--line); }
 .site-footer .shell {

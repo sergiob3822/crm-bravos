@@ -440,7 +440,7 @@
       return '' +
         '<div class="work-block">' +
           '<div class="work-block-head">' +
-            '<span class="badge badge--' + toneClass(w.tone) + '"' + ed('working.' + i + '.status') + '</span>' +
+            '<span class="badge badge--' + toneClass(w.tone) + (w.glow ? ' is-glow' : '') + '"' + ed('working.' + i + '.status') + '</span>' +
             '<h3 class="work-block-title"' + ed('working.' + i + '.title') + '</h3>' +
             '<span class="work-code">' + esc(w.code) + '</span>' +
           '</div>' +
@@ -497,12 +497,30 @@
       '</section>';
   }
 
+  /* --- Página: Login del editor online ----------------------------------- */
+  function loginPage() {
+    return '' +
+      '<section class="subpage subpage--white login-page">' +
+        '<div class="login-card">' +
+          '<div class="login-lock" aria-hidden="true">' + logoMark() + '</div>' +
+          '<h1 class="login-title">Editor de contenido</h1>' +
+          '<p class="login-sub">Ingresá con tu clave de administrador para editar el sitio en vivo.</p>' +
+          '<form class="login-form" data-login>' +
+            '<input class="login-input" type="password" name="password" placeholder="Contraseña de administrador" autocomplete="current-password" required autofocus>' +
+            '<button class="login-btn" type="submit">Entrar al editor</button>' +
+          '</form>' +
+          '<div class="login-error" data-login-error role="alert"></div>' +
+        '</div>' +
+      '</section>';
+  }
+
   /* --- Render ------------------------------------------------------------ */
   var PAGES = {
     home: homePage,
     versions: versionsPage,
     working: workingPage,
     terms: termsPage,
+    login: loginPage,
   };
 
   /* El título de la pestaña sale del contenido, no está escrito acá: así sigue
@@ -515,6 +533,7 @@
 
   function pageTitle() {
     var b = state.content.brand.name + state.content.brand.suffix;
+    if (state.page === 'login') return 'Editor · ' + b;
     if (state.page === 'home') return b + ' — ' + t('home.eyebrow');
     return t(TITLE_NAV[state.page]) + ' · ' + b;
   }
@@ -668,6 +687,7 @@
     if (h === 'versions') return 'versions';
     if (h === 'working') return 'working';
     if (h === 'terms-of-service' || h === 'terms') return 'terms';
+    if (h === 'login' || h === 'login/') return 'login';
     return 'home';
   }
 
@@ -720,6 +740,11 @@
         openModal(openM.getAttribute('data-modal'), openM);
         return;
       }
+      if (e.target.closest('[data-logout]')) {
+        e.preventDefault();
+        doLogout();
+        return;
+      }
       var go = e.target.closest('[data-go]');
       if (go) {
         e.preventDefault();
@@ -731,6 +756,31 @@
         e.preventDefault();
         setLang(lang.getAttribute('data-lang'));
       }
+    });
+
+    /* Envío del formulario de login (editor online). */
+    document.addEventListener('submit', function (e) {
+      var form = e.target.closest('[data-login]');
+      if (!form) return;
+      e.preventDefault();
+      var input = form.querySelector('input[name="password"]');
+      var errEl = document.querySelector('[data-login-error]');
+      var btn = form.querySelector('.login-btn');
+      if (errEl) errEl.textContent = '';
+      btn.disabled = true; btn.textContent = 'Entrando…';
+      fetch('api/login', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: input.value }),
+      }).then(function (r) { return r.json().catch(function () { return {}; }); })
+        .then(function (j) {
+          btn.disabled = false; btn.textContent = 'Entrar al editor';
+          if (j && j.ok) { startOnlineEditor(); navigate('#/'); }
+          else if (errEl) errEl.textContent = (j && j.error) || 'No se pudo entrar.';
+        })
+        .catch(function () {
+          btn.disabled = false; btn.textContent = 'Entrar al editor';
+          if (errEl) errEl.textContent = 'Error de conexión.';
+        });
     });
 
     document.addEventListener('keydown', function (e) {
@@ -756,7 +806,29 @@
     deepClone: deepClone,
     esc: esc,
     normalize: normalize,
+    logout: doLogout,
   };
+
+  /* --- Editor online ----------------------------------------------------- */
+  /* La cookie bx_on (legible) es solo una pista de "hay sesión". El poder real
+     lo da la cookie firmada bx_sess (HttpOnly), que /api/save verifica del lado
+     del servidor. Cargar el editor sin sesión válida no permite guardar nada. */
+  function hasOnlineCookie() {
+    return /(?:^|;\s*)bx_on=1(?:;|$)/.test(document.cookie || '');
+  }
+
+  function startOnlineEditor() {
+    if (window.BX_ONLINE) return;
+    window.BX_ONLINE = true;
+    var s = document.createElement('script');
+    s.src = 'editor.js';
+    document.body.appendChild(s);
+  }
+
+  function doLogout() {
+    fetch('api/logout', { method: 'POST' }).catch(function () {})
+      .then(function () { location.href = location.pathname + '#/login'; location.reload(); });
+  }
 
   /* --- Arranque ---------------------------------------------------------- */
   function boot() {
@@ -770,6 +842,8 @@
     bindGlobalClicks();
     window.addEventListener('hashchange', onHash);
     render();
+    /* Si ya hay una sesión abierta, levantamos el editor online solo. */
+    if (hasOnlineCookie()) startOnlineEditor();
     window.dispatchEvent(new CustomEvent('bravos:ready'));
   }
 
