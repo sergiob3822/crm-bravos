@@ -43,7 +43,6 @@ module.exports = async function (req, res) {
   var content = String(body.content || '');
   if (content.length > 3 * 1024 * 1024) { res.status(413).json({ ok: false, error: 'demasiado grande' }); return; }
 
-  /* Solo aceptamos un content.js válido con todas las secciones. */
   try {
     var sandbox = {};
     new Function('window', content)(sandbox);
@@ -66,7 +65,7 @@ module.exports = async function (req, res) {
   };
 
   try {
-    /* Necesitamos el SHA actual del archivo para actualizarlo. */
+
     var sha;
     var getR = await fetch(url + '?ref=' + encodeURIComponent(branch), { headers: ghHeaders });
     if (getR.ok) { var gj = await getR.json(); sha = gj.sha; }

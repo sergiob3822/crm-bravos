@@ -28,13 +28,13 @@ module.exports = async function (req, res) {
   var ok = a.length === b.length && crypto.timingSafeEqual(a, b);
 
   if (!ok) {
-    /* Pequeña demora para frenar fuerza bruta (la clave fuerte es la defensa real). */
+
     await new Promise(function (r) { setTimeout(r, 450); });
     res.status(401).json({ ok: false, error: 'Contraseña incorrecta.' });
     return;
   }
 
-  var maxAge = 60 * 60 * 8; // 8 horas
+  var maxAge = 60 * 60 * 8;
   var token = sign({ exp: Date.now() + maxAge * 1000 }, secret);
   res.setHeader('Set-Cookie', [
     'bx_sess=' + token + '; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=' + maxAge,
