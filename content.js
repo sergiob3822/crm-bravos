@@ -562,33 +562,33 @@ window.BRAVOS_CONTENT = {
       "progress": 100,
       "status": {
         "es": "Lanzado",
-        "en": "Planned"
+        "en": "Launched"
       },
       "title": {
         "es": "Update 0.015.3",
-        "en": "New project"
+        "en": "Update 0.015.3"
       },
       "desc": {
         "es": "Correcciones y actualización de **WAME**, optimización del **GUI** e implementación de nuevas **funcionalidades**.",
-        "en": "What this project is about."
+        "en": "Corrections and update to WAME, GUI optimization, and implementation of new features."
       },
       "items": [
         {
           "t": {
             "es": "Actualizar WhatsAppMessengerEngine, corregir bugs visuales, problemas de carga e implemntar auto detección de chats",
-            "en": "New item"
+            "en": "Update WhatsAppMessengerEngine, fix visual bugs and loading issues, and implement auto-detection of chats."
           }
         },
         {
           "t": {
             "es": "Implementar función: Archivar Chat",
-            "en": "New item"
+            "en": "Implement feature: Archive Chat"
           }
         },
         {
           "t": {
             "es": "Implementar función: Silenciar Notificaciones",
-            "en": "New item"
+            "en": "Implement feature: Mute Notifications"
           }
         }
       ],
