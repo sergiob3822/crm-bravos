@@ -1,9 +1,3 @@
-/* ============================================================================
-   POST /api/login  — valida la contraseña de admin y abre una sesión firmada.
-   Variables de entorno necesarias (Vercel → Settings → Environment Variables):
-     ADMIN_PASSWORD   la clave del editor (fuerte, larga)
-     SESSION_SECRET   una cadena aleatoria larga para firmar la sesión
-   ========================================================================== */
 var crypto = require('crypto');
 
 function b64url(buf) {
