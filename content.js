@@ -557,6 +557,49 @@ window.BRAVOS_CONTENT = {
   },
   "working": [
     {
+      "code": "AA-04",
+      "tone": "green",
+      "progress": 100,
+      "status": {
+        "es": "Lanzado",
+        "en": "Planned"
+      },
+      "title": {
+        "es": "Update 0.015.3",
+        "en": "New project"
+      },
+      "desc": {
+        "es": "Correcciones y actualización de **WAME**, optimización del **GUI** e implementación de nuevas **funcionalidades**.",
+        "en": "What this project is about."
+      },
+      "items": [
+        {
+          "t": {
+            "es": "Actualizar WhatsAppMessengerEngine, corregir bugs visuales, problemas de carga e implemntar auto detección de chats",
+            "en": "New item"
+          }
+        },
+        {
+          "t": {
+            "es": "Implementar función: Archivar Chat",
+            "en": "New item"
+          }
+        },
+        {
+          "t": {
+            "es": "Implementar función: Silenciar Notificaciones",
+            "en": "New item"
+          }
+        }
+      ],
+      "glow": true,
+      "confetti": {
+        "on": true,
+        "hours": 24,
+        "since": 1784910390933
+      }
+    },
+    {
       "code": "AA-03",
       "tone": "green",
       "progress": 100,
@@ -603,7 +646,13 @@ window.BRAVOS_CONTENT = {
             "en": "Full Spanish, 2FA, username/email login and more."
           }
         }
-      ]
+      ],
+      "glow": false,
+      "confetti": {
+        "on": false,
+        "hours": 24,
+        "since": 1784910293754
+      }
     },
     {
       "code": "AA-02",
