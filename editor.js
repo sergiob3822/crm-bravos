@@ -1,15 +1,3 @@
-/* ============================================================================
-   Bravos CRM — Editor en vivo
-   ----------------------------------------------------------------------------
-   Se activa SOLO con ?edit=1 en la URL. Un visitante normal nunca lo ve
-   y este archivo no hace absolutamente nada.
-
-   Qué hace:
-   · Clic sobre cualquier texto del sitio → lo editás ahí mismo.
-   · Panel lateral → agregar/quitar/mover features, versiones, roadmap, términos.
-   · Guarda solo en TU navegador (localStorage). No toca el servidor.
-   · "Descargar content.js" → reemplazás el archivo y hacés deploy.
-   ========================================================================== */
 (function () {
   'use strict';
 
