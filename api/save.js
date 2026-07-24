@@ -1,11 +1,3 @@
-/* ============================================================================
-   POST /api/save  — verifica la sesión y commitea content.js al repo de GitHub.
-   Vercel detecta el push y redespliega el sitio solo (~30 s).
-   Variables de entorno necesarias:
-     SESSION_SECRET   el mismo secreto que usa /api/login
-     GITHUB_TOKEN     token fine-grained con permiso Contents: read/write SOLO en este repo
-     (opcionales)     GITHUB_REPO (default "sergiob3822/crm-bravos"), GITHUB_BRANCH (default "main")
-   ========================================================================== */
 var crypto = require('crypto');
 
 function b64url(buf) {
