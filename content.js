@@ -235,6 +235,45 @@ window.BRAVOS_CONTENT = {
   },
   "versions": [
     {
+      "v": "v0.015.3",
+      "date": {
+        "es": "Jul 2026",
+        "en": "Month 2026"
+      },
+      "tags": [
+        {
+          "label": {
+            "es": "Parches y mejoras",
+            "en": "Patches and enhancements"
+          },
+          "tone": "blue",
+          "glow": true
+        }
+      ],
+      "changes": [
+        {
+          "t": {
+            "es": "Actualización de WAME",
+            "en": "New change."
+          },
+          "desc": {
+            "es": "_**Corrección** de bugs e **implementación** de nuevas funcionalidades_\n- **Auto-reconocimiento de canales y grupos**: ahora al escanear el código, los canales y grupos son separados de los chats 1-1 y son transportados a sus buzones correspondientes.\n- **Optimización de carga**: Ahora, la carga de chats y mensajes al vincular por primera vez la línea de WA Messenger, dura mucho menos.\n- **Descarga de multimedia y adjuntos**: Se implementó una arquitectura basada en base64 para solicitar, descargar y vincular los archivos multimedia de cada chat (audios, videos, imágenes y documentos). Por limitaciones del servidor de meta, no es posible obtener multimedia antigüa (pasada la semana).\n- **Estabilidad de conexión**: Se estabilizó el proceso desde el escaneo del código QR, hasta la mantención de la sesión en el CRM.\n- **Carga de fotos de perfil (contactos)**: Ahora los contactos cargan sus fotos de perfiles.\n\n\n",
+            "en": ""
+          }
+        },
+        {
+          "t": {
+            "es": "Optimización de GUI e implementaciones",
+            "en": "New change."
+          },
+          "desc": {
+            "es": "**Nuevas funciones en el GUI agregadas**\n- **Optimización de interfaz de buzón**: Se logró optimizar la interfaz para comenzar a implementarlo en la aplicación móvil (android/IOS).\n- **Buzón agregado: Canales**: Se agregó la píldora de buzón de Canales para separarlo de los grupos y chats 1-1, de esta forma la bandeja está mas ordenada para el usuario.\n- **Pantalla principal actualizada**: Ahora la pantalla principal (de bienvenida), va a mostrar la versión del crm, de lo que se está trabajando, y dos botones para ver las versiones en la web y los próximos proyectos.\n- **Badge de mensajes no-leídos por buzón**: Se agregaron badges en las píldoras de notificacioens de cada buzón, indicando los chats no leídos.\n- **Archivar Chats**: Se agregó la opción de archivar en el menú de ajustes del chat.\n\n\n",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
       "v": "v0.015.2",
       "date": {
         "es": "Jul 2026",
@@ -243,10 +282,10 @@ window.BRAVOS_CONTENT = {
       "tags": [
         {
           "label": {
-            "es": "Novedad",
-            "en": "New"
+            "es": "Actualizaciones mayores",
+            "en": "Major"
           },
-          "tone": "green",
+          "tone": "orange",
           "glow": true
         }
       ],
@@ -416,11 +455,11 @@ window.BRAVOS_CONTENT = {
       "tags": [
         {
           "label": {
-            "es": "Nuevo",
-            "en": "New"
+            "es": "Actualizaciones mayores",
+            "en": "Major"
           },
-          "tone": "green",
-          "glow": false
+          "tone": "orange",
+          "glow": true
         }
       ]
     },
@@ -463,7 +502,7 @@ window.BRAVOS_CONTENT = {
             "en": "Security"
           },
           "tone": "blue",
-          "glow": false
+          "glow": true
         }
       ]
     },
@@ -536,7 +575,7 @@ window.BRAVOS_CONTENT = {
             "en": "Launch"
           },
           "tone": "green",
-          "glow": false
+          "glow": true
         }
       ]
     }
