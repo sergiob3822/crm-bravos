@@ -1,8 +1,3 @@
-/* ============================================================================
-   Bravos CRM — motor del sitio
-   Renderiza todo desde window.BRAVOS_CONTENT (ver content.js).
-   Router por hash: #/ , #/versions , #/working , #/terms-of-service
-   ========================================================================== */
 (function () {
   'use strict';
 
