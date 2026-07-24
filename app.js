@@ -381,6 +381,10 @@
           '</div>'
         : '';
       var hasItems = items.length > 0;
+      var cf = w.confetti;
+      var cfOn = !!(cf && cf.on && Number(cf.hours) > 0 && Number(cf.since));
+      var cfUntil = cfOn ? (Number(cf.since) + Number(cf.hours) * 3600000) : 0;
+      var cfAttrs = cfOn ? ' data-confetti="1" data-confetti-until="' + cfUntil + '"' : '';
       return '' +
         '<div class="work-block">' +
           '<div class="work-block-head">' +
@@ -391,7 +395,7 @@
           '<div class="work-block-desc"' + edRich('working.' + i + '.desc') + '</div>' +
           '<div class="work-progress' + (hasItems ? ' has-items' : '') + '"' + (hasItems ? ' data-progress-toggle tabindex="0"' : '') + '>' +
             '<div class="work-bar-track">' +
-              '<div class="work-bar-fill work-bar--' + barColor(pct) + '" data-bar="' + pct + '" data-key="w' + i + '"></div>' +
+              '<div class="work-bar-fill work-bar--' + barColor(pct) + '" data-bar="' + pct + '" data-key="w' + i + '"' + cfAttrs + '></div>' +
             '</div>' +
             '<div class="work-progress-label">' + pct + '% ' + doneWord + '</div>' +
             itemsHtml +
@@ -485,7 +489,9 @@
       var pct = Number(bar.getAttribute('data-bar')) || 0;
       bar.style.width = pct + '%';
       var key = bar.getAttribute('data-key') || ('b' + i);
-      if (pct >= 100) {
+      var cfUntil = Number(bar.getAttribute('data-confetti-until')) || 0;
+      var cfActive = bar.getAttribute('data-confetti') === '1' && Date.now() < cfUntil;
+      if (pct >= 100 && cfActive) {
         if (!celebrated[key]) { celebrated[key] = true; celebrate(bar); }
       } else {
         delete celebrated[key];
