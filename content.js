@@ -719,7 +719,20 @@ window.BRAVOS_CONTENT = {
         "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.",
         "en": "BravosCRM from your pocket! We are working hard to improve our customer experience — the previous version of the CRM mobile is now obsolete."
       },
-      "items": []
+      "items": [
+        {
+          "t": {
+            "es": "Optimización del crm para versión móvil (Android/IOS)",
+            "en": "New item"
+          }
+        },
+        {
+          "t": {
+            "es": "Aplicación móvil basada en Capacitor",
+            "en": "New item"
+          }
+        }
+      ]
     },
     {
       "code": "AA-01",
