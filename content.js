@@ -706,7 +706,7 @@ window.BRAVOS_CONTENT = {
     {
       "code": "AA-02",
       "tone": "amber",
-      "progress": 26,
+      "progress": 32,
       "status": {
         "es": "En progreso",
         "en": "In progress"
