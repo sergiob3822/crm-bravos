@@ -723,12 +723,12 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Optimización del crm para versión móvil (Android/IOS)",
-            "en": "New item"
+            "en": "Optimization of the CRM for Mobile Version (Android/iOS)"
           }
         },
         {
           "t": {
-            "es": "Aplicación móvil basada en Capacitor",
+            "es": "Capacitor-Powered Mobile App",
             "en": "New item"
           }
         }
