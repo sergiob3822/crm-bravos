@@ -258,7 +258,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "_**Corrección** de bugs e **implementación** de nuevas funcionalidades_\n- **Auto-reconocimiento de canales y grupos**: ahora al escanear el código, los canales y grupos son separados de los chats 1-1 y son transportados a sus buzones correspondientes.\n- **Optimización de carga**: Ahora, la carga de chats y mensajes al vincular por primera vez la línea de WA Messenger, dura mucho menos.\n- **Descarga de multimedia y adjuntos**: Se implementó una arquitectura basada en base64 para solicitar, descargar y vincular los archivos multimedia de cada chat (audios, videos, imágenes y documentos). Por limitaciones del servidor de meta, no es posible obtener multimedia antigüa (pasada la semana).\n- **Estabilidad de conexión**: Se estabilizó el proceso desde el escaneo del código QR, hasta la mantención de la sesión en el CRM.\n- **Carga de fotos de perfil (contactos)**: Ahora los contactos cargan sus fotos de perfiles.\n- **Solucionado**: el primer QR mostraba \"No es posible vincular este dispositivo\" en el móvil.",
-            "en": "_**Bug fixes** and **implementation **of new features_\n- **Auto-recognition of channels and groups**: now when scanning the code, channels and groups are separated from 1-1 chats and are transported to their corresponding mailboxes.\n- **Loading optimization**: Now, loading chats and messages when linking the WA Messenger line for the first time takes much less time.\n- **Multimedia and attachments download**: A base64-based architecture was implemented to request, download, and link the multimedia files of each chat (audios, videos, images, and documents). Due to Meta server limitations, it is not possible to obtain old multimedia (past one week).\n- **Connection stability**: The process from scanning the QR code to maintaining the session in the CRM was stabilized.\n- **Loading of profile pictures (contacts)**: Now contacts load their profile pictures."
+            "en": "_**Bug fixes** and **implementation **of new features_\n- **Auto-recognition of channels and groups**: now when scanning the code, channels and groups are separated from 1-1 chats and are transported to their corresponding mailboxes.\n- **Loading optimization**: Now, loading chats and messages when linking the WA Messenger line for the first time takes much less time.\n- **Multimedia and attachments download**: A base64-based architecture was implemented to request, download, and link the multimedia files of each chat (audios, videos, images, and documents). Due to Meta server limitations, it is not possible to obtain old multimedia (past one week).\n- **Connection stability**: The process from scanning the QR code to maintaining the session in the CRM was stabilized.\n- **Loading of profile pictures (contacts)**: Now contacts load their profile pictures.\n- **Fixed**: The first QR code displayed \"Cannot link this device\" on the mobile device."
           }
         },
         {
@@ -273,11 +273,11 @@ window.BRAVOS_CONTENT = {
         },
         {
           "t": {
-            "es": "Arreglos de bugs",
+            "es": "Bug fixes",
             "en": "New change."
           },
           "desc": {
-            "es": "- **Solucionado**: Cierre de sesión automática luego de refrescar página (cuentas con 2fa activo, no almacenaban cookies).\n- **Solucionado**: Las líneas de WAME tardaban demasiado en eliminarse en el CRM.\n- **Solucionado**: La eliminación de líneas de WAME, dejaban instancias huérfanas dentro de la DB del CRM.\n- **Solucionado**: Pantalla de inicio no cargaba correctamente.\n- **Solucionado**: Cantidad de Token Limits (dispositivos conectados) era de 25, se subió a 200. Esto realizaba que la sesión mas antigüa se cierre automáticamente.",
+            "es": "- **Fixed**: Automatic logout after refreshing the page (accounts with active 2FA were not storing cookies).\n- **Fixed**: WAME lines were taking too long to be deleted from the CRM.\n- **Fixed**: Deleting WAME lines left orphan instances inside the CRM DB.\n- **Fixed**: Home screen was not loading correctly.\n-** Fixed**: Token Limit quantity (connected devices) was set to 25 and raised to 200. This was causing the oldest active session to log out automatically.",
             "en": ""
           }
         }
