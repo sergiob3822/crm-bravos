@@ -273,12 +273,12 @@ window.BRAVOS_CONTENT = {
         },
         {
           "t": {
-            "es": "Bug fixes",
-            "en": "New change."
+            "es": "Arreglo de bugs",
+            "en": "Bugs fixes"
           },
           "desc": {
-            "es": "- **Fixed**: Automatic logout after refreshing the page (accounts with active 2FA were not storing cookies).\n- **Fixed**: WAME lines were taking too long to be deleted from the CRM.\n- **Fixed**: Deleting WAME lines left orphan instances inside the CRM DB.\n- **Fixed**: Home screen was not loading correctly.\n-** Fixed**: Token Limit quantity (connected devices) was set to 25 and raised to 200. This was causing the oldest active session to log out automatically.",
-            "en": ""
+            "es": "- **Solucionado**: Cierre de sesión automática luego de refrescar página (cuentas con 2fa activo, no almacenaban cookies).\n- **Solucionado**: Las líneas de WAME tardaban demasiado en eliminarse en el CRM.\n- **Solucionado**: La eliminación de líneas de WAME, dejaban instancias huérfanas dentro de la DB del CRM.\n- **Solucionado**: Pantalla de inicio no cargaba correctamente.\n- **Solucionado**: Cantidad de Token Limits (dispositivos conectados) era de 25, se subió a 200. Esto realizaba que la sesión mas antigüa se cierre automáticamente. ",
+            "en": "- **Fixed**: Automatic logout after refreshing the page (accounts with active 2FA were not storing cookies).\n- **Fixed**: WAME lines were taking too long to be deleted from the CRM.\n- **Fixed**: Deleting WAME lines left orphan instances inside the CRM DB.\n- **Fixed**: Home screen was not loading correctly.\n-** Fixed**: Token Limit quantity (connected devices) was set to 25 and raised to 200. This was causing the oldest active session to log out automatically."
           }
         }
       ]
