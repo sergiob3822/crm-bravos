@@ -59,8 +59,8 @@ window.BRAVOS_CONTENT = {
           "en": "WhatsApp Business"
         },
         "tip": {
-          "es": "WhatsApp Business a través de Evolution API, sin costo por conversación.",
-          "en": "WhatsApp Business via Evolution API, with no per-conversation fee."
+          "es": "WhatsApp Business a través de WAME (nuestro propio motor), sin costo por conversación.",
+          "en": "WhatsApp Business via WAME (our proprietary engine), with no per-conversation fees."
         }
       },
       {
