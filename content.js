@@ -805,8 +805,8 @@ window.BRAVOS_CONTENT = {
       },
       "versions": [
         {
-          "version": "",
-          "date": "",
+          "version": "1.0.0",
+          "date": "27/07/2026",
           "url": ""
         }
       ]
