@@ -805,8 +805,8 @@ window.BRAVOS_CONTENT = {
       },
       "versions": [
         {
-          "version": "1.0.0",
-          "date": "27/07/2026",
+          "version": "",
+          "date": "",
           "url": ""
         }
       ]
@@ -822,9 +822,14 @@ window.BRAVOS_CONTENT = {
       },
       "versions": [
         {
+          "version": "1.1.0",
+          "date": "27/07/2026",
+          "url": "BravosCRM-android-1.1.apk"
+        },
+        {
           "version": "1.0.0",
           "date": "27/07/2026",
-          "url": ""
+          "url": "BravosCRM-android-1.0.apk"
         }
       ]
     }
