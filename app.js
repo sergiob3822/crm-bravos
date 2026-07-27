@@ -124,6 +124,19 @@
     return TONES.indexOf(tone) === -1 ? 'green' : tone;
   }
 
+  function defaultAppsPage() {
+    return {
+      kicker: { es: 'Descargas', en: 'Downloads' },
+      title: { es: 'Llevá Bravos en tu bolsillo', en: 'Take Bravos in your pocket' },
+      sub: { es: 'Descargá la app del CRM para gestionar tus líneas desde el celular.', en: 'Download the CRM app to manage your lines from your phone.' },
+      baseUrl: 'https://apps.bravos.com.ar/',
+      iosBtn: { label: { es: 'Instalar en iPhone', en: 'Install on iPhone' }, url: '' },
+      androidBtn: { label: { es: 'Descargar para Android', en: 'Get it on Android' }, url: '' },
+      ios: { heading: { es: 'Versiones para iOS (PWA)', en: 'iOS versions (PWA)' }, note: { es: '', en: '' }, versions: [] },
+      android: { heading: { es: 'Versiones para Android', en: 'Android versions' }, note: { es: '', en: '' }, versions: [] },
+    };
+  }
+
   function normalize(c) {
     if (c && c.home && Array.isArray(c.home.chips)) {
       c.home.chips = c.home.chips.map(function (ch) {
@@ -155,6 +168,20 @@
         if (!Array.isArray(w.items)) w.items = [];
       });
     }
+    if (c && c.nav && !c.nav.apps) {
+      c.nav.apps = { es: 'Aplicaciones', en: 'Apps' };
+    }
+    if (c && !c.appsPage) c.appsPage = defaultAppsPage();
+    if (c && c.appsPage) {
+      var ap = c.appsPage;
+      if (!ap.baseUrl) ap.baseUrl = 'https://apps.bravos.com.ar/';
+      if (!ap.iosBtn) ap.iosBtn = { label: { es: 'Instalar en iPhone', en: 'Install on iPhone' }, url: '' };
+      if (!ap.androidBtn) ap.androidBtn = { label: { es: 'Descargar para Android', en: 'Get it on Android' }, url: '' };
+      ['ios', 'android'].forEach(function (p) {
+        if (!ap[p]) ap[p] = { heading: { es: '', en: '' }, note: { es: '', en: '' }, versions: [] };
+        if (!Array.isArray(ap[p].versions)) ap[p].versions = [];
+      });
+    }
     return c;
   }
 
@@ -182,6 +209,7 @@
           '<nav class="header-nav">' +
             '<button class="nav-btn' + (pg === 'versions' ? ' is-active' : '') + '" data-go="#/versions"' + ed('nav.versions') + '</button>' +
             '<button class="nav-btn' + (pg === 'working' ? ' is-active' : '') + '" data-go="#/working"' + ed('nav.coming') + '</button>' +
+            '<button class="nav-btn' + (pg === 'apps' ? ' is-active' : '') + '" data-go="#/apps"' + ed('nav.apps') + '</button>' +
             '<button class="nav-btn' + (pg === 'terms' ? ' is-active' : '') + '" data-go="#/terms-of-service"' + ed('nav.terms') + '</button>' +
           '</nav>' +
           '<div class="lang-switch">' +
@@ -204,6 +232,7 @@
           '<div class="footer-nav">' +
             '<button class="footer-link" data-go="#/versions"' + ed('nav.versions') + '</button>' +
             '<button class="footer-link" data-go="#/working"' + ed('nav.coming') + '</button>' +
+            '<button class="footer-link" data-go="#/apps"' + ed('nav.apps') + '</button>' +
             '<button class="footer-link" data-go="#/terms-of-service"' + ed('nav.terms') + '</button>' +
           '</div>' +
           '<div class="footer-rights">' + esc(c.brand.copyright) + ' — ' +
@@ -459,11 +488,93 @@
       '</section>';
   }
 
+  function appLink(url) {
+    url = String(url || '').trim();
+    if (!url) return '';
+    if (/^https?:\/\//i.test(url)) return url;
+    var base = String((state.content.appsPage && state.content.appsPage.baseUrl) || '').trim();
+    if (!/^https?:\/\//i.test(base)) return '';
+    return base.replace(/\/+$/, '') + '/' + url.replace(/^\/+/, '');
+  }
+
+  var APP_ICON = {
+    ios: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>',
+    android: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 18c0 .55.45 1 1 1h1v3.5a1.5 1.5 0 0 0 3 0V19h2v3.5a1.5 1.5 0 0 0 3 0V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8A1.5 1.5 0 0 0 2 9.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 3.5 8zm17 0a1.5 1.5 0 0 0-1.5 1.5v7a1.5 1.5 0 0 0 3 0v-7A1.5 1.5 0 0 0 20.5 8zm-4.97-5.84 1.3-1.3a.5.5 0 0 0-.71-.71l-1.48 1.48A5.9 5.9 0 0 0 12 1c-.96 0-1.86.23-2.66.63L7.85.15a.5.5 0 0 0-.71.71l1.31 1.31A5.98 5.98 0 0 0 6 7h12a5.98 5.98 0 0 0-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/></svg>',
+  };
+
+  function appStoreButton(kind, labelPath, url) {
+    var href = /^https?:\/\//i.test(String(url || '').trim()) ? String(url).trim() : '';
+    var attrs = href ? ' href="' + esc(href) + '" rel="noopener"' : '';
+    var eyebrow = state.lang === 'es'
+      ? (kind === 'ios' ? 'Instalá la' : 'Descargá la')
+      : (kind === 'ios' ? 'Install the' : 'Get the');
+    return '<a class="app-btn app-btn--' + kind + (href ? '' : ' is-off') + '"' + attrs + '>' +
+        '<span class="app-btn-ic">' + APP_ICON[kind] + '</span>' +
+        '<span class="app-btn-tx">' +
+          '<small>' + eyebrow + '</small>' +
+          '<b' + ed(labelPath) + '</b>' +
+        '</span>' +
+      '</a>';
+  }
+
+  function appBlock(platform) {
+    var a = state.content.appsPage[platform];
+    var base = 'appsPage.' + platform;
+    var dlWord = state.lang === 'es' ? 'Descargar' : 'Download';
+    var offWord = state.lang === 'es' ? 'Sin archivo' : 'No file';
+    var emptyWord = state.lang === 'es' ? 'Todavía no hay versiones cargadas.' : 'No versions uploaded yet.';
+    var vers = (a.versions || []);
+    var rows = vers.length
+      ? vers.map(function (v, i) {
+          var href = appLink(v.url);
+          var dl = href
+            ? '<a class="app-ver-dl" href="' + esc(href) + '" download rel="noopener">' + dlWord + '</a>'
+            : '<span class="app-ver-dl is-off">' + offWord + '</span>';
+          return '<li class="app-ver">' +
+              '<span class="app-ver-num">' + esc(v.version) + '</span>' +
+              '<span class="app-ver-date">' + esc(v.date) + '</span>' +
+              dl +
+            '</li>';
+        }).join('')
+      : '<li class="app-ver app-ver--empty">' + emptyWord + '</li>';
+    var note = t(base + '.note').trim()
+      ? '<p class="app-block-note"' + ed(base + '.note') + '</p>'
+      : '';
+    return '<div class="app-block app-block--' + platform + '">' +
+        '<div class="app-block-head">' +
+          '<span class="app-block-ic">' + APP_ICON[platform] + '</span>' +
+          '<h3 class="app-block-title"' + ed(base + '.heading') + '</h3>' +
+        '</div>' +
+        note +
+        '<ul class="app-ver-list">' + rows + '</ul>' +
+      '</div>';
+  }
+
+  function appsPage() {
+    return '' +
+      '<section class="subpage">' +
+        '<div class="apps-shell">' +
+          '<span class="kicker"' + ed('appsPage.kicker') + '</span>' +
+          '<h1' + ed('appsPage.title') + '</h1>' +
+          '<p class="subpage-sub"' + ed('appsPage.sub') + '</p>' +
+          '<div class="app-buttons">' +
+            appStoreButton('ios', 'appsPage.iosBtn.label', state.content.appsPage.iosBtn.url) +
+            appStoreButton('android', 'appsPage.androidBtn.label', state.content.appsPage.androidBtn.url) +
+          '</div>' +
+          '<div class="app-blocks">' +
+            appBlock('ios') +
+            appBlock('android') +
+          '</div>' +
+        '</div>' +
+      '</section>';
+  }
+
   var PAGES = {
     home: homePage,
     versions: versionsPage,
     working: workingPage,
     terms: termsPage,
+    apps: appsPage,
     login: loginPage,
   };
 
@@ -471,6 +582,7 @@
     versions: 'nav.versions',
     working: 'nav.coming',
     terms: 'nav.terms',
+    apps: 'nav.apps',
   };
 
   function pageTitle() {
@@ -617,6 +729,7 @@
     var h = (location.hash || '').replace(/^#\/?/, '');
     if (h === 'versions') return 'versions';
     if (h === 'working') return 'working';
+    if (h === 'apps' || h === 'applications') return 'apps';
     if (h === 'terms-of-service' || h === 'terms') return 'terms';
     if (h === 'login' || h === 'login/') return 'login';
     return 'home';

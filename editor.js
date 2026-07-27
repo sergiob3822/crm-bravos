@@ -247,6 +247,7 @@
       };
     },
     workingItem: function () { return { t: i18n('Nuevo ítem', 'New item') }; },
+    appVersion: function () { return { version: '1.0.0', date: '', url: '' }; },
     terms: function () {
       return { h: i18n('Nueva cláusula', 'New clause'), p: i18n('Texto de la cláusula.', 'Clause text.') };
     },
@@ -614,6 +615,43 @@
     return accordion('working', 'Próximamente (roadmap)', c.working.length, body);
   }
 
+  function appVersionsBlock(platform, label) {
+    var list = B.nodeAt('appsPage.' + platform + '.versions') || [];
+    var rows = list.map(function (_, k) {
+      var base = 'appsPage.' + platform + '.versions.' + k;
+      return '<div class="bx-item">' +
+        itemHeader((B.nodeAt(base + '.version') || 'Versión ' + (k + 1)), 'appsPage.' + platform + '.versions', k) +
+        fieldRaw('Número de versión (ej. 1.2.0)', base + '.version') +
+        fieldRaw('Fecha', base + '.date') +
+        fieldRaw('Archivo o URL de descarga', base + '.url') +
+        '</div>';
+    }).join('');
+    return '<div class="bx-sub">' + label + '</div>' +
+      fieldText('Título del bloque', 'appsPage.' + platform + '.heading') +
+      fieldText('Nota del bloque', 'appsPage.' + platform + '.note', true) +
+      rows +
+      '<button class="bx-add" data-add="appsPage.' + platform + '.versions" data-factory="appVersion">+ Agregar versión</button>';
+  }
+
+  function sectionApps() {
+    var body =
+      fieldText('Kicker', 'appsPage.kicker') +
+      fieldText('Título', 'appsPage.title') +
+      fieldText('Descripción', 'appsPage.sub', true) +
+      '<div class="bx-sub">Botones principales</div>' +
+      fieldText('Texto del botón iOS', 'appsPage.iosBtn.label') +
+      fieldRaw('URL del botón iOS (link a la PWA)', 'appsPage.iosBtn.url') +
+      fieldText('Texto del botón Android', 'appsPage.androidBtn.label') +
+      fieldRaw('URL del botón Android', 'appsPage.androidBtn.url') +
+      '<div class="bx-sub">Descargas</div>' +
+      fieldRaw('Dominio de descargas', 'appsPage.baseUrl') +
+      '<p class="bx-hint">En cada versión podés escribir solo el nombre del archivo (ej. <code>bravos-1.2.0.apk</code>) y el link se arma con este dominio. Si escribís una URL completa (https://…), se usa tal cual.</p>' +
+      appVersionsBlock('ios', 'Bloque iOS (PWA)') +
+      appVersionsBlock('android', 'Bloque Android') +
+      '';
+    return accordion('apps', 'Aplicaciones', null, body);
+  }
+
   function sectionTerms() {
     var c = B.state.content;
     var body =
@@ -642,6 +680,7 @@
       '<div class="bx-sub">Navegación</div>' +
       fieldText('Versiones', 'nav.versions') +
       fieldText('Próximamente', 'nav.coming') +
+      fieldText('Aplicaciones', 'nav.apps') +
       fieldText('Términos', 'nav.terms');
     return accordion('brand', 'Marca, nav y footer', null, body);
   }
@@ -650,6 +689,7 @@
     { tab: 'home', hash: '#/', label: 'Inicio' },
     { tab: 'versions', hash: '#/versions', label: 'Versiones' },
     { tab: 'working', hash: '#/working', label: 'Próximamente' },
+    { tab: 'apps', hash: '#/apps', label: 'Aplicaciones' },
     { tab: 'terms', hash: '#/terms-of-service', label: 'Términos' },
     { tab: 'general', hash: '', label: 'General' },
   ];
@@ -659,6 +699,7 @@
   function sectionsFor(tab) {
     if (tab === 'versions') return sectionVersions();
     if (tab === 'working') return sectionWorking();
+    if (tab === 'apps') return sectionApps();
     if (tab === 'terms') return sectionTerms();
     if (tab === 'general') return sectionBrand();
     return sectionHome() + sectionChat() + sectionFeatures();

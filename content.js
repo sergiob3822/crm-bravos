@@ -14,6 +14,10 @@ window.BRAVOS_CONTENT = {
       "es": "Próximamente",
       "en": "Coming soon"
     },
+    "apps": {
+      "es": "Aplicaciones",
+      "en": "Apps"
+    },
     "terms": {
       "es": "Términos y Condiciones",
       "en": "Terms & Conditions"
@@ -59,8 +63,8 @@ window.BRAVOS_CONTENT = {
           "en": "WhatsApp Business"
         },
         "tip": {
-          "es": "WhatsApp Business a través de WAME (nuestro propio motor), sin costo por conversación.",
-          "en": "WhatsApp Business via WAME (our proprietary engine), with no per-conversation fees."
+          "es": "WhatsApp Business a través de Evolution API, sin costo por conversación.",
+          "en": "WhatsApp Business via Evolution API, with no per-conversation fee."
         }
       },
       {
@@ -235,55 +239,6 @@ window.BRAVOS_CONTENT = {
   },
   "versions": [
     {
-      "v": "v0.015.3",
-      "date": {
-        "es": "Jul 2026",
-        "en": "Month 2026"
-      },
-      "tags": [
-        {
-          "label": {
-            "es": "Parches y mejoras",
-            "en": "Patches and enhancements"
-          },
-          "tone": "blue",
-          "glow": true
-        }
-      ],
-      "changes": [
-        {
-          "t": {
-            "es": "Actualización de WAME",
-            "en": "WAME Update"
-          },
-          "desc": {
-            "es": "_**Corrección** de bugs e **implementación** de nuevas funcionalidades_\n- **Auto-reconocimiento de canales y grupos**: ahora al escanear el código, los canales y grupos son separados de los chats 1-1 y son transportados a sus buzones correspondientes.\n- **Optimización de carga**: Ahora, la carga de chats y mensajes al vincular por primera vez la línea de WA Messenger, dura mucho menos.\n- **Descarga de multimedia y adjuntos**: Se implementó una arquitectura basada en base64 para solicitar, descargar y vincular los archivos multimedia de cada chat (audios, videos, imágenes y documentos). Por limitaciones del servidor de meta, no es posible obtener multimedia antigüa (pasada la semana).\n- **Estabilidad de conexión**: Se estabilizó el proceso desde el escaneo del código QR, hasta la mantención de la sesión en el CRM.\n- **Carga de fotos de perfil (contactos)**: Ahora los contactos cargan sus fotos de perfiles.\n- **Solucionado**: el primer QR mostraba \"No es posible vincular este dispositivo\" en el móvil.",
-            "en": "_**Bug fixes** and **implementation **of new features_\n- **Auto-recognition of channels and groups**: now when scanning the code, channels and groups are separated from 1-1 chats and are transported to their corresponding mailboxes.\n- **Loading optimization**: Now, loading chats and messages when linking the WA Messenger line for the first time takes much less time.\n- **Multimedia and attachments download**: A base64-based architecture was implemented to request, download, and link the multimedia files of each chat (audios, videos, images, and documents). Due to Meta server limitations, it is not possible to obtain old multimedia (past one week).\n- **Connection stability**: The process from scanning the QR code to maintaining the session in the CRM was stabilized.\n- **Loading of profile pictures (contacts)**: Now contacts load their profile pictures.\n- **Fixed**: The first QR code displayed \"Cannot link this device\" on the mobile device."
-          }
-        },
-        {
-          "t": {
-            "es": "Optimización de GUI e implementaciones",
-            "en": "GUI optimization and implementations"
-          },
-          "desc": {
-            "es": "**Nuevas funciones en el GUI agregadas**\n- **Optimización de interfaz de buzón**: Se logró optimizar la interfaz para comenzar a implementarlo en la aplicación móvil (android/IOS).\n- **Buzón agregado: Canales**: Se agregó la píldora de buzón de Canales para separarlo de los grupos y chats 1-1, de esta forma la bandeja está mas ordenada para el usuario.\n- **Pantalla principal actualizada**: Ahora la pantalla principal (de bienvenida), va a mostrar la versión del crm, de lo que se está trabajando, y dos botones para ver las versiones en la web y los próximos proyectos.\n- **Badge de mensajes no-leídos por buzón**: Se agregaron badges en las píldoras de notificacioens de cada buzón, indicando los chats no leídos.\n- **Archivar Chats**: Se agregó la opción de archivar en el menú de ajustes del chat.\n\n\n",
-            "en": "**New GUI features added**\n- **Mailbox interface optimization**: The interface was optimized to start implementing it in the mobile application (Android/iOS).\n- **Mailbox added**: Channels: The Channels mailbox pill was added to separate it from groups and 1-1 chats, this way the inbox is more organized for the user.\n- **Main screen updated**: Now the main (welcome) screen will show the CRM version being worked on, and two buttons to view versions on the web and upcoming projects.\n- **Unread messages badge per mailbox**: Badges were added to the notification pills of each mailbox, indicating unread chats.\n- **Archive Chats**: The option to archive was added to the chat settings menu."
-          }
-        },
-        {
-          "t": {
-            "es": "Arreglo de bugs",
-            "en": "Bugs fixes"
-          },
-          "desc": {
-            "es": "- **Solucionado**: Cierre de sesión automática luego de refrescar página (cuentas con 2fa activo, no almacenaban cookies).\n- **Solucionado**: Las líneas de WAME tardaban demasiado en eliminarse en el CRM.\n- **Solucionado**: La eliminación de líneas de WAME, dejaban instancias huérfanas dentro de la DB del CRM.\n- **Solucionado**: Pantalla de inicio no cargaba correctamente.\n- **Solucionado**: Cantidad de Token Limits (dispositivos conectados) era de 25, se subió a 200. Esto realizaba que la sesión mas antigüa se cierre automáticamente. ",
-            "en": "- **Fixed**: Automatic logout after refreshing the page (accounts with active 2FA were not storing cookies).\n- **Fixed**: WAME lines were taking too long to be deleted from the CRM.\n- **Fixed**: Deleting WAME lines left orphan instances inside the CRM DB.\n- **Fixed**: Home screen was not loading correctly.\n-** Fixed**: Token Limit quantity (connected devices) was set to 25 and raised to 200. This was causing the oldest active session to log out automatically."
-          }
-        }
-      ]
-    },
-    {
       "v": "v0.015.2",
       "date": {
         "es": "Jul 2026",
@@ -292,10 +247,10 @@ window.BRAVOS_CONTENT = {
       "tags": [
         {
           "label": {
-            "es": "Actualizaciones mayores",
-            "en": "Major"
+            "es": "Novedad",
+            "en": "New"
           },
-          "tone": "orange",
+          "tone": "green",
           "glow": true
         }
       ],
@@ -465,11 +420,11 @@ window.BRAVOS_CONTENT = {
       "tags": [
         {
           "label": {
-            "es": "Actualizaciones mayores",
-            "en": "Major"
+            "es": "Nuevo",
+            "en": "New"
           },
-          "tone": "orange",
-          "glow": true
+          "tone": "green",
+          "glow": false
         }
       ]
     },
@@ -512,7 +467,7 @@ window.BRAVOS_CONTENT = {
             "en": "Security"
           },
           "tone": "blue",
-          "glow": true
+          "glow": false
         }
       ]
     },
@@ -585,7 +540,7 @@ window.BRAVOS_CONTENT = {
             "en": "Launch"
           },
           "tone": "green",
-          "glow": true
+          "glow": false
         }
       ]
     }
@@ -605,49 +560,6 @@ window.BRAVOS_CONTENT = {
     }
   },
   "working": [
-    {
-      "code": "AA-04",
-      "tone": "green",
-      "progress": 100,
-      "status": {
-        "es": "Lanzado",
-        "en": "Launched"
-      },
-      "title": {
-        "es": "Update 0.015.3",
-        "en": "Update 0.015.3"
-      },
-      "desc": {
-        "es": "Correcciones y actualización de **WAME**, optimización del **GUI** e implementación de nuevas **funcionalidades**.",
-        "en": "Corrections and update to WAME, GUI optimization, and implementation of new features."
-      },
-      "items": [
-        {
-          "t": {
-            "es": "Actualizar WhatsAppMessengerEngine, corregir bugs visuales, problemas de carga e implemntar auto detección de chats",
-            "en": "Update WhatsAppMessengerEngine, fix visual bugs and loading issues, and implement auto-detection of chats."
-          }
-        },
-        {
-          "t": {
-            "es": "Implementar función: Archivar Chat",
-            "en": "Implement feature: Archive Chat"
-          }
-        },
-        {
-          "t": {
-            "es": "Implementar función: Silenciar Notificaciones",
-            "en": "Implement feature: Mute Notifications"
-          }
-        }
-      ],
-      "glow": true,
-      "confetti": {
-        "on": true,
-        "hours": 24,
-        "since": 1784910390933
-      }
-    },
     {
       "code": "AA-03",
       "tone": "green",
@@ -695,18 +607,12 @@ window.BRAVOS_CONTENT = {
             "en": "Full Spanish, 2FA, username/email login and more."
           }
         }
-      ],
-      "glow": false,
-      "confetti": {
-        "on": false,
-        "hours": 24,
-        "since": 1784910293754
-      }
+      ]
     },
     {
       "code": "AA-02",
       "tone": "amber",
-      "progress": 32,
+      "progress": 26,
       "status": {
         "es": "En progreso",
         "en": "In progress"
@@ -719,20 +625,7 @@ window.BRAVOS_CONTENT = {
         "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.",
         "en": "BravosCRM from your pocket! We are working hard to improve our customer experience — the previous version of the CRM mobile is now obsolete."
       },
-      "items": [
-        {
-          "t": {
-            "es": "Optimización del crm para versión móvil (Android/IOS)",
-            "en": "Optimization of the CRM for Mobile Version (Android/iOS)"
-          }
-        },
-        {
-          "t": {
-            "es": "Capacitor-Powered Mobile App",
-            "en": "New item"
-          }
-        }
-      ]
+      "items": []
     },
     {
       "code": "AA-01",
@@ -873,6 +766,69 @@ window.BRAVOS_CONTENT = {
       }
     }
   ],
+  "appsPage": {
+    "kicker": {
+      "es": "Descargas",
+      "en": "Downloads"
+    },
+    "title": {
+      "es": "Llevá Bravos en tu bolsillo",
+      "en": "Take Bravos in your pocket"
+    },
+    "sub": {
+      "es": "Descargá la app del CRM para gestionar tus líneas desde el celular, estés donde estés.",
+      "en": "Download the CRM app to manage your lines from your phone, wherever you are."
+    },
+    "baseUrl": "https://apps.bravos.com.ar/",
+    "iosBtn": {
+      "label": {
+        "es": "Instalar en iPhone",
+        "en": "Install on iPhone"
+      },
+      "url": ""
+    },
+    "androidBtn": {
+      "label": {
+        "es": "Descargar para Android",
+        "en": "Get it on Android"
+      },
+      "url": ""
+    },
+    "ios": {
+      "heading": {
+        "es": "Versiones para iOS (PWA)",
+        "en": "iOS versions (PWA)"
+      },
+      "note": {
+        "es": "En iPhone la app se instala como PWA desde Safari: abrí el link y elegí “Agregar a inicio”.",
+        "en": "On iPhone the app installs as a PWA from Safari: open the link and choose “Add to Home Screen”."
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "27/07/2026",
+          "url": ""
+        }
+      ]
+    },
+    "android": {
+      "heading": {
+        "es": "Versiones para Android",
+        "en": "Android versions"
+      },
+      "note": {
+        "es": "Descargá el .apk y permití la instalación de orígenes desconocidos para instalarlo.",
+        "en": "Download the .apk and allow installing from unknown sources to install it."
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "27/07/2026",
+          "url": ""
+        }
+      ]
+    }
+  },
   "footer": {
     "rights": {
       "es": "Todos los derechos reservados",
