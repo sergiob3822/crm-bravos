@@ -779,7 +779,6 @@ window.BRAVOS_CONTENT = {
       "es": "Descargá la app del CRM para gestionar tus líneas desde el celular, estés donde estés.",
       "en": "Download the CRM app to manage your lines from your phone, wherever you are."
     },
-    "baseUrl": "https://apps.bravos.com.ar/",
     "iosBtn": {
       "label": {
         "es": "Instalar en iPhone",
@@ -822,14 +821,9 @@ window.BRAVOS_CONTENT = {
       },
       "versions": [
         {
-          "version": "1.1.0",
-          "date": "27/07/2026",
-          "url": "BravosCRM-android-1.1.apk"
-        },
-        {
           "version": "1.0.0",
           "date": "27/07/2026",
-          "url": "BravosCRM-android-1.0.apk"
+          "url": ""
         }
       ]
     }

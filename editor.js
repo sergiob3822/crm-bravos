@@ -162,7 +162,7 @@
   function addItem(listPath, factory) {
     var list = listAt(listPath);
     if (!list) return;
-    list.push(factory(list.length));
+    list.unshift(factory(list.length));
     afterStructuralChange();
   }
 
@@ -623,7 +623,7 @@
         itemHeader((B.nodeAt(base + '.version') || 'Versión ' + (k + 1)), 'appsPage.' + platform + '.versions', k) +
         fieldRaw('Número de versión (ej. 1.2.0)', base + '.version') +
         fieldRaw('Fecha', base + '.date') +
-        fieldRaw('Archivo o URL de descarga', base + '.url') +
+        fieldRaw('URL de descarga directa (https://…)', base + '.url') +
         '</div>';
     }).join('');
     return '<div class="bx-sub">' + label + '</div>' +
@@ -644,8 +644,7 @@
       fieldText('Texto del botón Android', 'appsPage.androidBtn.label') +
       fieldRaw('URL del botón Android', 'appsPage.androidBtn.url') +
       '<div class="bx-sub">Descargas</div>' +
-      fieldRaw('Dominio de descargas', 'appsPage.baseUrl') +
-      '<p class="bx-hint">En cada versión podés escribir solo el nombre del archivo (ej. <code>bravos-1.2.0.apk</code>) y el link se arma con este dominio. Si escribís una URL completa (https://…), se usa tal cual.</p>' +
+      '<p class="bx-hint">En cada versión pegá la <b>URL de descarga directa</b> del archivo (el link que baja el .apk al hacer clic). Para iOS, el link a la PWA.</p>' +
       appVersionsBlock('ios', 'Bloque iOS (PWA)') +
       appVersionsBlock('android', 'Bloque Android') +
       '';

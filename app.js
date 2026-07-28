@@ -129,7 +129,6 @@
       kicker: { es: 'Descargas', en: 'Downloads' },
       title: { es: 'Llevá Bravos en tu bolsillo', en: 'Take Bravos in your pocket' },
       sub: { es: 'Descargá la app del CRM para gestionar tus líneas desde el celular.', en: 'Download the CRM app to manage your lines from your phone.' },
-      baseUrl: 'https://apps.bravos.com.ar/',
       iosBtn: { label: { es: 'Instalar en iPhone', en: 'Install on iPhone' }, url: '' },
       androidBtn: { label: { es: 'Descargar para Android', en: 'Get it on Android' }, url: '' },
       ios: { heading: { es: 'Versiones para iOS (PWA)', en: 'iOS versions (PWA)' }, note: { es: '', en: '' }, versions: [] },
@@ -174,7 +173,6 @@
     if (c && !c.appsPage) c.appsPage = defaultAppsPage();
     if (c && c.appsPage) {
       var ap = c.appsPage;
-      if (!ap.baseUrl) ap.baseUrl = 'https://apps.bravos.com.ar/';
       if (!ap.iosBtn) ap.iosBtn = { label: { es: 'Instalar en iPhone', en: 'Install on iPhone' }, url: '' };
       if (!ap.androidBtn) ap.androidBtn = { label: { es: 'Descargar para Android', en: 'Get it on Android' }, url: '' };
       ['ios', 'android'].forEach(function (p) {
@@ -490,11 +488,7 @@
 
   function appLink(url) {
     url = String(url || '').trim();
-    if (!url) return '';
-    if (/^https?:\/\//i.test(url)) return url;
-    var base = String((state.content.appsPage && state.content.appsPage.baseUrl) || '').trim();
-    if (!/^https?:\/\//i.test(base)) return '';
-    return base.replace(/\/+$/, '') + '/' + url.replace(/^\/+/, '');
+    return /^https?:\/\//i.test(url) ? url : '';
   }
 
   var APP_ICON = {
