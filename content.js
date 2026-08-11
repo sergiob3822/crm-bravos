@@ -12,29 +12,29 @@ window.BRAVOS_CONTENT = {
     },
     "coming": {
       "es": "Próximamente",
-      "en": "Coming soon"
+      "en": "Coming Soon"
     },
     "apps": {
       "es": "Aplicaciones",
-      "en": "Apps"
+      "en": "Applications"
     },
     "terms": {
       "es": "Términos y Condiciones",
-      "en": "Terms & Conditions"
+      "en": "Terms and Conditions"
     }
   },
   "home": {
     "eyebrow": {
       "es": "CRM de ventas por WhatsApp",
-      "en": "WhatsApp sales CRM"
+      "en": "WhatsApp Sales CRM"
     },
     "heading": {
       "es": "Todas tus líneas, en un solo buzón.",
-      "en": "All your lines, in a single inbox."
+      "en": "All your phone lines, in a single mailbox."
     },
     "sub": {
       "es": "Bravos es el CRM ideal para gestionar clientes y ventas por WhatsApp y SMS. Nuestras áreas estrella son: casinos, distribuidoras, remiserías, call centers y logísticas.",
-      "en": "Bravos is the ideal CRM to manage customers and sales over WhatsApp and SMS. Where we shine: casinos, distributors, taxi fleets, call centers and logistics."
+      "en": "Bravos is the ideal CRM for managing customers and sales via WhatsApp and SMS. Our key industries include: casinos, distributors, taxi companies, call centers, and logistics firms."
     },
     "chips": [
       {
@@ -44,7 +44,7 @@ window.BRAVOS_CONTENT = {
         },
         "tip": {
           "es": "La API oficial de WhatsApp (Meta) para empresas: máxima estabilidad y escala.",
-          "en": "WhatsApp's official Cloud API (Meta) for business: built for scale and reliability."
+          "en": "The official WhatsApp (Meta) API for businesses: maximum stability and scalability."
         }
       },
       {
@@ -64,7 +64,7 @@ window.BRAVOS_CONTENT = {
         },
         "tip": {
           "es": "WhatsApp Business a través de Evolution API, sin costo por conversación.",
-          "en": "WhatsApp Business via Evolution API, with no per-conversation fee."
+          "en": "WhatsApp Business via the Evolution API, with no per-conversation fee."
         }
       },
       {
@@ -74,7 +74,7 @@ window.BRAVOS_CONTENT = {
         },
         "tip": {
           "es": "WhatsApp común vinculado para gestionar sus chats desde el CRM.",
-          "en": "Regular WhatsApp linked to manage its chats from the CRM."
+          "en": "Standard WhatsApp integration to manage your chats from the CRM."
         }
       },
       {
@@ -94,7 +94,7 @@ window.BRAVOS_CONTENT = {
     },
     "compose": {
       "es": "Escribí un mensaje…",
-      "en": "Type a message…"
+      "en": "I wrote a message…"
     },
     "chat": [
       {
@@ -102,7 +102,7 @@ window.BRAVOS_CONTENT = {
         "time": "10:24",
         "t": {
           "es": "Hola, ¿Puede aplicarse para una inmobiliaria?",
-          "en": "Hi, can this work for a real estate agency?"
+          "en": "Hello, Can you apply to work at a real estate agency?"
         }
       },
       {
@@ -110,7 +110,7 @@ window.BRAVOS_CONTENT = {
         "time": "10:24",
         "t": {
           "es": "¡Hola! Sí, sirve para todo tipo de empresas.",
-          "en": "Hi! Yes, it works for any kind of business."
+          "en": "Hi! Yes, it works for all types of businesses."
         }
       },
       {
@@ -118,7 +118,7 @@ window.BRAVOS_CONTENT = {
         "time": "10:26",
         "t": {
           "es": "Genial ¡Quiero probarlo!",
-          "en": "Great, I want to try it!"
+          "en": "Awesome! I want to try it!"
         }
       }
     ],
@@ -128,87 +128,87 @@ window.BRAVOS_CONTENT = {
     },
     "featuresSub": {
       "es": "Una sola plataforma para conversar, automatizar y vender.",
-      "en": "One platform to chat, automate and sell."
+      "en": "A single platform for chatting, automating, and selling."
     },
     "features": [
       {
         "title": {
           "es": "Multicanal WhatsApp",
-          "en": "Multichannel WhatsApp"
+          "en": "WhatsApp Multichannel"
         },
         "desc": {
           "es": "Conectá WhatsApp API, Twilio o WAME: Whatsapp Business y Messenger en un solo panel.",
-          "en": "Connect WhatsApp API, Twilio or WAME — WhatsApp Business and Messenger in a single panel."
+          "en": "Connect WhatsApp API, Twilio, or WAME: WhatsApp Business and Messenger in a single dashboard."
         }
       },
       {
         "title": {
           "es": "Respuestas automáticas",
-          "en": "Automated replies"
+          "en": "Automatic replies"
         },
         "desc": {
           "es": "Respuestas inmediatas con comandos /nombre, macros y bots para automatizar las tareas.",
-          "en": "Instant replies with /name commands, macros and bots to automate your tasks."
+          "en": "Instant responses using /name commands, macros, and bots to automate tasks."
         }
       },
       {
         "title": {
           "es": "Campañas SMS",
-          "en": "SMS campaigns"
+          "en": "SMS Campaigns"
         },
         "desc": {
           "es": "Vinculá tus números y lanzá campañas de SMS masivas a todo el mundo.",
-          "en": "Link your numbers and launch bulk SMS campaigns anywhere in the world."
+          "en": "Link your phone numbers and launch bulk SMS campaigns to people all over the world."
         }
       },
       {
         "title": {
           "es": "Informes en vivo",
-          "en": "Live reports"
+          "en": "Live Updates"
         },
         "desc": {
           "es": "Observá cómo crecen tus chats, supervisá tus agentes, controlá tus líneas activas y las conversaciones sin leer.",
-          "en": "Watch your chats grow, supervise your agents, and keep an eye on active lines and unread conversations."
+          "en": "See how your chats are growing, monitor your agents, and keep track of your active lines and unread conversations."
         }
       },
       {
         "title": {
           "es": "Agentes y grupos",
-          "en": "Agents & teams"
+          "en": "Agents and groups"
         },
         "desc": {
           "es": "Creá agentes, armá grupos y gestioná a todo tu equipo para dividir las líneas.",
-          "en": "Create agents, build groups and manage your whole team to split lines between them."
+          "en": "Create agents, set up groups, and manage your entire team to divide up the lines."
         }
       },
       {
         "title": {
           "es": "Seguridad 2FA",
-          "en": "2FA security"
+          "en": "2FA Security"
         },
         "desc": {
           "es": "Tus datos están protegidos: con la verificación en dos pasos, los datos de tus líneas están protegidos.",
-          "en": "Your data stays protected: two-step verification keeps the data on every line safe."
+          "en": "Your data is protected: With two-step verification, the data on your lines is protected."
         }
       },
       {
         "title": {
           "es": "Cargas en PIXEL",
-          "en": "Pixel tracking"
+          "en": "Deposits in PIXEL"
         },
         "desc": {
           "es": "Elegí tus líneas de ventas y cargá en el pixel tus leads y purchases para maximizar las ventas.",
-          "en": "Pick your sales lines and push leads and purchases to your pixel to maximize sales."
+          "en": "Choose your sales channels and upload your leads and purchases to the pixel to maximize sales."
         }
       },
       {
         "title": {
           "es": "Contactos seguros",
-          "en": "Separate contacts"
+          "en": "Secure Contacts"
         },
         "desc": {
           "es": "Asegurá tu comodidad, cada línea posee sus propios contactos para que no se mezclen.",
-          "en": "Every line keeps its own contact list, so nothing ever gets mixed up."
+          "en": "Make sure you're comfortable—each line has its own connectors so they don't get mixed up."
         }
       },
       {
@@ -218,7 +218,7 @@ window.BRAVOS_CONTENT = {
         },
         "desc": {
           "es": "El sistema de notificaciones te avisa cuando se te quedó un chat sin leer.",
-          "en": "The notification system tells you whenever a chat is left unread."
+          "en": "The notification system alerts you when you have an unread chat."
         }
       }
     ]
@@ -226,7 +226,7 @@ window.BRAVOS_CONTENT = {
   "versionsPage": {
     "kicker": {
       "es": "Changelog",
-      "en": "Changelog"
+      "en": "Change Log"
     },
     "title": {
       "es": "Versiones",
@@ -234,7 +234,7 @@ window.BRAVOS_CONTENT = {
     },
     "sub": {
       "es": "Historial de cambios y novedades de BravosCRM.",
-      "en": "Change log and news for BravosCRM."
+      "en": "BravosCRM Change Log and New Features."
     }
   },
   "versions": [
@@ -319,7 +319,7 @@ window.BRAVOS_CONTENT = {
       "v": "v0.015.2",
       "date": {
         "es": "Jul 2026",
-        "en": "Jul 2026"
+        "en": "July 2026"
       },
       "tags": [
         {
@@ -339,37 +339,37 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "Se dejó de depender del EvolutionAPI genérico: ahora es un **motor creado de 0** basado en Baileys (rc13).\n\n- **Conexión estable** — se terminó el loop de \"Iniciando sesión…\" / QR que rebotaba y el device_removed.\n- **Recepción instantánea** — los mensajes del cliente entran enseguida (antes tardaban 58s por Baileys).\n- **Envío arreglado** — se corrigió el error 463 que provocaba fallos en los envíos 1 a 1.\n- **Import de historial** — se importan miles de mensajes al vincular (con EvolutionAPI antes no funcionaba).\n- **LID resuelto** — los contactos y grupos con identificador interno (LID) ahora se resuelven al número real: se ven con nombre y número del usuario, y **se les puede enviar mensajes** (antes daba \"no es un número de WhatsApp válido\").\n- **Sin chats duplicados** — se normaliza el sufijo de dispositivo para que el chat importado y el chat en vivo sean el mismo.\n- **Contactos con nombre de agenda** — al vincular, sincroniza tu agenda y trae los contactos con el nombre que vos les pusiste, no solo el número.\n- **Sin crasheos en el import** — se deduplican los contactos antes de guardarlos (antes un choque de duplicados abortaba todo el import).",
-            "en": "We stopped relying on the generic EvolutionAPI: it's now a **from-scratch engine** built on Baileys (rc13).\n\n- **Stable connection** — the \"Signing in…\" / bouncing-QR loop and the device_removed are gone.\n- **Instant receiving** — customer messages come in right away (they used to take 58s on Baileys).\n- **Fixed sending** — fixed the 463 error that caused failures in one-to-one messages.\n- **History import** — thousands of messages are imported when you link a line (this didn't work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) now resolve to the real number: they show the user's name and number, and **you can message them** (it used to say \"not a valid WhatsApp number\").\n- **No duplicate chats** — the device suffix is normalized so the imported chat and the live chat are the same one.\n- **Contacts with address-book names** — on linking, it syncs your address book and brings contacts with the name you gave them, not just the number.\n- **No crashes on import** — contacts are deduplicated before saving (a duplicate clash used to abort the whole import)."
+            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — No more \"Logging in…\" loop, bouncing QR codes, or \"device_removed\" errors.\n- **Instant reception** — messages from the client arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone numbers: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
           }
         },
         {
           "t": {
             "es": "Wizard de vinculación de líneas",
-            "en": "Line-linking wizard"
+            "en": "Line Linking Wizard"
           },
           "desc": {
             "es": "- **Solo QR** — se quitó la opción de código por número (poco estable en WhatsApp Web).\n- **Historial de importación (días)** — un campo para definir cuántos días de chats importar.\n- **Pantalla de carga con progreso** — tras escanear, muestra el avance de la carga de contactos y mensajes.\n- **Cancelar y eliminar** — elimina las líneas más rápido y sin dejarlas huérfanas.",
-            "en": "- **QR only** — the phone-code option was removed (unstable on WhatsApp Web).\n- **Import history (days)** — a field to set how many days of chats to import.\n- **Loading screen with progress** — after scanning, it shows the progress of loading contacts and messages.\n- **Cancel and delete** — removes lines faster and without leaving them orphaned."
+            "en": "- **QR Only** — the option to use a code by number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, displays the progress of loading contacts and messages.\n- **Cancel and delete** — deletes lines faster without leaving them as orphans."
           }
         },
         {
           "t": {
             "es": "Rol Moderador",
-            "en": "Moderator role"
+            "en": "Moderator Role"
           },
           "desc": {
             "es": "Un rol intermedio, asignado por equipos y líneas, que ve y controla solo su entorno.\n\n- Ve y gestiona solo **sus líneas** y los **agentes de sus equipos**.\n- Tiene habilitadas las métricas de informes, contactos y campañas, acotadas a sus líneas.\n- Puede crear y borrar **solo líneas de WhatsApp** (WAME), no otros canales, para evitar problemas.\n- Se corrigieron 6 bugs, incluido un **agujero de seguridad** (el moderador llegaba a ver los tokens de la línea).",
-            "en": "An intermediate role, assigned by teams and lines, that sees and controls only its own scope.\n\n- Sees and manages only **its lines** and the **agents of its teams**.\n- Has reports, contacts and campaign metrics enabled, scoped to its lines.\n- Can create and delete **only WhatsApp lines** (WAME), not other channels, to avoid issues.\n- Fixed 6 bugs, including a **security hole** (the moderator could see the line's tokens)."
+            "en": "An intermediate role, assigned by teams and lines, that views and manages only its own environment.\n\n- Views and manages only **its lines** and the **agents on its teams**.\n- Has access to reporting metrics, contacts, and campaigns, limited to its lines.\n- Can create and delete **only WhatsApp lines** (WAME), not other channels, to avoid issues.\n- Six bugs were fixed, including a **security vulnerability** (the moderator could view the line’s tokens)."
           }
         },
         {
           "t": {
             "es": "Chat interno del equipo (Chat CRM)",
-            "en": "Internal team chat (CRM Chat)"
+            "en": "Internal Team Chat (CRM Chat)"
           },
           "desc": {
             "es": "Mensajería interna de usuario a usuario dentro del CRM.\n\n- Chat en tiempo real entre agentes, moderadores y administradores.\n- **Adjuntar archivos** (imágenes y documentos).\n- **Notificaciones** con sonido, información del contacto y del mensaje.",
-            "en": "Internal user-to-user messaging inside the CRM.\n\n- Real-time chat between agents, moderators and admins.\n- **File attachments** (images and documents).\n- **Notifications** with sound, plus contact and message info."
+            "en": "Internal user-to-user messaging within the CRM.\n\n- Real-time chat between agents, moderators, and administrators.\n- **Attach files** (images and documents).\n- **Notifications** with sound, contact information, and message details."
           }
         },
         {
@@ -379,7 +379,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Español completo** — barrido de traducción de toda la interfaz (~1600 textos).\n- **2FA** — verificación en dos pasos obligatoria según el rol.\n- **Login por usuario o correo** — el nombre de usuario ahora es único; podés entrar con el usuario o el correo.\n- **Métrica \"Ventas\"** — se cargan con el comando #cliente monto.\n- **Menú móvil** — se corrigió la interfaz para celular.\n- **Optimización completa** — CRM más liviano para móviles de pocos recursos.\n- **Sesión persistente** — ya no se cierra sola si vos no lo permitís.",
-            "en": "- **Full Spanish** — a translation sweep across the whole interface (~1600 strings).\n- **2FA** — mandatory two-step verification depending on the role.\n- **Login by username or email** — the username is now unique; you can sign in with either.\n- **\"Sales\" metric** — logged with the #cliente amount command.\n- **Mobile menu** — fixed the phone interface.\n- **Full optimization** — a lighter CRM for low-end phones.\n- **Persistent session** — it no longer logs you out on its own unless you allow it."
+            "en": "- **Full Spanish localization** — translation of the entire interface (~1,600 text strings).\n- **2FA** — mandatory two-factor authentication based on role.\n- **Login by username or email** — usernames are now unique; you can log in with either your username or email address.\n- **\"Sales\" metrics** — loaded using the #client amount command.\n- **Mobile menu** — the mobile interface has been fixed.\n- **Complete optimization** — a lighter CRM for low-resource mobile devices.\n- **Persistent session** — it no longer logs you out automatically unless you allow it."
           }
         }
       ]
@@ -388,97 +388,97 @@ window.BRAVOS_CONTENT = {
       "v": "v0.015.1",
       "date": {
         "es": "Jul 2026",
-        "en": "Jul 2026"
+        "en": "July 2026"
       },
       "changes": [
         {
           "t": {
             "es": "Reskin completo del software.",
-            "en": "Full software reskin."
+            "en": "Complete reskin of the software."
           }
         },
         {
           "t": {
             "es": "Implementación de 2FA (Verificación en dos pasos) al crear agentes.",
-            "en": "2FA (two-step verification) when creating agents."
+            "en": "Implementation of 2FA (two-step verification) when creating agents."
           }
         },
         {
           "t": {
             "es": "Campañas SMS masivas con segmentación por etiquetas.",
-            "en": "Bulk SMS campaigns with tag-based segmentation."
+            "en": "Mass SMS campaigns with segmentation by tags."
           }
         },
         {
           "t": {
             "es": "Grupos de agentes y asignación automática de conversaciones.",
-            "en": "Agent groups and automatic conversation assignment."
+            "en": "Agent groups and automatic assignment of conversations."
           }
         },
         {
           "t": {
             "es": "Respuestas automáticas privadas para cada agente.",
-            "en": "Private automated replies for each agent."
+            "en": "Private auto-replies for each agent."
           }
         },
         {
           "t": {
             "es": "Función \"Bloquear Contacto\".",
-            "en": "\"Block contact\" feature."
+            "en": "\"Block Contact\" feature."
           }
         },
         {
           "t": {
             "es": "Bandeja \"Grupos\" separada para cada línea.",
-            "en": "Separate \"Groups\" inbox for each line."
+            "en": "A separate \"Groups\" tab for each line."
           }
         },
         {
           "t": {
             "es": "Menú de centro de notificaciones.",
-            "en": "Notification center menu."
+            "en": "Notification Center menu."
           }
         },
         {
           "t": {
             "es": "Personalización de fondo de pantalla en los chats.",
-            "en": "Chat wallpaper customization."
+            "en": "Customizing the background image in chats."
           }
         },
         {
           "t": {
             "es": "Integración de Meta PIXEL.",
-            "en": "Meta Pixel integration."
+            "en": "Meta PIXEL Integration."
           }
         },
         {
           "t": {
             "es": "Métricas e informes de: PIXEL, SLA y Satisfacción (webchat).",
-            "en": "Metrics and reports for Pixel, SLA and satisfaction (web chat)."
+            "en": "Metrics and reports for: PIXEL, SLA, and Satisfaction (webchat)."
           }
         },
         {
           "t": {
             "es": "Correcciones menores de idiomas.",
-            "en": "Minor translation fixes."
+            "en": "Minor language corrections."
           }
         },
         {
           "t": {
             "es": "Incorporación de Meta PIXEL.",
-            "en": "Meta Pixel support."
+            "en": "Addition of Meta PIXEL."
           }
         },
         {
           "t": {
             "es": "Informes y métricas de: PIXEL, encuestas de satisfacción (webchat) y SLA.",
-            "en": "Reports and metrics for Pixel, satisfaction surveys (web chat) and SLA."
+            "en": "Reports and metrics from: PIXEL, satisfaction surveys (webchat), and SLA."
           }
         },
         {
           "t": {
             "es": "Panel de aplicaciones personalizable.",
-            "en": "Customizable apps panel."
+            "en": "Customizable app panel."
           }
         },
         {
@@ -509,31 +509,31 @@ window.BRAVOS_CONTENT = {
       "v": "v0.015.0",
       "date": {
         "es": "Jun 2026",
-        "en": "Jun 2026"
+        "en": "June 2026"
       },
       "changes": [
         {
           "t": {
             "es": "Se corrigió el bug \"Eliminar chat\" para los agentes. Acción permitida solo para administradores.",
-            "en": "Fixed the \"Delete chat\" bug for agents. The action is now restricted to administrators."
+            "en": "The \"Delete Chat\" bug for agents has been fixed. This action is now restricted to administrators only."
           }
         },
         {
           "t": {
             "es": "Corrección del bug \"missing messages\" (algunos agentes no veían ciertos mensajes en el chat).",
-            "en": "Fixed the \"missing messages\" bug (some agents could not see certain messages in a chat)."
+            "en": "Fixed the \"missing messages\" bug (some agents were not seeing certain messages in the chat)."
           }
         },
         {
           "t": {
             "es": "Corrección de Baileys: no vinculaba Whatsapp Business pero sí Whatsapp Messenger.",
-            "en": "Baileys fix: it linked WhatsApp Messenger but failed to link WhatsApp Business."
+            "en": "Correction regarding Baileys: It did not link to WhatsApp Business, but it did link to WhatsApp Messenger."
           }
         },
         {
           "t": {
             "es": "Corrección \"Exportar Contactos\": no leía el correo empresarial y lanzaba error.",
-            "en": "\"Export contacts\" fix: it failed to read the business email and threw an error."
+            "en": "Fix for \"Export Contacts\": It wasn't reading the work email and was causing an error."
           }
         }
       ],
@@ -552,25 +552,25 @@ window.BRAVOS_CONTENT = {
       "v": "v0.014.0",
       "date": {
         "es": "Mar 2026",
-        "en": "Mar 2026"
+        "en": "March 2026"
       },
       "changes": [
         {
           "t": {
             "es": "Creación de Entradas: Twilio, Whatsapp Cloud, SMS, TelegramBot y Webchat.",
-            "en": "Channel creation: Twilio, WhatsApp Cloud, SMS, Telegram Bot and web chat."
+            "en": "Creating Inbound Channels: Twilio, WhatsApp Cloud, SMS, TelegramBot, and Webchat."
           }
         },
         {
           "t": {
             "es": "Creador de Agentes y verificador por correo electrónico.",
-            "en": "Agent creator with email verification."
+            "en": "Agent Creator and Email Verifier."
           }
         },
         {
           "t": {
             "es": "Variedad de idiomas.",
-            "en": "Multi-language support."
+            "en": "A variety of languages."
           }
         },
         {
@@ -582,31 +582,31 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Macros, Respuestas Predefinidas y automatizaciones.",
-            "en": "Macros, predefined replies and automations."
+            "en": "Macros, Predefined Responses, and Automations."
           }
         },
         {
           "t": {
             "es": "Menú de ajustes de perfil y cambio de diseño.",
-            "en": "Profile settings menu and redesign."
+            "en": "Profile settings and theme change menu."
           }
         },
         {
           "t": {
             "es": "Menú de informes: seguimiento de chats, agentes y bots.",
-            "en": "Reports menu: track chats, agents and bots."
+            "en": "Reports Menu: Track chats, agents, and bots."
           }
         },
         {
           "t": {
             "es": "Auto-Asignación de chats entre colaboradores.",
-            "en": "Auto-assignment of chats between team members."
+            "en": "Automatic assignment of chats among collaborators."
           }
         },
         {
           "t": {
             "es": "Etiquetado en clientes, prioridad de chats y urgencias.",
-            "en": "Customer tagging, chat priority and urgency levels."
+            "en": "Tagged under customers, chat priority, and urgent matters."
           }
         }
       ],
@@ -614,7 +614,7 @@ window.BRAVOS_CONTENT = {
         {
           "label": {
             "es": "Inicio",
-            "en": "Launch"
+            "en": "Home"
           },
           "tone": "green",
           "glow": true
@@ -629,11 +629,11 @@ window.BRAVOS_CONTENT = {
     },
     "title": {
       "es": "Próximamente",
-      "en": "Coming soon"
+      "en": "Coming Soon"
     },
     "sub": {
       "es": "En qué estamos trabajando para mejorar nuestros servicios.",
-      "en": "What we are working on to improve our services."
+      "en": "What we're working on to improve our services."
     }
   },
   "working": [
@@ -651,37 +651,37 @@ window.BRAVOS_CONTENT = {
       },
       "desc": {
         "es": "Ya disponible: nuevo motor de WhatsApp (WAME), rol Moderador, chat interno del equipo y una tanda de mejoras.",
-        "en": "Now live: a new WhatsApp engine (WAME), the Moderator role, internal team chat and a batch of improvements."
+        "en": "Now available: WhatsApp's new engine (WAME), the Moderator role, internal team chat, and a host of improvements."
       },
       "items": [
         {
           "t": {
             "es": "Motor WAMessengerEngine (WAME) propio, basado en Baileys.",
-            "en": "In-house WAMessengerEngine (WAME), built on Baileys."
+            "en": "Proprietary WAMessengerEngine (WAME) based on Baileys."
           }
         },
         {
           "t": {
             "es": "Wizard de vinculación de líneas (solo QR, con import de historial).",
-            "en": "Line-linking wizard (QR only, with history import)."
+            "en": "Line Linking Wizard (QR only, with history import)."
           }
         },
         {
           "t": {
             "es": "Rol Moderador por equipos y líneas.",
-            "en": "Moderator role scoped by teams and lines."
+            "en": "Moderator Role by Teams and Lines."
           }
         },
         {
           "t": {
             "es": "Chat interno del equipo (Chat CRM).",
-            "en": "Internal team chat (CRM Chat)."
+            "en": "Internal team chat (CRM chat)."
           }
         },
         {
           "t": {
             "es": "Español completo, 2FA, login por usuario/correo y más.",
-            "en": "Full Spanish, 2FA, username/email login and more."
+            "en": "Full Spanish support, 2FA, login by username/email, and more."
           }
         }
       ]
@@ -700,7 +700,7 @@ window.BRAVOS_CONTENT = {
       },
       "desc": {
         "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.",
-        "en": "BravosCRM from your pocket! We are working hard to improve our customer experience — the previous version of the CRM mobile is now obsolete."
+        "en": "BravosCRM right in your pocket! We're working hard to improve our customer service. The previous version of the mobile CRM is now obsolete."
       },
       "items": []
     },
@@ -714,11 +714,11 @@ window.BRAVOS_CONTENT = {
       },
       "title": {
         "es": "Instagram y Messenger",
-        "en": "Instagram & Messenger"
+        "en": "Instagram and Messenger"
       },
       "desc": {
         "es": "Unificá WhatsApp, SMS, Instagram y Messenger en una sola bandeja de entrada.",
-        "en": "Unify WhatsApp, SMS, Instagram and Messenger in a single inbox."
+        "en": "Combine WhatsApp, SMS, Instagram, and Messenger into a single inbox."
       },
       "items": []
     }
@@ -730,7 +730,7 @@ window.BRAVOS_CONTENT = {
     },
     "title": {
       "es": "Términos y Condiciones",
-      "en": "Terms & Conditions"
+      "en": "Terms and Conditions"
     },
     "updated": {
       "es": "Última actualización: Marzo 2026",
@@ -745,81 +745,81 @@ window.BRAVOS_CONTENT = {
     {
       "h": {
         "es": "Aceptación de los términos",
-        "en": "Acceptance of terms"
+        "en": "Acceptance of the Terms"
       },
       "p": {
         "es": "Al acceder o utilizar BravosCRM aceptás estos Términos y Condiciones. Si no estás de acuerdo, no utilices el servicio.",
-        "en": "By accessing or using BravosCRM you accept these Terms & Conditions. If you do not agree, do not use the service."
+        "en": "By accessing or using BravosCRM, you agree to these Terms and Conditions. If you do not agree, do not use the service."
       }
     },
     {
       "h": {
         "es": "Descripción del servicio",
-        "en": "Service description"
+        "en": "Service Description"
       },
       "p": {
         "es": "BravosCRM es una plataforma para gestionar ventas y conversaciones por WhatsApp y SMS, con automatizaciones, informes y administración de agentes. No nos responsabilizamos por el mal uso que se le pueda dar a nuestro software (spam, divulgación de información, entre otros).",
-        "en": "BravosCRM is a platform to manage sales and conversations over WhatsApp and SMS, with automations, reports and agent administration. We are not liable for any misuse of our software (spam, disclosure of information, among others)."
+        "en": "BravosCRM is a platform for managing sales and conversations via WhatsApp and SMS, featuring automation, reporting, and agent management. We are not responsible for any misuse of our software (such as spam or the disclosure of information, among other things)."
       }
     },
     {
       "h": {
         "es": "Cuentas, usuarios y 2FA",
-        "en": "Accounts, users and 2FA"
+        "en": "Accounts, Users, and 2FA"
       },
       "p": {
         "es": "Sos responsable de la información de tu cuenta y de las credenciales de tus agentes. Cada usuario puede tener verificación en dos pasos (2FA) al momento de su creación.",
-        "en": "You are responsible for your account information and your agents' credentials. Each user can have two-factor authentication (2FA) at creation time."
+        "en": "You are responsible for your account information and your agents' credentials. Each user can set up two-factor authentication (2FA) when their account is created."
       }
     },
     {
       "h": {
         "es": "Integraciones de WhatsApp y SMS",
-        "en": "WhatsApp and SMS integrations"
+        "en": "WhatsApp and SMS Integrations"
       },
       "p": {
         "es": "El uso de WhatsApp Cloud, Twilio y Evolution API queda sujeto a las políticas de cada proveedor. Debés cumplir las normas de WhatsApp Business y a las regulaciones de mensajería aplicables.",
-        "en": "Use of WhatsApp Cloud, Twilio and Evolution API is subject to each provider's policies. You must comply with WhatsApp Business rules and applicable messaging regulations."
+        "en": "The use of WhatsApp Cloud, Twilio, and the Evolution API is subject to each provider's policies. You must comply with WhatsApp Business guidelines and applicable messaging regulations."
       }
     },
     {
       "h": {
         "es": "Uso aceptable",
-        "en": "Acceptable use"
+        "en": "Acceptable Use"
       },
       "p": {
         "es": "No está permitido enviar spam, contenido ilegal ni mensajería masiva no solicitada. El incumplimiento puede derivar en la suspensión de la cuenta del CRM y del baneo permanente de tu número de WhatsApp.",
-        "en": "Sending spam, illegal content or unsolicited bulk messaging is not allowed. Violations may result in your CRM account being suspended and your WhatsApp number being permanently banned."
+        "en": "Spam, illegal content, and unsolicited bulk messaging are not permitted. Failure to comply may result in the suspension of your CRM account and a permanent ban on your WhatsApp number."
       }
     },
     {
       "h": {
         "es": "Privacidad y datos",
-        "en": "Privacy and data"
+        "en": "Privacy and Data"
       },
       "p": {
         "es": "Tratamos los datos según nuestra política de privacidad. Sos responsable de obtener el consentimiento de tus contactos antes de contactarlos. Nuestra empresa no tiene el control ni posee datos de los agentes, clientes ni líneas que posee cada usuario.",
-        "en": "We process data according to our privacy policy. You are responsible for obtaining consent from your contacts before reaching out to them. Our company neither controls nor holds any data belonging to each user's agents, customers or lines."
+        "en": "We process data in accordance with our privacy policy. You are responsible for obtaining consent from your contacts before contacting them. Our company does not control or possess data regarding the agents, clients, or lines that each user has."
       }
     },
     {
       "h": {
         "es": "Planes y pagos",
-        "en": "Plans and payments"
+        "en": "Plans and Payments"
       },
       "p": {
         "es": "Los planes, precios y condiciones de facturación se detallan al momento de la contratación y pueden actualizarse con previo aviso.",
-        "en": "Plans, prices and billing terms are detailed at the time of purchase and may be updated with prior notice."
+        "en": "Plans, prices, and billing terms are detailed at the time of enrollment and may be updated with prior notice."
       }
     },
     {
       "h": {
         "es": "Limitación de responsabilidad",
-        "en": "Limitation of liability"
+        "en": "Disclaimer"
       },
       "p": {
         "es": "El servicio se ofrece tal cual, sin garantías. BravosCRM no se responsabiliza por daños indirectos derivados del uso o de interrupciones de terceros.",
-        "en": "The service is provided as is, without warranties. BravosCRM is not liable for indirect damages arising from use or third-party outages."
+        "en": "The service is provided \"as is,\" without warranty. BravosCRM is not liable for any consequential damages arising from the use of the service or from interruptions caused by third parties."
       }
     },
     {
@@ -829,7 +829,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "Podemos actualizar estos términos. Notificaremos los cambios relevantes por medio de nuestro software; la fecha de última actualización de estas políticas figura arriba.",
-        "en": "We may update these terms. We will notify relevant changes through our software; the last updated date for these policies is shown above."
+        "en": "We may update these terms. We will notify you of any relevant changes through our software; the date of the last update to these policies is listed above."
       }
     },
     {
@@ -839,7 +839,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "Ante cualquier duda escribinos a admin@bravos.com.ar.",
-        "en": "If you have any questions, write to us at admin@bravos.com.ar."
+        "en": "If you have any questions, please email us at admin@bravos.com.ar."
       }
     }
   ],
@@ -850,11 +850,11 @@ window.BRAVOS_CONTENT = {
     },
     "title": {
       "es": "Llevá Bravos en tu bolsillo",
-      "en": "Take Bravos in your pocket"
+      "en": "Carry Bravos in Your Pocket"
     },
     "sub": {
       "es": "Descargá la app del CRM para gestionar tus líneas desde el celular, estés donde estés.",
-      "en": "Download the CRM app to manage your lines from your phone, wherever you are."
+      "en": "Download the CRM app to manage your lines from your cell phone, no matter where you are."
     },
     "iosBtn": {
       "label": {
@@ -866,18 +866,18 @@ window.BRAVOS_CONTENT = {
     "androidBtn": {
       "label": {
         "es": "Descargar para Android",
-        "en": "Get it on Android"
+        "en": "Download for Android"
       },
       "url": ""
     },
     "ios": {
       "heading": {
         "es": "Versiones para iOS (PWA)",
-        "en": "iOS versions (PWA)"
+        "en": "iOS Versions (PWA)"
       },
       "note": {
         "es": "En iPhone la app se instala como PWA desde Safari: abrí el link y elegí “Agregar a inicio”.",
-        "en": "On iPhone the app installs as a PWA from Safari: open the link and choose “Add to Home Screen”."
+        "en": "On an iPhone, the app is installed as a PWA from Safari: open the link and select “Add to Home Screen.”"
       },
       "versions": [
         {
@@ -890,11 +890,11 @@ window.BRAVOS_CONTENT = {
     "android": {
       "heading": {
         "es": "Versiones para Android",
-        "en": "Android versions"
+        "en": "Android Versions"
       },
       "note": {
         "es": "Descargá el .apk y permití la instalación de orígenes desconocidos para instalarlo.",
-        "en": "Download the .apk and allow installing from unknown sources to install it."
+        "en": "Download the .apk file and allow installation from unknown sources to install it."
       },
       "versions": [
         {
