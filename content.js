@@ -241,8 +241,8 @@ window.BRAVOS_CONTENT = {
     {
       "v": "v0.015.3",
       "date": {
-        "es": "Mes 2026",
-        "en": "Month 2026"
+        "es": "Ago 2026",
+        "en": "Aug 2026"
       },
       "tags": [
         {
@@ -270,7 +270,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "En este nuevo **Buzón**, podrás dejar en cola los clientes a los que su premio está en espera. De esta forma no pierdes el seguimiento del cliente en los chats.\nPara **agregarlo** al buzón es sencillo, solo basta con hacer click derecho (o mantener apretado en caso del celular) el chat del cliente, hasta que salga el menú que posea la opción \"Ganador de premio\". De esta forma su chat viaja al buzón de premios. Para **quitarlo** del buzón de premios, es la misma acción que la anterior.",
-            "en": "In this new **Inbox**, you can queue up customers whose prizes are pending. This way, you won't lose track of the customer in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** it from the prize inbox, follow the same steps as above."
+            "en": "In this new **Inbox**, you can queue up customers whose prizes are pending. This way, you won’t lose track of the customer in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** it from the prize inbox, follow the same steps as above."
           }
         },
         {
@@ -339,7 +339,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "Se dejó de depender del EvolutionAPI genérico: ahora es un **motor creado de 0** basado en Baileys (rc13).\n\n- **Conexión estable** — se terminó el loop de \"Iniciando sesión…\" / QR que rebotaba y el device_removed.\n- **Recepción instantánea** — los mensajes del cliente entran enseguida (antes tardaban 58s por Baileys).\n- **Envío arreglado** — se corrigió el error 463 que provocaba fallos en los envíos 1 a 1.\n- **Import de historial** — se importan miles de mensajes al vincular (con EvolutionAPI antes no funcionaba).\n- **LID resuelto** — los contactos y grupos con identificador interno (LID) ahora se resuelven al número real: se ven con nombre y número del usuario, y **se les puede enviar mensajes** (antes daba \"no es un número de WhatsApp válido\").\n- **Sin chats duplicados** — se normaliza el sufijo de dispositivo para que el chat importado y el chat en vivo sean el mismo.\n- **Contactos con nombre de agenda** — al vincular, sincroniza tu agenda y trae los contactos con el nombre que vos les pusiste, no solo el número.\n- **Sin crasheos en el import** — se deduplican los contactos antes de guardarlos (antes un choque de duplicados abortaba todo el import).",
-            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — No more \"Logging in…\" loop, bouncing QR codes, or \"device_removed\" errors.\n- **Instant reception** — messages from the client arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone numbers: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
+            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — the \"Logging in…\" loop, the bouncing QR code, and the \"device_removed\" error are a thing of the past.\n- **Instant reception** — client messages arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone numbers: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
           }
         },
         {
@@ -349,7 +349,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Solo QR** — se quitó la opción de código por número (poco estable en WhatsApp Web).\n- **Historial de importación (días)** — un campo para definir cuántos días de chats importar.\n- **Pantalla de carga con progreso** — tras escanear, muestra el avance de la carga de contactos y mensajes.\n- **Cancelar y eliminar** — elimina las líneas más rápido y sin dejarlas huérfanas.",
-            "en": "- **QR Only** — the option to use a code by number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, displays the progress of loading contacts and messages.\n- **Cancel and delete** — deletes lines faster without leaving them as orphans."
+            "en": "- **QR Only** — the option to use a code by number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, displays the progress of the contacts and messages being loaded.\n- **Cancel and delete** — deletes lines faster without leaving them orphaned."
           }
         },
         {
@@ -379,7 +379,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Español completo** — barrido de traducción de toda la interfaz (~1600 textos).\n- **2FA** — verificación en dos pasos obligatoria según el rol.\n- **Login por usuario o correo** — el nombre de usuario ahora es único; podés entrar con el usuario o el correo.\n- **Métrica \"Ventas\"** — se cargan con el comando #cliente monto.\n- **Menú móvil** — se corrigió la interfaz para celular.\n- **Optimización completa** — CRM más liviano para móviles de pocos recursos.\n- **Sesión persistente** — ya no se cierra sola si vos no lo permitís.",
-            "en": "- **Full Spanish localization** — translation of the entire interface (~1,600 text strings).\n- **2FA** — mandatory two-factor authentication based on role.\n- **Login by username or email** — usernames are now unique; you can log in with either your username or email address.\n- **\"Sales\" metrics** — loaded using the #client amount command.\n- **Mobile menu** — the mobile interface has been fixed.\n- **Complete optimization** — a lighter CRM for low-resource mobile devices.\n- **Persistent session** — it no longer logs you out automatically unless you allow it."
+            "en": "- **Full Spanish localization** — translation of the entire interface (~1,600 text strings).\n- **2FA** — mandatory two-factor authentication based on role.\n- **Login by username or email** — usernames are now unique; you can log in with either your username or email address.\n- **\"Sales\" metric** — data is loaded using the #client amount command.\n- **Mobile menu** — the mobile interface has been fixed.\n- **Complete optimization** — a lighter CRM for low-resource mobile devices.\n- **Persistent session** — it no longer logs you out automatically unless you allow it."
           }
         }
       ]
@@ -799,7 +799,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "Tratamos los datos según nuestra política de privacidad. Sos responsable de obtener el consentimiento de tus contactos antes de contactarlos. Nuestra empresa no tiene el control ni posee datos de los agentes, clientes ni líneas que posee cada usuario.",
-        "en": "We process data in accordance with our privacy policy. You are responsible for obtaining consent from your contacts before contacting them. Our company does not control or possess data regarding the agents, clients, or lines that each user has."
+        "en": "We process data in accordance with our privacy policy. You are responsible for obtaining consent from your contacts before contacting them. Our company does not control or possess any data regarding the agents, clients, or lines that each user has."
       }
     },
     {
