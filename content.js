@@ -239,6 +239,45 @@ window.BRAVOS_CONTENT = {
   },
   "versions": [
     {
+      "v": "v0.015.3",
+      "date": {
+        "es": "Mes 2026",
+        "en": "Month 2026"
+      },
+      "tags": [
+        {
+          "label": {
+            "es": "Arreglo de errores",
+            "en": "New"
+          },
+          "tone": "red",
+          "glow": true
+        }
+      ],
+      "changes": [
+        {
+          "t": {
+            "es": "Caídas constantes del CRM",
+            "en": "New change."
+          },
+          "desc": {
+            "es": "El error persistía por un **duplicado** en los túneles de cloudflare. Esto vino con su última actualización. Se solucionó recreando las conexiones del CRM con el dominio y cloudflare.",
+            "en": ""
+          }
+        },
+        {
+          "t": {
+            "es": "No cargaban las imágenes para varios agentes",
+            "en": "New change."
+          },
+          "desc": {
+            "es": "El error existía porque las **URLs **de archivos se firmaban con 5 minutos de validez, y el navegador cachea el redirect que lleva a ellas, también en 5 minutos. Por ende, esto generaba **Ventanas idénticas**, es decir, que, si el navegador reusa el redirect cacheado cuando la URL ya venció, la imagen no carga.",
+            "en": ""
+          }
+        }
+      ]
+    },
+    {
       "v": "v0.015.2",
       "date": {
         "es": "Jul 2026",
@@ -247,7 +286,7 @@ window.BRAVOS_CONTENT = {
       "tags": [
         {
           "label": {
-            "es": "Novedad",
+            "es": "Gran actualización",
             "en": "New"
           },
           "tone": "green",
@@ -420,11 +459,11 @@ window.BRAVOS_CONTENT = {
       "tags": [
         {
           "label": {
-            "es": "Nuevo",
+            "es": "Novedades",
             "en": "New"
           },
           "tone": "green",
-          "glow": false
+          "glow": true
         }
       ]
     },
@@ -467,7 +506,7 @@ window.BRAVOS_CONTENT = {
             "en": "Security"
           },
           "tone": "blue",
-          "glow": false
+          "glow": true
         }
       ]
     },
@@ -540,7 +579,7 @@ window.BRAVOS_CONTENT = {
             "en": "Launch"
           },
           "tone": "green",
-          "glow": false
+          "glow": true
         }
       ]
     }
