@@ -989,33 +989,95 @@
     updateStatus('✓ Descargado — reemplazá content.js y desplegá');
   }
 
+  var xlateBaseline = window.BRAVOS_CONTENT;
+
+  function isI18n(n) {
+    return n && typeof n === 'object' && !Array.isArray(n) && typeof n.es === 'string' && typeof n.en === 'string';
+  }
+  function collectI18n(draft, base, out) {
+    if (!draft || typeof draft !== 'object') return;
+    if (isI18n(draft)) {
+      var es = (draft.es || '').trim();
+      var en = (draft.en || '').trim();
+      var baseEs = isI18n(base) ? (base.es || '').trim() : null;
+      if (es && (!en || es !== baseEs)) out.push(draft);
+      return;
+    }
+    if (Array.isArray(draft)) {
+      for (var i = 0; i < draft.length; i++) collectI18n(draft[i], base && base[i], out);
+    } else {
+      for (var k in draft) {
+        if (Object.prototype.hasOwnProperty.call(draft, k)) collectI18n(draft[k], base ? base[k] : null, out);
+      }
+    }
+  }
+  async function autoTranslate() {
+    var nodes = [];
+    collectI18n(B.state.content, xlateBaseline, nodes);
+    if (!nodes.length) return 0;
+    updateStatus('🌐 Traduciendo al inglés (' + nodes.length + ')…');
+    var texts = nodes.map(function (n) { return n.es; });
+    var translated = [];
+    for (var i = 0; i < texts.length; i += 50) {
+      var r = await fetch('api/translate', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ texts: texts.slice(i, i + 50) }),
+      });
+      var j = await r.json().catch(function () { return {}; });
+      if (r.status === 401) { var e = new Error('sesión vencida'); e.session = true; throw e; }
+      if (!r.ok || !j.ok) throw new Error((j && j.error) || ('HTTP ' + r.status));
+      translated = translated.concat(j.translations || []);
+    }
+    for (var m = 0; m < nodes.length; m++) {
+      if (translated[m] != null && translated[m] !== '') nodes[m].en = translated[m];
+    }
+    return nodes.length;
+  }
+  function publishOnline(btn) {
+    updateStatus('🚀 Publicando…');
+    return fetch('api/save', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: contentFileText() }),
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j }; });
+    }).then(function (res) {
+      if (btn) btn.disabled = false;
+      if (res.j && res.j.ok) {
+        baseStamp = stampOf(B.state.content);
+        xlateBaseline = B.deepClone(B.state.content);
+        saveDraft();
+        dirty = false; draftDiscarded = false;
+        B.render(); enableInline(); buildPanel();
+        updateStatus('✓ Publicado — el sitio se actualiza en ~30 s');
+      } else if (res.status === 401) {
+        updateStatus('⚠ Sesión vencida. Redirigiendo al login…');
+        setTimeout(function () { location.href = location.pathname + '#/login'; location.reload(); }, 1200);
+      } else {
+        updateStatus('⚠ ' + ((res.j && res.j.error) || 'no se pudo publicar'));
+      }
+    }).catch(function () {
+      if (btn) btn.disabled = false;
+      updateStatus('⚠ Error de conexión al publicar.');
+    });
+  }
+
   function saveToDisk() {
     var btn = document.getElementById('bx-save');
     if (btn) btn.disabled = true;
 
     if (window.BX_ONLINE) {
-      updateStatus('Publicando…');
-      fetch('api/save', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: contentFileText() }),
-      }).then(function (r) {
-        return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j }; });
-      }).then(function (res) {
+      autoTranslate().then(function () {
+        return publishOnline(btn);
+      }).catch(function (err) {
         if (btn) btn.disabled = false;
-        if (res.j && res.j.ok) {
-          baseStamp = stampOf(B.state.content);
-          saveDraft();
-          dirty = false; draftDiscarded = false;
-          updateStatus('✓ Publicado — el sitio se actualiza en ~30 s');
-        } else if (res.status === 401) {
+        if (err && err.session) {
           updateStatus('⚠ Sesión vencida. Redirigiendo al login…');
           setTimeout(function () { location.href = location.pathname + '#/login'; location.reload(); }, 1200);
-        } else {
-          updateStatus('⚠ ' + ((res.j && res.j.error) || 'no se pudo publicar'));
+          return;
         }
-      }).catch(function () {
-        if (btn) btn.disabled = false;
-        updateStatus('⚠ Error de conexión al publicar.');
+        var go = confirm('No pude traducir al inglés (' + ((err && err.message) || err) + ').\n\n¿Publicar igual, sin traducir lo nuevo?');
+        if (go) { if (btn) btn.disabled = true; publishOnline(btn); }
+        else updateStatus('⚠ Cancelado. Revisá DEEPL_API_KEY y reintentá.');
       });
       return;
     }
