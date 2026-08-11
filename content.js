@@ -248,7 +248,7 @@ window.BRAVOS_CONTENT = {
         {
           "label": {
             "es": "Cambios",
-            "en": "Tag"
+            "en": "Changes"
           },
           "tone": "amber",
           "glow": true
@@ -256,7 +256,7 @@ window.BRAVOS_CONTENT = {
         {
           "label": {
             "es": "Arreglo de Errores",
-            "en": "New"
+            "en": "Error Correction"
           },
           "tone": "red",
           "glow": true
@@ -266,51 +266,51 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Reemplazamos los buzones \"Míos\" y \"Sin asignar\" por \"Premios a pagar\"",
-            "en": "New change."
+            "en": "We replaced the \"Mine\" and \"Unassigned\" inboxes with \"Prizes to Be Paid\""
           },
           "desc": {
             "es": "En este nuevo **Buzón**, podrás dejar en cola los clientes a los que su premio está en espera. De esta forma no pierdes el seguimiento del cliente en los chats.\nPara **agregarlo** al buzón es sencillo, solo basta con hacer click derecho (o mantener apretado en caso del celular) el chat del cliente, hasta que salga el menú que posea la opción \"Ganador de premio\". De esta forma su chat viaja al buzón de premios. Para **quitarlo** del buzón de premios, es la misma acción que la anterior.",
-            "en": ""
+            "en": "In this new **Inbox**, you can queue up customers whose prizes are pending. This way, you won't lose track of the customer in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** it from the prize inbox, follow the same steps as above."
           }
         },
         {
           "t": {
             "es": "Errores en APK de Android | PWD de IOS (corregidos en V1.2)",
-            "en": "New change."
+            "en": "Android APK Errors | iOS PWD (Fixed in V1.2)"
           },
           "desc": {
             "es": "Los errores a destacar son:\n- La **descarga de pdf's** no existía: al querer descargar un pdf o documento que es recibido, en el momento de querer descargar ese documento, el CRM no realizaba nada. Esto se debe a que el botón de descargar estaba **redireccionando mal hacia el documento**.\n- *Mal redimensionamiento de los menús**: Al ingresar a una pestaña de configuraciones, las pestañas se veían en modo computadoras, por lo que **recortaba la visión de varias funciones** y botones que posee la pestaña, haciendo que el agente/moderador no pueda trabajar de forma adecuada o cambiar configuraciones. \n- **Despliegue de menú configuraciones no funcionaba**: Al clickear en el engranaje de configuraciones para desplegar las funcionalidades, este nos redirigía de forma **automática** hacia _Configuración de la cuenta_. Esto sucedía solo para la versión 1.0 y 1.1 de android, por lo que ya fue [green]corregido[/green].",
-            "en": ""
+            "en": "The main issues are:\n- The **PDF download** feature was not working: when attempting to download a received PDF or document, the CRM did not respond. This was because the download button was **incorrectly redirecting to the document**.\n- *Incorrect menu resizing**: When accessing a settings tab, the tabs were displayed in desktop mode, which **cut off the view of several functions** and buttons on the tab, preventing the agent/moderator from working properly or changing settings. \n- **Settings menu dropdown not working**: When clicking the settings gear icon to display the features, it would **automatically** redirect us to _Account Settings_. This only occurred in Android versions 1.0 and 1.1, so it has already been [green]fixed[/green]."
           }
         },
         {
           "t": {
             "es": "Al loguearse en el CRM con otro agente, el caché queda almacenado",
-            "en": "New change."
+            "en": "When another agent logs into the CRM, the cache is saved"
           },
           "desc": {
             "es": "El CRM **cachea** los datos del lado del cliente (navegador), por lo que, por más de iniciar sesión con otra cuenta, vas a ver los datos de tu cuenta anterior. Esto se debe a que la **base de datos local** se identifica solo por cuenta, no por usuario. Dos usuarios distintos de la **misma cuenta** comparten el mismo caché.",
-            "en": ""
+            "en": "The CRM **caches** data on the client side (browser), so even if you log in with a different account, you'll see the data from your previous account. This is because the **local database** is identified only by account, not by user. Two different users of the **same account** share the same cache."
           }
         },
         {
           "t": {
             "es": "Caídas constantes del CRM",
-            "en": "New change."
+            "en": "Constant CRM Outages"
           },
           "desc": {
             "es": "El error persistía por un **duplicado** en los túneles de cloudflare. Esto vino con su última actualización. Se solucionó recreando las conexiones del CRM con el dominio y cloudflare.",
-            "en": ""
+            "en": "The error persisted due to a **duplicate** in the Cloudflare tunnels. This issue arose with their latest update. It was resolved by recreating the CRM's connections to the domain and Cloudflare."
           }
         },
         {
           "t": {
             "es": "No cargaban las imágenes para varios agentes",
-            "en": "New change."
+            "en": "Images were not loading for several agents"
           },
           "desc": {
             "es": "El error existía porque las **URLs **de archivos se firmaban con 5 minutos de validez, y el navegador cachea el redirect que lleva a ellas, también en 5 minutos. Por ende, esto generaba **Ventanas idénticas**, es decir, que, si el navegador reusa el redirect cacheado cuando la URL ya venció, la imagen no carga.",
-            "en": ""
+            "en": "The error occurred because the **URLs** of the files were signed with a 5-minute validity period, and the browser caches the redirect leading to them for 5 minutes as well. Consequently, this resulted in **identical windows**; that is, if the browser reuses the cached redirect after the URL has expired, the image does not load."
           }
         }
       ]
@@ -325,7 +325,7 @@ window.BRAVOS_CONTENT = {
         {
           "label": {
             "es": "Gran actualización",
-            "en": "New"
+            "en": "Major Update"
           },
           "tone": "green",
           "glow": true
@@ -498,7 +498,7 @@ window.BRAVOS_CONTENT = {
         {
           "label": {
             "es": "Novedades",
-            "en": "New"
+            "en": "What's New"
           },
           "tone": "purple",
           "glow": true
