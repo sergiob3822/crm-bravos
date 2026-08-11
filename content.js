@@ -247,7 +247,15 @@ window.BRAVOS_CONTENT = {
       "tags": [
         {
           "label": {
-            "es": "Arreglo de errores",
+            "es": "Cambios",
+            "en": "Tag"
+          },
+          "tone": "amber",
+          "glow": true
+        },
+        {
+          "label": {
+            "es": "Arreglo de Errores",
             "en": "New"
           },
           "tone": "red",
@@ -255,6 +263,36 @@ window.BRAVOS_CONTENT = {
         }
       ],
       "changes": [
+        {
+          "t": {
+            "es": "Reemplazamos los buzones \"Míos\" y \"Sin asignar\" por \"Premios a pagar\"",
+            "en": "New change."
+          },
+          "desc": {
+            "es": "En este nuevo **Buzón**, podrás dejar en cola los clientes a los que su premio está en espera. De esta forma no pierdes el seguimiento del cliente en los chats.\nPara **agregarlo** al buzón es sencillo, solo basta con hacer click derecho (o mantener apretado en caso del celular) el chat del cliente, hasta que salga el menú que posea la opción \"Ganador de premio\". De esta forma su chat viaja al buzón de premios. Para **quitarlo** del buzón de premios, es la misma acción que la anterior.",
+            "en": ""
+          }
+        },
+        {
+          "t": {
+            "es": "Errores en APK de Android | PWD de IOS (corregidos en V1.2)",
+            "en": "New change."
+          },
+          "desc": {
+            "es": "Los errores a destacar son:\n- La **descarga de pdf's** no existía: al querer descargar un pdf o documento que es recibido, en el momento de querer descargar ese documento, el CRM no realizaba nada. Esto se debe a que el botón de descargar estaba **redireccionando mal hacia el documento**.\n- *Mal redimensionamiento de los menús**: Al ingresar a una pestaña de configuraciones, las pestañas se veían en modo computadoras, por lo que **recortaba la visión de varias funciones** y botones que posee la pestaña, haciendo que el agente/moderador no pueda trabajar de forma adecuada o cambiar configuraciones. \n- **Despliegue de menú configuraciones no funcionaba**: Al clickear en el engranaje de configuraciones para desplegar las funcionalidades, este nos redirigía de forma **automática** hacia _Configuración de la cuenta_. Esto sucedía solo para la versión 1.0 y 1.1 de android, por lo que ya fue [green]corregido[/green].",
+            "en": ""
+          }
+        },
+        {
+          "t": {
+            "es": "Al loguearse en el CRM con otro agente, el caché queda almacenado",
+            "en": "New change."
+          },
+          "desc": {
+            "es": "El CRM **cachea** los datos del lado del cliente (navegador), por lo que, por más de iniciar sesión con otra cuenta, vas a ver los datos de tu cuenta anterior. Esto se debe a que la **base de datos local** se identifica solo por cuenta, no por usuario. Dos usuarios distintos de la **misma cuenta** comparten el mismo caché.",
+            "en": ""
+          }
+        },
         {
           "t": {
             "es": "Caídas constantes del CRM",
@@ -462,7 +500,7 @@ window.BRAVOS_CONTENT = {
             "es": "Novedades",
             "en": "New"
           },
-          "tone": "green",
+          "tone": "purple",
           "glow": true
         }
       ]
