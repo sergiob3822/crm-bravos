@@ -898,9 +898,19 @@ window.BRAVOS_CONTENT = {
       },
       "versions": [
         {
+          "version": "1.2.0",
+          "date": "11/08/2026",
+          "url": "https://github.com/sergiob3822/crm-bravos/releases/download/v1.2/BravosCRM-v1.2.apk"
+        },
+        {
+          "version": "1.1.0",
+          "date": "31/07/2026",
+          "url": "https://github.com/sergiob3822/crm-bravos/releases/download/v1.1/BravosCRM-android-1.1.apk"
+        },
+        {
           "version": "1.0.0",
           "date": "27/07/2026",
-          "url": ""
+          "url": "https://github.com/sergiob3822/crm-bravos/releases/download/v1.0/BravosCRM-android-1.0.apk"
         }
       ]
     }
