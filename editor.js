@@ -747,13 +747,14 @@
       '</div>' +
       '<div class="bx-foot">' +
         (window.BX_ONLINE
-          ? '<button class="bx-btn bx-btn--primary" id="bx-save">🚀 Publicar cambios</button>' +
+          ? '<button class="bx-btn bx-btn--translate" id="bx-translate">🌐 Traducir español → inglés</button>' +
+            '<button class="bx-btn bx-btn--primary" id="bx-save">🚀 Publicar cambios</button>' +
             '<div class="bx-foot-row">' +
               '<button class="bx-btn" id="bx-export">Descargar copia</button>' +
               '<button class="bx-btn" id="bx-import">Importar</button>' +
               '<button class="bx-btn bx-btn--ghost" data-logout>Salir</button>' +
             '</div>' +
-            '<p class="bx-hint">"Publicar" commitea al repo; el sitio en vivo se actualiza en ~30 s.</p>'
+            '<p class="bx-hint">Primero <b>"Traducir"</b> (rellena el inglés desde el español); después <b>"Publicar"</b> sube los cambios al sitio (~30 s).</p>'
           : '<button class="bx-btn bx-btn--primary" id="bx-save">💾 Guardar en content.js</button>' +
             '<div class="bx-foot-row">' +
               '<button class="bx-btn" id="bx-export">Descargar copia</button>' +
@@ -938,6 +939,7 @@
         document.documentElement.classList.toggle('bx-collapsed');
         return;
       }
+      if (e.target.closest('#bx-translate')) { translateAll(); return; }
       if (e.target.closest('#bx-save')) { saveToDisk(); return; }
       if (e.target.closest('#bx-export')) { exportContent(); return; }
       if (e.target.closest('#bx-import')) { importContent(); return; }
@@ -989,33 +991,21 @@
     updateStatus('✓ Descargado — reemplazá content.js y desplegá');
   }
 
-  var xlateBaseline = window.BRAVOS_CONTENT;
-
   function isI18n(n) {
     return n && typeof n === 'object' && !Array.isArray(n) && typeof n.es === 'string' && typeof n.en === 'string';
   }
-  function collectI18n(draft, base, out) {
-    if (!draft || typeof draft !== 'object') return;
-    if (isI18n(draft)) {
-      var es = (draft.es || '').trim();
-      var en = (draft.en || '').trim();
-      var baseEs = isI18n(base) ? (base.es || '').trim() : null;
-      if (es && (!en || es !== baseEs)) out.push(draft);
-      return;
-    }
-    if (Array.isArray(draft)) {
-      for (var i = 0; i < draft.length; i++) collectI18n(draft[i], base && base[i], out);
+  function collectAllI18n(node, out) {
+    if (!node || typeof node !== 'object') return;
+    if (isI18n(node)) { if ((node.es || '').trim()) out.push(node); return; }
+    if (Array.isArray(node)) {
+      for (var i = 0; i < node.length; i++) collectAllI18n(node[i], out);
     } else {
-      for (var k in draft) {
-        if (Object.prototype.hasOwnProperty.call(draft, k)) collectI18n(draft[k], base ? base[k] : null, out);
+      for (var k in node) {
+        if (Object.prototype.hasOwnProperty.call(node, k)) collectAllI18n(node[k], out);
       }
     }
   }
-  async function autoTranslate() {
-    var nodes = [];
-    collectI18n(B.state.content, xlateBaseline, nodes);
-    if (!nodes.length) return 0;
-    updateStatus('🌐 Traduciendo al inglés (' + nodes.length + ')…');
+  async function runTranslate(nodes) {
     var texts = nodes.map(function (n) { return n.es; });
     var translated = [];
     for (var i = 0; i < texts.length; i += 50) {
@@ -1033,6 +1023,30 @@
     }
     return nodes.length;
   }
+  function translateAll() {
+    var btn = document.getElementById('bx-translate');
+    var nodes = [];
+    collectAllI18n(B.state.content, nodes);
+    if (!nodes.length) { updateStatus('No hay texto en español para traducir.'); return; }
+    if (!confirm('¿Traducir ' + nodes.length + ' textos del español al inglés?\nReemplaza el inglés actual por la traducción de DeepL.')) return;
+    if (btn) btn.disabled = true;
+    updateStatus('🌐 Traduciendo al inglés (' + nodes.length + ')…');
+    runTranslate(nodes).then(function (n) {
+      if (btn) btn.disabled = false;
+      saveDraft();
+      dirty = true;
+      B.render(); enableInline(); buildPanel();
+      updateStatus('✓ Traducido (' + n + '). Revisá y tocá "Publicar".');
+    }).catch(function (err) {
+      if (btn) btn.disabled = false;
+      if (err && err.session) {
+        updateStatus('⚠ Sesión vencida. Redirigiendo al login…');
+        setTimeout(function () { location.href = location.pathname + '#/login'; location.reload(); }, 1200);
+        return;
+      }
+      updateStatus('⚠ No pude traducir: ' + ((err && err.message) || err));
+    });
+  }
   function publishOnline(btn) {
     updateStatus('🚀 Publicando…');
     return fetch('api/save', {
@@ -1044,10 +1058,8 @@
       if (btn) btn.disabled = false;
       if (res.j && res.j.ok) {
         baseStamp = stampOf(B.state.content);
-        xlateBaseline = B.deepClone(B.state.content);
         saveDraft();
         dirty = false; draftDiscarded = false;
-        B.render(); enableInline(); buildPanel();
         updateStatus('✓ Publicado — el sitio se actualiza en ~30 s');
       } else if (res.status === 401) {
         updateStatus('⚠ Sesión vencida. Redirigiendo al login…');
@@ -1066,19 +1078,7 @@
     if (btn) btn.disabled = true;
 
     if (window.BX_ONLINE) {
-      autoTranslate().then(function () {
-        return publishOnline(btn);
-      }).catch(function (err) {
-        if (btn) btn.disabled = false;
-        if (err && err.session) {
-          updateStatus('⚠ Sesión vencida. Redirigiendo al login…');
-          setTimeout(function () { location.href = location.pathname + '#/login'; location.reload(); }, 1200);
-          return;
-        }
-        var go = confirm('No pude traducir al inglés (' + ((err && err.message) || err) + ').\n\n¿Publicar igual, sin traducir lo nuevo?');
-        if (go) { if (btn) btn.disabled = true; publishOnline(btn); }
-        else updateStatus('⚠ Cancelado. Revisá DEEPL_API_KEY y reintentá.');
-      });
+      publishOnline(btn);
       return;
     }
 
@@ -1397,6 +1397,8 @@
   }
   .bx-btn--primary:hover { background: linear-gradient(180deg, #33E074, #23C763); border-color: #1FBA59; }
   .bx-btn--ghost { background: transparent; color: #64757F; border-color: transparent; }
+  .bx-btn--translate { margin-bottom: 8px; background: #EAF3FF; border-color: #BBD9F7; color: #1E5FA8; }
+  .bx-btn--translate:hover { background: #DCEBFC; border-color: #9CC6F0; }
 
   #app .bx-editable {
     outline: 1px dashed rgba(37,211,102,.42);
