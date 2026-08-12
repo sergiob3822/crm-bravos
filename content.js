@@ -678,7 +678,8 @@ window.BRAVOS_CONTENT = {
             "en": "In PinaccleBot, you can manually assign players to customers. This way, if you already had customers before using Pinaccle, you can enter their player IDs to save them in the database."
           }
         }
-      ]
+      ],
+      "glow": true
     },
     {
       "code": "AA-03",
