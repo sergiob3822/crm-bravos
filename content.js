@@ -242,7 +242,7 @@ window.BRAVOS_CONTENT = {
       "v": "v0.015.3",
       "date": {
         "es": "Ago 2026",
-        "en": "Aug 2026"
+        "en": "Aug. 2026"
       },
       "tags": [
         {
@@ -270,7 +270,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "En este nuevo **Buzón**, podrás dejar en cola los clientes a los que su premio está en espera. De esta forma no pierdes el seguimiento del cliente en los chats.\nPara **agregarlo** al buzón es sencillo, solo basta con hacer click derecho (o mantener apretado en caso del celular) el chat del cliente, hasta que salga el menú que posea la opción \"Ganador de premio\". De esta forma su chat viaja al buzón de premios. Para **quitarlo** del buzón de premios, es la misma acción que la anterior.",
-            "en": "In this new **Inbox**, you can queue up customers who have a pending prize. This way, you won't lose track of the customer in your chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** it from the prize inbox, follow the same steps as above."
+            "en": "In this new **Inbox**, you can queue up customers whose prizes are pending. This way, you won't lose track of the customer in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** it from the prize inbox, follow the same steps as above."
           }
         },
         {
@@ -339,7 +339,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "Se dejó de depender del EvolutionAPI genérico: ahora es un **motor creado de 0** basado en Baileys (rc13).\n\n- **Conexión estable** — se terminó el loop de \"Iniciando sesión…\" / QR que rebotaba y el device_removed.\n- **Recepción instantánea** — los mensajes del cliente entran enseguida (antes tardaban 58s por Baileys).\n- **Envío arreglado** — se corrigió el error 463 que provocaba fallos en los envíos 1 a 1.\n- **Import de historial** — se importan miles de mensajes al vincular (con EvolutionAPI antes no funcionaba).\n- **LID resuelto** — los contactos y grupos con identificador interno (LID) ahora se resuelven al número real: se ven con nombre y número del usuario, y **se les puede enviar mensajes** (antes daba \"no es un número de WhatsApp válido\").\n- **Sin chats duplicados** — se normaliza el sufijo de dispositivo para que el chat importado y el chat en vivo sean el mismo.\n- **Contactos con nombre de agenda** — al vincular, sincroniza tu agenda y trae los contactos con el nombre que vos les pusiste, no solo el número.\n- **Sin crasheos en el import** — se deduplican los contactos antes de guardarlos (antes un choque de duplicados abortaba todo el import).",
-            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — no more \"Logging in…\" loop, bouncing QR codes, or \"device_removed\" errors.\n- **Instant reception** — messages from the client arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone numbers: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
+            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — the \"Logging in…\" loop, the bouncing QR code, and the \"device_removed\" error are a thing of the past.\n- **Instant reception** — messages from the client arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone numbers: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
           }
         },
         {
@@ -349,7 +349,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Solo QR** — se quitó la opción de código por número (poco estable en WhatsApp Web).\n- **Historial de importación (días)** — un campo para definir cuántos días de chats importar.\n- **Pantalla de carga con progreso** — tras escanear, muestra el avance de la carga de contactos y mensajes.\n- **Cancelar y eliminar** — elimina las líneas más rápido y sin dejarlas huérfanas.",
-            "en": "- **QR Only** — the option to use a code by number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, displays the progress of the contacts and messages being loaded.\n- **Cancel and delete** — deletes lines faster without leaving them orphaned."
+            "en": "- **QR Only** — the option to use a code by number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, displays the progress of the contacts and messages being loaded.\n- **Cancel and delete** — deletes lines faster without leaving them as orphans."
           }
         },
         {
@@ -638,6 +638,49 @@ window.BRAVOS_CONTENT = {
   },
   "working": [
     {
+      "code": "AA-04",
+      "tone": "amber",
+      "progress": 20,
+      "status": {
+        "es": "En progreso",
+        "en": "In progress"
+      },
+      "title": {
+        "es": "PinaccleBot",
+        "en": "PinaccleBot"
+      },
+      "desc": {
+        "es": "Bot que automatiza tareas con la plataforma ganamos (crear usuario, retirar fichas, cargar fichas) y ciertos bancos S.A que brindan api key (comprobar ingreso de transferencias). Con esto se busca que tu cajero no salga de la plataforma.",
+        "en": "A bot that automates tasks using the Ganamos platform (creating user accounts, withdrawing tokens, loading tokens) and certain S.A. banks that provide API keys (checking for incoming transfers). The goal is to ensure that your cashier never has to leave the platform."
+      },
+      "items": [
+        {
+          "t": {
+            "es": "PinaccleBot puede crear usuarios dentro de plataforma ganamosnet. Vincula el número de teléfono del cliente y pide nombre para crear un usuario completamente automático.",
+            "en": "PinaccleBot can create users within the Ganamosnet platform. It links the customer's phone number and asks for a name to create a user fully automatically."
+          }
+        },
+        {
+          "t": {
+            "es": "PinaccleBot revisa las transferencias y carga fichas de forma automática: Al llegar una transferencia, pinaccle pide autorización para revisarla, al aceptar, se encarga de revisar que el monto llegó en la cuenta bancaria y realiza la carga de fichas automáticamente (si el usuario existe dentro de la base de datos de Pinaccle)",
+            "en": "PinaccleBot checks transfers and automatically credits chips: When a transfer arrives, Pinaccle requests authorization to review it; once authorized, it verifies that the amount has been credited to the bank account and automatically credits tokens (if the user exists in the Pinaccle database)."
+          }
+        },
+        {
+          "t": {
+            "es": "PinaccleBot retira las fichas de forma automática al usuario: el agente al crear la solicitud, revisa la base de datos si el numero cliente posee un usuario, si lo tiene, retira las fichas, si no, pide realizarlo manualmente",
+            "en": "PinaccleBot automatically retrieves the records for the user: when the agent creates the request, they check the database to see if the customer number corresponds to a user; if it does, the system retrieves the records; if not, the agent is prompted to do so manually."
+          }
+        },
+        {
+          "t": {
+            "es": "En PinaccleBot se pueden asignar jugadores a los clientes de forma manual. De esta forma, si ya contás con clientes antes de Pinaccle, podés cargarle a los  clientes su usuario jugador para guardarlo dentro de su base de datos.",
+            "en": "In PinaccleBot, you can manually assign players to customers. This way, if you already had customers before using Pinaccle, you can enter their player IDs to save them in the database."
+          }
+        }
+      ]
+    },
+    {
       "code": "AA-03",
       "tone": "green",
       "progress": 100,
@@ -688,19 +731,19 @@ window.BRAVOS_CONTENT = {
     },
     {
       "code": "AA-02",
-      "tone": "amber",
-      "progress": 26,
+      "tone": "orange",
+      "progress": 93,
       "status": {
-        "es": "En progreso",
-        "en": "In progress"
+        "es": "Casi listo",
+        "en": "Almost done"
       },
       "title": {
         "es": "App móvil para agentes",
         "en": "Mobile app for agents"
       },
       "desc": {
-        "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.",
-        "en": "BravosCRM right in your pocket! We're working hard to improve our customer service. The previous version of the mobile CRM is now obsolete."
+        "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.\nLas aplicaciónes están en fase beta, pero no están subidas a la store (Store | PlayStore). Podés encontrarlas en \"Aplicaciones\" en esta web.",
+        "en": "BravosCRM right in your pocket! We're working hard to improve our customer services. The previous version of the mobile CRM is now obsolete.\nThe apps are in beta, but they haven't been uploaded to the app store (Store | Play Store) yet. You can find them under \"Apps\" on this website."
       },
       "items": []
     },
