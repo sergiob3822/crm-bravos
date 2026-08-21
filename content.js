@@ -640,7 +640,7 @@ window.BRAVOS_CONTENT = {
     {
       "code": "AA-04",
       "tone": "amber",
-      "progress": 20,
+      "progress": 93,
       "status": {
         "es": "En progreso",
         "en": "In progress"
@@ -654,6 +654,12 @@ window.BRAVOS_CONTENT = {
         "en": "A bot that automates tasks using the Ganamos platform (creating user accounts, withdrawing tokens, loading tokens) and certain S.A. banks that provide API keys (checking for incoming transfers). The goal is to ensure that your cashier never has to leave the platform."
       },
       "items": [
+        {
+          "t": {
+            "es": "PinaccleBot, próximamente, va a estar vinculado para bet30",
+            "en": "New item"
+          }
+        },
         {
           "t": {
             "es": "PinaccleBot puede crear usuarios dentro de plataforma ganamosnet. Vincula el número de teléfono del cliente y pide nombre para crear un usuario completamente automático.",
