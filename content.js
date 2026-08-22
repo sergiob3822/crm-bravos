@@ -34,7 +34,7 @@ window.BRAVOS_CONTENT = {
     },
     "sub": {
       "es": "Bravos es el CRM ideal para gestionar clientes y ventas por WhatsApp y SMS. Nuestras áreas estrella son: casinos, distribuidoras, remiserías, call centers y logísticas.",
-      "en": "Bravos is the ideal CRM for managing customers and sales via WhatsApp and SMS. Our key industries include: casinos, distributors, taxi companies, call centers, and logistics firms."
+      "en": "Bravos is the ideal CRM for managing customers and sales via WhatsApp and SMS. Our key industries include: casinos, distribution companies, taxi companies, call centers, and logistics firms."
     },
     "chips": [
       {
@@ -54,7 +54,7 @@ window.BRAVOS_CONTENT = {
         },
         "tip": {
           "es": "Proveedor global de mensajería para SMS y WhatsApp con cobertura internacional.",
-          "en": "Global messaging provider for SMS and WhatsApp with international coverage."
+          "en": "Global SMS and WhatsApp messaging provider with international coverage."
         }
       },
       {
@@ -74,7 +74,7 @@ window.BRAVOS_CONTENT = {
         },
         "tip": {
           "es": "WhatsApp común vinculado para gestionar sus chats desde el CRM.",
-          "en": "Standard WhatsApp integration to manage your chats from the CRM."
+          "en": "Integrate WhatsApp to manage your chats from the CRM."
         }
       },
       {
@@ -164,11 +164,11 @@ window.BRAVOS_CONTENT = {
       {
         "title": {
           "es": "Informes en vivo",
-          "en": "Live Updates"
+          "en": "Live Reports"
         },
         "desc": {
           "es": "Observá cómo crecen tus chats, supervisá tus agentes, controlá tus líneas activas y las conversaciones sin leer.",
-          "en": "See how your chats are growing, monitor your agents, and keep track of your active lines and unread conversations."
+          "en": "Track the growth of your chats, monitor your agents, and keep an eye on your active lines and unread conversations."
         }
       },
       {
@@ -178,7 +178,7 @@ window.BRAVOS_CONTENT = {
         },
         "desc": {
           "es": "Creá agentes, armá grupos y gestioná a todo tu equipo para dividir las líneas.",
-          "en": "Create agents, set up groups, and manage your entire team to divide up the lines."
+          "en": "Create agents, form groups, and manage your entire team to divide up the lines."
         }
       },
       {
@@ -208,7 +208,7 @@ window.BRAVOS_CONTENT = {
         },
         "desc": {
           "es": "Asegurá tu comodidad, cada línea posee sus propios contactos para que no se mezclen.",
-          "en": "Make sure you're comfortable—each line has its own connectors so they don't get mixed up."
+          "en": "Ensure your comfort—each line has its own connectors so they don't get mixed up."
         }
       },
       {
@@ -234,10 +234,77 @@ window.BRAVOS_CONTENT = {
     },
     "sub": {
       "es": "Historial de cambios y novedades de BravosCRM.",
-      "en": "BravosCRM Change Log and New Features."
+      "en": "BravosCRM Change Log and What's New."
     }
   },
   "versions": [
+    {
+      "v": "v0.015.4",
+      "date": {
+        "es": "Ago 2026",
+        "en": "Aug. 2026"
+      },
+      "tags": [
+        {
+          "label": {
+            "es": "Arreglo de Errores",
+            "en": "Error Correction"
+          },
+          "tone": "red",
+          "glow": true
+        },
+        {
+          "label": {
+            "es": "Gran actualización",
+            "en": "Major Update"
+          },
+          "tone": "green",
+          "glow": true
+        }
+      ],
+      "changes": [
+        {
+          "t": {
+            "es": "Correcciones generales",
+            "en": "General Corrections"
+          },
+          "desc": {
+            "es": "    - Los grupos no **registran ventas** ni** muestran pildoras** ni** cargan en el pixel** (para evitar errores de cargas duplicadas).\n    - **Arreglado el desborde de filas del listado en el celular** (se pisaban entre si).\n    - **Puertos cruzados entre los dos motores de WhatsApp**.\n    - **Contactos bloqueados** que **inundaban conversaciones** en las lineas de Twilio (se bugueaba y creaba un contacto nuevo en el chat con cada mensaje del mismo cliente.\n    - **Reloj de la maquina virtual que hacia saltar tareas programadas**.\n    -** Recorte de ~12 MB en la carga inicial **(traducciones).",
+            "en": "    - Groups do not **record sales**, **display summaries**, or **trigger the pixel** (to prevent duplicate tracking errors).\n    - **Fixed the list row overflow on mobile** (rows were overlapping).\n    - **Cross-porting between the two WhatsApp engines**.\n    - **Blocked contacts** that were **flooding conversations** on the Twilio lines (a bug caused a new contact to be created in the chat with every message from the same customer).\n    - **Virtual machine clock that caused scheduled tasks to skip**.\n    -** ~12 MB reduction in initial load **(translations)."
+          }
+        },
+        {
+          "t": {
+            "es": "Corrección de Errores WAME",
+            "en": "WAME Error Correction"
+          },
+          "desc": {
+            "es": "    - **Vinculacion por QR o por codigo de 8 digitos**.\n    - **Import de historial arreglado **(antes no terminaba).\n    - **Borrado de linea instantaneo y completo**.\n    - Se **eliminó** la firma del agente que **WAME** anteponia a cada mensaje saliente.\n    - El indicador de \"cargando 99%\" **ya no se queda colgado** al vincular una linea.",
+            "en": "    - **Link via QR code or 8-digit code**.\n    - **Fixed history import** (it used to not complete).\n    - **Instant and complete line deletion**.\n    - The agent signature that **WAME** used to prefix to every outgoing message has been **removed**.\n    - The “Loading 99%” indicator **no longer freezes** when linking a line."
+          }
+        },
+        {
+          "t": {
+            "es": "Buzon y listado de chats",
+            "en": "Inbox and list of chats"
+          },
+          "desc": {
+            "es": "    - **Pildoras de cargas** debajo de cada chat: primera vez, cantidad de cargas y total cargado.\n    - **Encabezados de fecha en el listado**.\n    - **Grupos de WhatsApp **mezclados con los chats 1:1 (con interruptor por linea).\n    - **Pestañas nuevas**: Canales, Archivados y Premios a pagar.\n    - **Contadores de no-leidos en vivo en cada pestaña.**",
+            "en": "    - **Payment summaries** below each chat: first payment, number of payments, and total amount paid.\n    - **Date headers in the list**.\n    - **WhatsApp groups** mixed with 1-on-1 chats (with a toggle switch per line).\n    - **New tabs**: Channels, Archived, and Rewards to Be Paid.\n    - **Live unread counters on each tab.**"
+          }
+        },
+        {
+          "t": {
+            "es": "PinaccleBot",
+            "en": "PinaccleBot"
+          },
+          "desc": {
+            "es": "    - **Automatiza el panel de Ganamos** sin que nadie tenga que entrar a mano: crear usuario, cargar fichas, retirar fichas, vincular usuario e informacion del jugador.\n    - **Verifica** contra HG.Cash que el dinero haya entrado **ANTES** de cargar las fichas.\n    - **Lector de comprobantes y reintento de apareo** cuando el comprobante llega antes que el dinero.\n    - **Minimo de carga** con salida a** devolucion**, y **bonos aplicados** por el panel (sin doble bono). Estos bonos son de **Bienvenida** o **Permanentes**.\n    - **Usuarios generados automáticamente**, cortos y sin repetir.\n    -** Retiro**: saca **TODAS** las fichas primero y despues **calcula el premio a transferir**.",
+            "en": "    - **Automate the Ganamos dashboard** so that no one has to enter data manually: create users, load tokens, withdraw tokens, and link users to player information.\n    - **Verify** against HG.Cash that the funds have been received **BEFORE** loading the chips.\n    - **Receipt scanner and matching retry** when the receipt arrives before the funds.\n    - **Minimum top-up** with an option for **refund**, and **bonuses applied** by the panel (no double bonuses). These bonuses are either **Welcome** or **Permanent**.\n    - **Automatically generated users**, short-lived and non-repeating.\n    -** Withdrawal**: Withdraw **ALL** chips first, then **calculate the prize to be transferred**."
+          }
+        }
+      ]
+    },
     {
       "v": "v0.015.3",
       "date": {
@@ -270,23 +337,23 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "En este nuevo **Buzón**, podrás dejar en cola los clientes a los que su premio está en espera. De esta forma no pierdes el seguimiento del cliente en los chats.\nPara **agregarlo** al buzón es sencillo, solo basta con hacer click derecho (o mantener apretado en caso del celular) el chat del cliente, hasta que salga el menú que posea la opción \"Ganador de premio\". De esta forma su chat viaja al buzón de premios. Para **quitarlo** del buzón de premios, es la misma acción que la anterior.",
-            "en": "In this new **Inbox**, you can queue up customers whose prizes are pending. This way, you won't lose track of the customer in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** it from the prize inbox, follow the same steps as above."
+            "en": "In this new **Inbox**, you can place customers whose prizes are pending in a queue. This way, you won't lose track of the customer in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) on the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** them from the prize inbox, follow the same steps as above."
           }
         },
         {
           "t": {
             "es": "Errores en APK de Android | PWD de IOS (corregidos en V1.2)",
-            "en": "Android APK Errors | iOS PWD (Fixed in V1.2)"
+            "en": "Bugs in Android APK | iOS PWD (fixed in V1.2)"
           },
           "desc": {
             "es": "Los errores a destacar son:\n- La **descarga de pdf's** no existía: al querer descargar un pdf o documento que es recibido, en el momento de querer descargar ese documento, el CRM no realizaba nada. Esto se debe a que el botón de descargar estaba **redireccionando mal hacia el documento**.\n- *Mal redimensionamiento de los menús**: Al ingresar a una pestaña de configuraciones, las pestañas se veían en modo computadoras, por lo que **recortaba la visión de varias funciones** y botones que posee la pestaña, haciendo que el agente/moderador no pueda trabajar de forma adecuada o cambiar configuraciones. \n- **Despliegue de menú configuraciones no funcionaba**: Al clickear en el engranaje de configuraciones para desplegar las funcionalidades, este nos redirigía de forma **automática** hacia _Configuración de la cuenta_. Esto sucedía solo para la versión 1.0 y 1.1 de android, por lo que ya fue [green]corregido[/green].",
-            "en": "The main issues are:\n- The **PDF download** feature was not working: when attempting to download a received PDF or document, the CRM did not respond. This was because the download button was **incorrectly redirecting to the document**.\n- *Incorrect menu resizing**: When accessing a settings tab, the tabs were displayed in desktop mode, which **cut off the view of several functions** and buttons on the tab, preventing the agent/moderator from working properly or changing settings. \n- **Settings menu dropdown not working**: When clicking the settings gear icon to display the features, it would **automatically** redirect us to _Account Settings_. This only occurred in Android versions 1.0 and 1.1, so it has already been [green]fixed[/green]."
+            "en": "The errors to note are:\n- The **PDF download** feature was not working: when attempting to download a received PDF or document, the CRM did not take any action. This was because the download button was **incorrectly redirecting to the document**.\n- *Incorrect menu resizing**: When accessing a settings tab, the tabs were displayed in desktop mode, which **cropped out several functions** and buttons on the tab, preventing the agent/moderator from working properly or changing settings. \n- **Settings menu dropdown not working**: When clicking the settings gear icon to display the features, it would **automatically** redirect us to _Account Settings_. This only occurred in Android versions 1.0 and 1.1, so it has already been [green]fixed[/green]."
           }
         },
         {
           "t": {
             "es": "Al loguearse en el CRM con otro agente, el caché queda almacenado",
-            "en": "When another agent logs into the CRM, the cache is saved"
+            "en": "When another agent logs in to the CRM, the cache is saved"
           },
           "desc": {
             "es": "El CRM **cachea** los datos del lado del cliente (navegador), por lo que, por más de iniciar sesión con otra cuenta, vas a ver los datos de tu cuenta anterior. Esto se debe a que la **base de datos local** se identifica solo por cuenta, no por usuario. Dos usuarios distintos de la **misma cuenta** comparten el mismo caché.",
@@ -339,7 +406,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "Se dejó de depender del EvolutionAPI genérico: ahora es un **motor creado de 0** basado en Baileys (rc13).\n\n- **Conexión estable** — se terminó el loop de \"Iniciando sesión…\" / QR que rebotaba y el device_removed.\n- **Recepción instantánea** — los mensajes del cliente entran enseguida (antes tardaban 58s por Baileys).\n- **Envío arreglado** — se corrigió el error 463 que provocaba fallos en los envíos 1 a 1.\n- **Import de historial** — se importan miles de mensajes al vincular (con EvolutionAPI antes no funcionaba).\n- **LID resuelto** — los contactos y grupos con identificador interno (LID) ahora se resuelven al número real: se ven con nombre y número del usuario, y **se les puede enviar mensajes** (antes daba \"no es un número de WhatsApp válido\").\n- **Sin chats duplicados** — se normaliza el sufijo de dispositivo para que el chat importado y el chat en vivo sean el mismo.\n- **Contactos con nombre de agenda** — al vincular, sincroniza tu agenda y trae los contactos con el nombre que vos les pusiste, no solo el número.\n- **Sin crasheos en el import** — se deduplican los contactos antes de guardarlos (antes un choque de duplicados abortaba todo el import).",
-            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — the \"Logging in…\" loop, the bouncing QR code, and the \"device_removed\" error are a thing of the past.\n- **Instant reception** — messages from the client arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone numbers: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
+            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — the \"Logging in…\" loop, the bouncing QR code, and the \"device_removed\" error are a thing of the past.\n- **Instant reception** — client messages arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone number: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and retrieves contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate clash would abort the entire import)."
           }
         },
         {
@@ -349,7 +416,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Solo QR** — se quitó la opción de código por número (poco estable en WhatsApp Web).\n- **Historial de importación (días)** — un campo para definir cuántos días de chats importar.\n- **Pantalla de carga con progreso** — tras escanear, muestra el avance de la carga de contactos y mensajes.\n- **Cancelar y eliminar** — elimina las líneas más rápido y sin dejarlas huérfanas.",
-            "en": "- **QR Only** — the option to use a code by number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, displays the progress of the contacts and messages being loaded.\n- **Cancel and delete** — deletes lines faster without leaving them as orphans."
+            "en": "- **QR Only** — the option to import via code number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, it shows the progress of loading contacts and messages.\n- **Cancel and delete** — deletes lines faster without leaving them orphaned."
           }
         },
         {
@@ -365,7 +432,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Chat interno del equipo (Chat CRM)",
-            "en": "Internal Team Chat (CRM Chat)"
+            "en": "Internal team chat (CRM chat)"
           },
           "desc": {
             "es": "Mensajería interna de usuario a usuario dentro del CRM.\n\n- Chat en tiempo real entre agentes, moderadores y administradores.\n- **Adjuntar archivos** (imágenes y documentos).\n- **Notificaciones** con sonido, información del contacto y del mensaje.",
@@ -379,7 +446,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Español completo** — barrido de traducción de toda la interfaz (~1600 textos).\n- **2FA** — verificación en dos pasos obligatoria según el rol.\n- **Login por usuario o correo** — el nombre de usuario ahora es único; podés entrar con el usuario o el correo.\n- **Métrica \"Ventas\"** — se cargan con el comando #cliente monto.\n- **Menú móvil** — se corrigió la interfaz para celular.\n- **Optimización completa** — CRM más liviano para móviles de pocos recursos.\n- **Sesión persistente** — ya no se cierra sola si vos no lo permitís.",
-            "en": "- **Full Spanish localization** — translation of the entire interface (~1,600 text strings).\n- **2FA** — mandatory two-factor authentication based on role.\n- **Login by username or email** — usernames are now unique; you can log in with either your username or email address.\n- **\"Sales\" metrics** — loaded using the #client amount command.\n- **Mobile menu** — the mobile interface has been fixed.\n- **Complete optimization** — a lighter CRM for low-resource mobile devices.\n- **Persistent session** — it no longer logs you out automatically unless you allow it."
+            "en": "- **Full Spanish localization** — translation of the entire interface (~1,600 text strings).\n- **2FA** — mandatory two-step verification based on role.\n- **Login by username or email** — usernames are now unique; you can log in with either your username or email address.\n- **\"Sales\" metrics** — loaded using the #client amount command.\n- **Mobile menu** — the mobile interface has been fixed.\n- **Complete optimization** — a lighter CRM for low-resource mobile devices.\n- **Persistent session** — it no longer closes automatically unless you allow it to."
           }
         }
       ]
@@ -454,7 +521,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Métricas e informes de: PIXEL, SLA y Satisfacción (webchat).",
-            "en": "Metrics and reports for: PIXEL, SLA, and Satisfaction (webchat)."
+            "en": "Metrics and reports on: PIXEL, SLA, and Satisfaction (webchat)."
           }
         },
         {
@@ -533,7 +600,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Corrección \"Exportar Contactos\": no leía el correo empresarial y lanzaba error.",
-            "en": "Fix for \"Export Contacts\": It wasn't reading the work email and was causing an error."
+            "en": "\"Export Contacts\" fix: It wasn't reading the work email and was triggering an error."
           }
         }
       ],
@@ -588,7 +655,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Menú de ajustes de perfil y cambio de diseño.",
-            "en": "Profile settings and theme change menu."
+            "en": "Profile settings and theme customization menu."
           }
         },
         {
@@ -633,7 +700,7 @@ window.BRAVOS_CONTENT = {
     },
     "sub": {
       "es": "En qué estamos trabajando para mejorar nuestros servicios.",
-      "en": "What we're working on to improve our services."
+      "en": "What we're doing to improve our services."
     }
   },
   "working": [
@@ -651,25 +718,25 @@ window.BRAVOS_CONTENT = {
       },
       "desc": {
         "es": "Bot que automatiza tareas con la plataforma ganamos (crear usuario, retirar fichas, cargar fichas) y ciertos bancos S.A que brindan api key (comprobar ingreso de transferencias). Con esto se busca que tu cajero no salga de la plataforma.",
-        "en": "A bot that automates tasks using the Ganamos platform (creating user accounts, withdrawing tokens, loading tokens) and certain S.A. banks that provide API keys (checking for incoming transfers). The goal is to ensure that your cashier never has to leave the platform."
+        "en": "A bot that automates tasks on the Ganamos platform (creating user accounts, withdrawing tokens, loading tokens) and with certain S.A. banks that provide API keys (checking for incoming transfers). The goal is to ensure that your cashier never has to leave the platform."
       },
       "items": [
         {
           "t": {
             "es": "PinaccleBot, próximamente, va a estar vinculado para bet30",
-            "en": "New item"
+            "en": "PinaccleBot will soon be linked to bet30"
           }
         },
         {
           "t": {
             "es": "PinaccleBot puede crear usuarios dentro de plataforma ganamosnet. Vincula el número de teléfono del cliente y pide nombre para crear un usuario completamente automático.",
-            "en": "PinaccleBot can create users within the Ganamosnet platform. It links the customer's phone number and asks for a name to create a user fully automatically."
+            "en": "PinaccleBot can create users within the Ganamosnet platform. It links the customer's phone number and asks for a name to create a user completely automatically."
           }
         },
         {
           "t": {
             "es": "PinaccleBot revisa las transferencias y carga fichas de forma automática: Al llegar una transferencia, pinaccle pide autorización para revisarla, al aceptar, se encarga de revisar que el monto llegó en la cuenta bancaria y realiza la carga de fichas automáticamente (si el usuario existe dentro de la base de datos de Pinaccle)",
-            "en": "PinaccleBot checks transfers and automatically credits chips: When a transfer arrives, Pinaccle requests authorization to review it; once authorized, it verifies that the amount has been credited to the bank account and automatically credits tokens (if the user exists in the Pinaccle database)."
+            "en": "PinaccleBot checks transfers and automatically credits tokens: When a transfer arrives, Pinaccle requests authorization to review it; once authorized, it verifies that the amount has been credited to the bank account and automatically credits tokens (if the user exists in the Pinaccle database)."
           }
         },
         {
@@ -681,7 +748,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "En PinaccleBot se pueden asignar jugadores a los clientes de forma manual. De esta forma, si ya contás con clientes antes de Pinaccle, podés cargarle a los  clientes su usuario jugador para guardarlo dentro de su base de datos.",
-            "en": "In PinaccleBot, you can manually assign players to customers. This way, if you already had customers before using Pinaccle, you can enter their player IDs to save them in the database."
+            "en": "In PinaccleBot, you can manually assign players to customers. This way, if you already have customers from before you started using Pinaccle, you can enter their player IDs to save them in the database."
           }
         }
       ],
@@ -707,7 +774,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Motor WAMessengerEngine (WAME) propio, basado en Baileys.",
-            "en": "Proprietary WAMessengerEngine (WAME) based on Baileys."
+            "en": "Proprietary WAMessengerEngine (WAME), based on Baileys."
           }
         },
         {
@@ -750,7 +817,7 @@ window.BRAVOS_CONTENT = {
       },
       "desc": {
         "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión anterior del CRM mobile quedó obsoleta.\nLas aplicaciónes están en fase beta, pero no están subidas a la store (Store | PlayStore). Podés encontrarlas en \"Aplicaciones\" en esta web.",
-        "en": "BravosCRM right in your pocket! We're working hard to improve our customer services. The previous version of the mobile CRM is now obsolete.\nThe apps are in beta, but they haven't been uploaded to the app store (Store | Play Store) yet. You can find them under \"Apps\" on this website."
+        "en": "BravosCRM right in your pocket! We're working hard to improve our customer services. The previous version of the mobile CRM is now obsolete.\nThe apps are in beta, but they haven't been uploaded to the app store (Store | Play Store). You can find them under \"Apps\" on this website."
       },
       "items": []
     },
@@ -849,7 +916,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "Tratamos los datos según nuestra política de privacidad. Sos responsable de obtener el consentimiento de tus contactos antes de contactarlos. Nuestra empresa no tiene el control ni posee datos de los agentes, clientes ni líneas que posee cada usuario.",
-        "en": "We process data in accordance with our privacy policy. You are responsible for obtaining consent from your contacts before contacting them. Our company does not control or possess any data regarding the agents, clients, or lines that each user has."
+        "en": "We process data in accordance with our privacy policy. You are responsible for obtaining consent from your contacts before reaching out to them. Our company does not control or possess data regarding the agents, clients, or lines that each user has."
       }
     },
     {
@@ -927,7 +994,7 @@ window.BRAVOS_CONTENT = {
       },
       "note": {
         "es": "En iPhone la app se instala como PWA desde Safari: abrí el link y elegí “Agregar a inicio”.",
-        "en": "On an iPhone, the app is installed as a PWA from Safari: open the link and select “Add to Home Screen.”"
+        "en": "On an iPhone, the app is installed as a PWA from Safari: I opened the link and selected “Add to Home Screen.”"
       },
       "versions": [
         {
