@@ -706,10 +706,10 @@ window.BRAVOS_CONTENT = {
   "working": [
     {
       "code": "AA-04",
-      "tone": "amber",
+      "tone": "green",
       "progress": 100,
       "status": {
-        "es": "En progreso",
+        "es": "Lanzado",
         "en": "In progress"
       },
       "title": {
