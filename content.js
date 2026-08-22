@@ -707,7 +707,7 @@ window.BRAVOS_CONTENT = {
     {
       "code": "AA-04",
       "tone": "amber",
-      "progress": 93,
+      "progress": 100,
       "status": {
         "es": "En progreso",
         "en": "In progress"
@@ -752,7 +752,12 @@ window.BRAVOS_CONTENT = {
           }
         }
       ],
-      "glow": true
+      "glow": true,
+      "confetti": {
+        "on": true,
+        "hours": 24,
+        "since": 1787386874826
+      }
     },
     {
       "code": "AA-03",
