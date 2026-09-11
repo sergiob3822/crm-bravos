@@ -34,7 +34,7 @@ window.BRAVOS_CONTENT = {
     },
     "sub": {
       "es": "Bravos es el CRM ideal para gestionar clientes y ventas por WhatsApp y SMS. Nuestras áreas estrella son: casinos, distribuidoras, remiserías, call centers y logísticas.",
-      "en": "Bravos is the ideal CRM for managing customers and sales via WhatsApp and SMS. Our key industries include: casinos, distributors, taxi companies, call centers, and logistics firms."
+      "en": "Bravos is the ideal CRM for managing customers and sales via WhatsApp and SMS. Our key industries include: casinos, distribution companies, taxi companies, call centers, and logistics firms."
     },
     "chips": [
       {
@@ -64,7 +64,7 @@ window.BRAVOS_CONTENT = {
         },
         "tip": {
           "es": "WhatsApp Business a través de Evolution API, sin costo por conversación.",
-          "en": "WhatsApp Business via the Evolution API, with no per-conversation fee."
+          "en": "WhatsApp Business via the Evolution API, with no charge per conversation."
         }
       },
       {
@@ -102,7 +102,7 @@ window.BRAVOS_CONTENT = {
         "time": "10:24",
         "t": {
           "es": "Hola, ¿Puede aplicarse para una inmobiliaria?",
-          "en": "Hello, Can you apply to work at a real estate agency?"
+          "en": "Hello, Can this be applied to a real estate agency?"
         }
       },
       {
@@ -110,7 +110,7 @@ window.BRAVOS_CONTENT = {
         "time": "10:24",
         "t": {
           "es": "¡Hola! Sí, sirve para todo tipo de empresas.",
-          "en": "Hi! Yes, it works for all types of businesses."
+          "en": "Hi! Yes, it works for all kinds of businesses."
         }
       },
       {
@@ -144,7 +144,7 @@ window.BRAVOS_CONTENT = {
       {
         "title": {
           "es": "Respuestas automáticas",
-          "en": "Automatic replies"
+          "en": "Automatic Replies"
         },
         "desc": {
           "es": "Respuestas inmediatas con comandos /nombre, macros y bots para automatizar las tareas.",
@@ -158,7 +158,7 @@ window.BRAVOS_CONTENT = {
         },
         "desc": {
           "es": "Vinculá tus números y lanzá campañas de SMS masivas a todo el mundo.",
-          "en": "Link your phone numbers and launch mass SMS campaigns to people all over the world."
+          "en": "Link your phone numbers and launch bulk SMS campaigns to people all over the world."
         }
       },
       {
@@ -168,17 +168,17 @@ window.BRAVOS_CONTENT = {
         },
         "desc": {
           "es": "Observá cómo crecen tus chats, supervisá tus agentes, controlá tus líneas activas y las conversaciones sin leer.",
-          "en": "Track the growth of your chats, monitor your agents, and keep tabs on your active lines and unread conversations."
+          "en": "Track the growth of your chats, monitor your agents, and keep track of your active lines and unread messages."
         }
       },
       {
         "title": {
           "es": "Agentes y grupos",
-          "en": "Agents and Groups"
+          "en": "Agents and groups"
         },
         "desc": {
           "es": "Creá agentes, armá grupos y gestioná a todo tu equipo para dividir las líneas.",
-          "en": "Create agents, set up groups, and manage your entire team to divide up the lines."
+          "en": "Create agents, form groups, and manage your entire team to divide up the lines."
         }
       },
       {
@@ -278,7 +278,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "\t- **Corrección de Bug**: PinaccleBot Observaba los GIF's y Stickers y los enviaba al paso de verificación de comprobante. \n\t- **Corrección de Bug**: PinaccleBot no realizaba el movimiento de fichas de una plataforma a otra.\n\t- **Corrección de Bug**: PinaccleBot creaba el usuario en cualquier plataforma en modo semiautomático.\n\t- **Corrección de Bug**: PinaccleBot no reconocía en qué plataforma se asignó el bono, por ende, podía asignar bonos de bienvenida de forma indefinida y aleatoria.\n\t- **Implementación**: Ahora se pueden asignar las integraciones de PinaccleBot a los moderadores, con el fin de que pueden controlar esas integraciones.\n\t- **Implementación**: Ahora al mover fichas se puede elegir el monto (tanto en semiautomático como en automático).\n\t- **Corrección de Bug**: PinaccleBot pasaba un 3% de comprobantes que no tenían identificador, por lo que realizaba la carga igualmente.\n\t- **Corrección de Bug**: PinaccleBot no identificaba bien de quién era los comprobantes, por lo que si ingresaban dos o más al mismo tiempo, el bot se mareaba y preguntaba a quién pertenecía qué comprobante.\n\t- **Implementación**: PinaccleBot ahora es más inteligente. Si una persona envía un comprobante sin que nadie toque en cargar fichas y el bot aprueba el pago, carga automáticamente las fichas del usuario (en caso de que tenga solo usuario en una plataforma), o pregunta (en caso de que tenga ambas plataformas) en qué plataforma quiere cargar. En caso de que el cliente no posea usuario, el bot le pregunta nombre para crearle uno nuevo.\n\t- **Implementacion**: Si la plataforma no dispone de saldo, PinaccleBot realiza la carga de fichas de forma automática cuando se vuelva a cargar saldo.\n\t- **Corrección de Bug**: A veces pinacclebot no respondía cunado un usuario contestaba, es por esto que ahora pinacclebot revisa si le quedó una conversación pendiente y contesta en caso de que sea así.\n\t- **Cambio**: Ahora pinacclebot no asigna bonos por plataformas, sino que los asigna por líneas, de esta forma, cada línea puede tener un bono diferente.\n\t- **Mejora**: Se entrenó de forma más completa OCR y Vision de PinaccleBot para ofrecer mejor lectura de comprobantes.\n\t- **Mejora**: Se optimizó el consumo de la integración de PinaccleBot dentro del servidor.\n\t- **Mejora**: Se agregó una notificación de carga para el agente de turno cuando hay actividad pendiente. Si alguna plataforma o billetera cae, el bot tiene actividad pendiente con los usuarios que les quedaron solicitudes abiertas, por lo que el bot ahora pregunta qué hacer al agente antes de accionar.\n\t- **Mejora**: Ahora PinaccleBot mueve a los ganadores de premios en el buzón de \"Premios a Recibir\", y los quita automáticamente cuando reciben el comprobante de premio.\n",
-            "en": "\t- **Bug Fix**: PinaccleBot would detect GIFs and stickers and send them to the receipt verification step. \n  - **Bug Fix**: PinaccleBot would not transfer tokens from one platform to another.\n\t- **Bug Fix**: PinaccleBot created user accounts on any platform in semi-automatic mode.\n\t- **Bug Fix**: PinaccleBot did not recognize which platform a bonus was assigned to; as a result, it could assign welcome bonuses indefinitely and at random.\n\t- **Implementation**: PinaccleBot integrations can now be assigned to moderators so they can manage those integrations.\n  - **Implementation**: When moving tokens, you can now choose the amount (in both semi-automatic and automatic modes).\n\t- **Bug Fix**: PinaccleBot was processing 3% of receipts that lacked an identifier, so it would load them anyway.\n\t- **Bug Fix**: PinaccleBot did not correctly identify who the receipts belonged to, so if two or more were submitted at the same time, the bot would get confused and ask which receipt belonged to whom.\n  - **Implementation**: PinaccleBot is now smarter. If a user submits a receipt without anyone clicking “Load Tokens” and the bot approves the payment, it automatically loads the tokens to the user’s account (if the user has an account on only one platform), or asks (if the user has accounts on both platforms) which platform they want to load them to. If the customer does not have an account, the bot asks for their name to create a new one.\n  - **Implementation**: If the platform has no balance, PinaccleBot automatically credits the tokens once the balance is replenished.\n\t- **Bug Fix**: Sometimes PinaccleBot would not respond when a user replied; that is why PinaccleBot now checks if there is a pending conversation and responds if there is one.\n\t- **Change**: PinaccleBot no longer assigns bonuses by platform; instead, it assigns them by line, so each line can have a different bonus.\n\t- **Improvement**: PinaccleBot’s OCR and Vision capabilities were trained more thoroughly to provide better receipt recognition.\n  - **Improvement**: The resource consumption of the PinaccleBot integration within the server was optimized.\n\t- **Improvement**: A loading notification has been added for the agent on duty when there is pending activity. If a platform or wallet goes down, the bot has pending activity with users who have open requests; therefore, the bot now asks the agent what to do before taking action.\n\t- **Improvement**: PinaccleBot now moves prize winners to the \"Prizes to Be Received\" inbox and automatically removes them when they receive their prize receipt.\n"
+            "en": "\t- **Bug Fix**: PinaccleBot would detect GIFs and stickers and send them to the receipt verification step. \n  - **Bug Fix**: PinaccleBot would not transfer tokens from one platform to another.\n\t- **Bug Fix**: PinaccleBot created user accounts on any platform in semi-automatic mode.\n\t- **Bug Fix**: PinaccleBot did not recognize which platform a bonus was assigned to; as a result, it could assign welcome bonuses indefinitely and at random.\n\t- **Implementation**: PinaccleBot integrations can now be assigned to moderators so they can manage those integrations.\n  - **Implementation**: When moving tokens, you can now choose the amount (in both semi-automatic and automatic modes).\n\t- **Bug Fix**: PinaccleBot was processing 3% of receipts that lacked an identifier, so it would upload them anyway.\n\t- **Bug Fix**: PinaccleBot did not correctly identify who the receipts belonged to; as a result, if two or more were submitted at the same time, the bot would get confused and ask which receipt belonged to whom.\n  - **Implementation**: PinaccleBot is now smarter. If a user submits a receipt without anyone clicking “Load Tokens” and the bot approves the payment, it automatically loads the tokens to the user’s account (if the user has an account on only one platform), or asks (if the user has accounts on both platforms) which platform they want to load them to. If the customer does not have an account, the bot asks for their name to create a new one.\n  - **Implementation**: If the platform has no balance, PinaccleBot automatically credits the tokens once the balance is replenished.\n\t- **Bug Fix**: Sometimes PinaccleBot would not respond when a user replied; that’s why PinaccleBot now checks if there is a pending conversation and responds if there is one.\n\t- **Change**: PinaccleBot no longer assigns bonuses by platform; instead, it assigns them by line, so each line can have a different bonus.\n\t- **Improvement**: PinaccleBot’s OCR and Vision features were trained more thoroughly to provide better receipt recognition.\n  - **Improvement**: The resource consumption of the PinaccleBot integration within the server was optimized.\n\t- **Improvement**: A loading notification has been added for the agent on duty when there is pending activity. If a platform or wallet goes down, the bot has pending activity with users who have open requests; therefore, the bot now asks the agent what to do before taking action.\n\t- **Improvement**: PinaccleBot now moves prize winners to the \"Prizes to Be Received\" inbox and automatically removes them when they receive their prize receipt.\n"
           }
         },
         {
@@ -288,7 +288,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "\t- **No se podían observar las métricas del pixel**.\n\t- **Corrección de zona horaria de CRM**: zona horaria incorrecta hacían que las métricas no cargasen en la fecha indicada.\n\t- **Las métricas y contactos** ya no se borran al desvincular una línea.",
-            "en": "\t- **Pixel metrics could not be viewed**.\n  - **CRM time zone correction**: An incorrect time zone prevented metrics from loading on the specified date.\n\t- **Metrics and contacts** are no longer deleted when a line is unlinked."
+            "en": "\t- **Pixel metrics could not be viewed**.\n  - **CRM time zone correction**: An incorrect time zone prevented metrics from loading on the specified date.\n\t- **Metrics and contacts** are no longer deleted when unlinking a line."
           }
         },
         {
@@ -298,7 +298,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "\t- **Sistema completo de reacciones en los mensajes**: Se pueden observar las reacciones, desplegar el menú de reacciones, reaccionar. **No se pueden quitar las reacciones**.\n\t- **Sistema completo de Canales**: Ahora los canales están en su propio menú y buzón.\n\t- **Sistema completo de comunidad**: Ahora las comunidades poseen su propio menú y buzón. \n\t- **Sistema completo de Estados**: Ahora se pueden visualizar los Estados de los contactos y subir estados.\n\t- **Menú de funciones en chat**: Ahora al tocar el botón de adjuntar dentro de un chat, podemos ver y utilizar las funciones de: Encuesta, Nuevo sticker, Documento, Fotos y Videos, Audio, Contacto, Evento y Cámara.\n\t- **Sistema de encuesta**: Se puede crear encuestas, votarlas (y votar ajenas), previsualizar encuestas y reaccionarlas.\n\t- **Sistema de contactos**: Ahora se pueden enviar contactos de la línea correspondiente vinculada, recibir contactos e incluso guardarlos y sincronizarlos con el teléfono.\n\t- **Visualización de total de chats**: Ahora el total de chats se visualiza a la derecha del nombre de una línea en el menú de las líneas. Las píldoras del buzón ahora sirven para visualizar la cantidad de chats no leídos.\n\t- **Sistema de Notificaciones**: Ahora hay nubes de notificaciones para todos los agentes del CRM para comunicar cosas importantes.\t\n\t- **Métricas Pixel**: Ahora los moderadores pueden observar las métricas del pixel de meta en las que estén asignados.\n\t- **Dada de baja de líneas**: Ahora las líneas se pueden dar de baja para que desaparezcan del buzón, de esta forma no molesta el buzón, pero siguen sus métricas y contactos guardados.\n\t- **Buzón de Pendientes**: El buzón de pendientes sirve para PinaccleBot. El bot cuando tenga actividad pendiente (esperar a que un cajero conteste), mueve el chat de ese cliente a este buzón.\n",
-            "en": "\t- **Full message reaction system**: You can view reactions, open the reaction menu, and react. **Reactions cannot be removed**.\n  - **Full Channels system**: Channels now have their own menu and inbox.\n\t- **Full community system**: Communities now have their own menu and inbox. \n  - **Full status system**: You can now view your contacts’ statuses and post your own.\n\t- **Chat features menu**: Now, when you tap the attach button in a chat, you can view and use the following features: Poll, New Sticker, Document, Photos and Videos, Audio, Contact, Event, and Camera.\n\t- **Poll system**: You can create polls, vote on them (and vote on others’ polls), preview polls, and react to them.\n\t- **Contacts System**: You can now send contacts from the linked line, receive contacts, and even save and sync them with your phone.\n\t- **Total Chats Display**: The total number of chats is now displayed to the right of a line’s name in the lines menu. The inbox icons now show the number of unread chats.\n\t- **Notification System**: Notification bubbles now appear for all CRM agents to communicate important information.  \n  - **Pixel Metrics**: Moderators can now view the metrics for the tracking pixels they are assigned to.\n\t- **Deactivating Lines**: Lines can now be deactivated so they disappear from the inbox; this way, they don’t clutter the inbox, but their metrics and saved contacts are retained.\n\t- **Pending Inbox**: The Pending Inbox is used by PinaccleBot. When the bot has pending activity (such as waiting for a teller to respond), it moves that customer’s chat to this inbox.\n"
+            "en": "\t- **Full message reaction system**: You can view reactions, open the reaction menu, and react. **Reactions cannot be removed**.\n  - **Full channel system**: Channels now have their own menu and inbox.\n\t- **Full community system**: Communities now have their own menu and inbox. \n  - **Full status system**: You can now view your contacts’ statuses and post your own.\n\t- **Chat features menu**: Now, when you tap the attach button in a chat, you can view and use the following features: Poll, New Sticker, Document, Photos and Videos, Audio, Contact, Event, and Camera.\n\t- **Poll system**: You can create polls, vote on them (and vote on others’ polls), preview polls, and react to them.\n\t- **Contacts System**: You can now send contacts from the linked line, receive contacts, and even save them and sync them with your phone.\n\t- **Total Chats Display**: The total number of chats is now displayed to the right of a line’s name in the lines menu. The inbox icons now show the number of unread chats.\n\t- **Notification System**: Notification bubbles now appear for all CRM agents to communicate important information.  \n  - **Pixel Metrics**: Moderators can now view the metrics for the tracking pixels to which they are assigned.\n\t- **Deactivating Lines**: Lines can now be deactivated so they disappear from the inbox; this way, they don’t clutter the inbox, but their metrics and saved contacts are retained.\n\t- **Pending Inbox**: The Pending Inbox is used by PinaccleBot. When the bot has pending activity (e.g., waiting for a teller to respond), it moves that customer’s chat to this inbox.\n"
           }
         }
       ]
@@ -400,7 +400,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- \t Se corrigió la clonación de WAME: se compartía WAME entre el CRM de testing y el de producción.\n- \t Se corrigió la separación de contactos por líneas/integraciones PinaccleBot.\n- \t Se corrigió el bug de que no se podían enviar emojis a los grupos.\n- \t Los mensajes de grupo no cargaban: el importador descartaba el historial de un grupo compartido si otra línea ya lo había traído. **CORREGIDO**\n- \t Los grupos mostraban números en vez de nombres: se recuperaron 14.050 mensajes del historial importado.\n- \t \"No se pudo actualizar el contacto\": era imposible editar (ni el nombre) 534 contactos con teléfono repetido. **CORREGIDO**\n- \t Se corrigieron los puertos cruzados entre los dos WAME.\n- \t Se recortó el paquete de idiomas del CRM (−12 MB) y se optimizó la app para celular",
-            "en": "-    Fixed the WAME cloning issue: WAME was being shared between the testing and production CRMs.\n-    Fixed the issue with contacts being separated by PinaccleBot lines/integrations.\n-    Fixed the bug where emojis couldn't be sent to groups.\n-    Group messages were not loading: the importer was discarding a shared group’s history if another line had already imported it. **FIXED**\n-    Groups were displaying numbers instead of names: 14,050 messages were recovered from the imported history.\n-    \"Unable to update the contact\": it was impossible to edit (not even the name) 534 contacts with duplicate phone numbers. **FIXED**\n-    Cross-porting issues between the two WAME instances were fixed.\n-    The CRM language pack was reduced (−12 MB) and the mobile app was optimized"
+            "en": "-    Fixed the WAME cloning issue: WAME was being shared between the testing and production CRMs.\n-    Fixed the issue with contacts being separated by PinnacleBot lines/integrations.\n-    Fixed the bug where emojis couldn't be sent to groups.\n-    Group messages were not loading: the importer discarded a shared group’s history if another line had already imported it. **FIXED**\n-    Groups were displaying numbers instead of names: 14,050 messages were recovered from the imported history.\n-    \"Unable to update the contact\": it was impossible to edit (even the name) 534 contacts with duplicate phone numbers. **FIXED**\n-    Cross-porting issues between the two WAME instances were fixed.\n-    The CRM language pack was reduced (−12 MB) and the mobile app was optimized"
           }
         },
         {
@@ -410,7 +410,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- \t Se implementó el menú de stickers para líneas WAME (no API's), con bandeja propia por línea.\n- \t Se implementó el total de Chats en el titular de fecha.\n- \t Se implementaron píldoras con información de cargas (fecha de primera carga | cantidad | total).\n- \t Se encriptaron los datos sensibles (claves, API's, webhooks y HMAC) de las integraciones.\n- \t Se implementó \"Fijar chat\" — cada agente fija los suyos, no se ven entre agentes.\n- \t Nombre de contacto por línea: cada línea agenda como quiere sin pisar a las demás.\n- \t Buzón de Canales, no leídos en las píldoras y Archivar conversaciones.",
-            "en": "-    The sticker menu was implemented for WAME lines (not APIs), with a separate tray for each line.\n-    The total number of chats was added to the date header.\n-    Information tiles showing upload details (first upload date | quantity | total) have been implemented.\n-    Sensitive data (keys, APIs, webhooks, and HMAC) for integrations has been encrypted.\n-    \"Pin Chat\" was implemented—each agent pins their own chats; these are not visible to other agents.\n-    Contact name per line: each line can organize contacts as it wishes without interfering with the others.\n-    Channels inbox, unread indicators in info bubbles, and the ability to archive conversations."
+            "en": "-    The sticker menu was implemented for WAME lines (not APIs), with a separate tray for each line.\n-    The total number of chats was added to the date header.\n-    Information snippets showing upload details (date of first upload | quantity | total) have been implemented.\n-    Sensitive data (passwords, APIs, webhooks, and HMAC) for integrations has been encrypted.\n-    \"Pin Chat\" was implemented—each agent pins their own chats; these are not visible to other agents.\n-    Contact name per line: each line can organize contacts as it wishes without interfering with the others.\n-    Channels inbox, unread counts in information bubbles, and the ability to archive conversations."
           }
         },
         {
@@ -430,7 +430,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- \t Corrección de mensajes repetidos que le llegaban al cliente.\n- \t No vinculaba usuarios, por lo que el cliente al querer cargar fichas, el bot desconocía el usuario del cliente.\n- \t El Agente no podía seleccionar el tipo de plataforma al querer vincular un usuario.\n- \t Las líneas que estén integradas a PinaccleBot van a compartir los contactos y usuarios para evitar duplicados.\n- \t Corrección de error al crear usuarios en bet30.\n- \t El bot retiraba las fichas al jugador y le avisaba que no tenía el mínimo para retirar (**CORREGIDO**). El mínimo ahora se mide en fichas, no sobre el premio a pagar.\n- \tCreación de usuarios con el algoritmo Mersenne Twister.\n- \t Se implementó un switch para alternar el modo automático en un chat específico.\n- \t Cuando el cliente (que posee usuario en dos plataformas) enviaba una transferencia sin tocar \"Cargar fichas\", PinaccleBot cargaba las fichas en cualquier plataforma aleatoriamente. **CORREGIDO**\n- \t Pasaje de fichas entre plataformas: el cliente lo pide solo desde el menú y el cajero desde el botón. El bono de bienvenida viaja junto con las fichas.\n- \t Las fichas entraban en el casino equivocado: la espera de acreditación viajaba sin la plataforma elegida. **CORREGIDO** + menú interactivo con botones.\n- \t El bot quedaba mudo ante ciertas respuestas del panel de bet30 (String does not have #dig method). **CORREGIDO**\n- \t Reintento automático de alta: si el nombre de usuario está tomado en otro panel, genera una variante en vez de abandonar.\n- \t Si el panel está ocupado, reintenta solo y le avisa al cliente en vez de dejarlo esperando en silencio.\n- \t Si el alta falla, el cliente se entera y el chat salta al cajero como urgente y sin leer.\n- \t Acuse de recibo del comprobante: el cliente ya no queda en silencio mientras el bot verifica.\n- \t Si el comprobante no sirve, se corta la espera en vez de dejar al cliente en un limbo sin menú.\n- \t El bot cancela la acción anterior y atiende lo último que mandó el cliente.\n- \t Bono de bienvenida: ya no se ofrece a quien ya lo recibió, y se corrigió el apartado descentrado en la edición.\n- \t Nota de pago del cajero: ahora desglosa Fichas retiradas, Bono descontado y Total a extraer (pagar premio).\n- \tApareo tardío: el comprobante suele llegar antes que la plata; se reintenta el apareo en vez de descartarlo.",
-            "en": "-    Fixed an issue where the client was receiving duplicate messages.\n-    Users were not being linked, so when the client tried to load profiles, the bot did not recognize the client’s user.\n-    The agent could not select the platform type when trying to link a user.\n-    Lines integrated with PinaccleBot will share contacts and users to avoid duplicates.\n-    Fixed an error when creating users on bet30.\n-    The bot would deduct chips from the player and notify them that they did not have the minimum required for a withdrawal (**FIXED**). The minimum is now calculated in chips, not based on the payout amount.\n-   User creation using the Mersenne Twister algorithm.\n-    A toggle was implemented to switch to automatic mode in a specific chat.\n-    When a customer (who has accounts on two platforms) sent a transfer without clicking \"Load Chips,\" PinaccleBot would load the chips onto either platform at random. **FIXED**\n-    Transferring chips between platforms: the customer requests this only from the menu, and the cashier via the button. The welcome bonus is transferred along with the chips.\n-    Chips were deposited into the wrong casino: the credit pending status was transferred without the selected platform. **FIXED** + interactive menu with buttons.\n-    The bot would stop responding to certain replies from the bet30 panel (String does not have #dig method). **FIXED**\n-    Automatic registration retry: if the username is already taken on another panel, it generates a variation instead of aborting.\n-    If the panel is busy, it automatically retries and notifies the customer instead of leaving them waiting in silence.\n-    If registration fails, the customer is notified, and the chat is flagged as urgent and unread in the cashier.\n-    Receipt acknowledgment: The customer is no longer left waiting in silence while the bot verifies the receipt.\n-    If the receipt is invalid, the wait is terminated instead of leaving the customer in limbo without a menu.\n-    The bot cancels the previous action and responds to the customer’s most recent message.\n-    Welcome bonus: It is no longer offered to those who have already received it, and the misaligned section in the edit has been corrected.\n-    Cashier’s payment note: It now breaks down “Tokens Withdrawn,” “Bonus Deducted,” and “Total to Withdraw” (to pay the prize).\n-   Late reconciliation: The receipt usually arrives before the cash; the system retries the reconciliation instead of discarding it."
+            "en": "-    Fixed an issue where the client was receiving duplicate messages.\n-    Users were not being linked, so when the client tried to load profiles, the bot did not recognize the client’s user.\n-    The agent could not select the platform type when trying to link a user.\n-    Lines integrated with PinaccleBot will share contacts and users to avoid duplicates.\n-    Fixed an error when creating users on bet30.\n-    The bot would deduct chips from the player and notify them that they did not have the minimum required for a withdrawal (**FIXED**). The minimum is now calculated in chips, not based on the prize to be paid.\n-   Users are now created using the Mersenne Twister algorithm.\n-    A toggle was implemented to switch to automatic mode in a specific chat.\n-    When a customer (who has accounts on two platforms) sent a transfer without clicking “Load Chips,” PinaccleBot would load the chips onto either platform at random. **FIXED**\n-    Transferring chips between platforms: the customer requests this only from the menu, and the cashier uses the button. The welcome bonus is transferred along with the chips.\n-    Chips were deposited into the wrong casino: the credit pending status was transferred without the selected platform. **FIXED** + interactive menu with buttons.\n-    The bot would stop responding to certain replies from the bet30 panel (String does not have #dig method). **FIXED**\n-    Automatic registration retry: if the username is already taken on another panel, it generates a variation instead of aborting.\n-    If the panel is busy, it automatically retries and notifies the customer instead of leaving them waiting in silence.\n-    If registration fails, the customer is notified, and the chat is flagged as urgent and unread in the chat window.\n-    Receipt acknowledgment: The customer is no longer left waiting in silence while the bot verifies the receipt.\n-    If the receipt is invalid, the wait is cut short instead of leaving the customer in limbo without a menu.\n-    The bot cancels the previous action and responds to the customer’s most recent message.\n-    Welcome bonus: It is no longer offered to those who have already received it, and the misaligned section in the edit has been corrected.\n-    Cashier’s payment note: It now breaks down “Tokens Withdrawn,” “Bonus Deducted,” and “Total to Withdraw” (to pay the prize).\n-   Late matching: The receipt usually arrives before the cash; the system retries the matching process instead of discarding it."
           }
         },
         {
@@ -516,7 +516,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "    - Los grupos no **registran ventas** ni** muestran pildoras** ni** cargan en el pixel** (para evitar errores de cargas duplicadas).\n    - **Arreglado el desborde de filas del listado en el celular** (se pisaban entre si).\n    - **Puertos cruzados entre los dos motores de WhatsApp**.\n    - **Contactos bloqueados** que **inundaban conversaciones** en las lineas de Twilio (se bugueaba y creaba un contacto nuevo en el chat con cada mensaje del mismo cliente.\n    - **Reloj de la maquina virtual que hacia saltar tareas programadas**.\n    - ** Recorte de ~12 MB en la carga inicial **(traducciones).",
-            "en": "    - Groups do not **record sales**, **display summary cards**, or **trigger the pixel** (to prevent duplicate tracking errors).\n    - **Fixed the list row overflow on mobile devices** (rows were overlapping).\n    - **Cross-porting between the two WhatsApp engines**.\n    - **Blocked contacts** that were **flooding conversations** on the Twilio lines (a bug caused a new contact to be created in the chat with every message from the same customer).\n    - **Virtual machine clock causing scheduled tasks to skip**.\n    - **Reduced initial load by ~12 MB** (translations)."
+            "en": "    - Groups do not **record sales**, **display summaries**, or **trigger the pixel** (to prevent duplicate tracking errors).\n    - **Fixed the list row overflow on mobile** (rows were overlapping).\n    - **Cross-porting between the two WhatsApp engines**.\n    - **Blocked contacts** that were **flooding conversations** on the Twilio lines (a bug caused a new contact to be created in the chat with every message from the same customer).\n    - **Virtual machine clock causing scheduled tasks to skip**.\n    - **Reduced initial load by ~12 MB** (translations)."
           }
         },
         {
@@ -526,7 +526,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "    - **Vinculacion por QR o por codigo de 8 digitos**.\n    - **Import de historial arreglado **(antes no terminaba).\n    - **Borrado de linea instantaneo y completo**.\n    - Se **eliminó** la firma del agente que **WAME** anteponia a cada mensaje saliente.\n    - El indicador de \"cargando 99%\" **ya no se queda colgado** al vincular una linea.",
-            "en": "    - **Link via QR code or 8-digit code**.\n    - **Fixed history import** (it used to not finish).\n    - **Instant and complete line deletion**.\n    - The agent signature that **WAME** used to prefix to every outgoing message has been **removed**.\n    - The “Loading 99%” indicator **no longer freezes** when linking a line."
+            "en": "    - **Link via QR code or 8-digit code**.\n    - **Fixed history import** (it used to not complete).\n    - **Instant and complete line deletion**.\n    - The agent signature that **WAME** used to prefix to each outgoing message has been **removed**.\n    - The “Loading 99%” indicator **no longer gets stuck** when linking a line."
           }
         },
         {
@@ -536,7 +536,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "    - **Pildoras de cargas** debajo de cada chat: primera vez, cantidad de cargas y total cargado.\n    - **Encabezados de fecha en el listado**.\n    - **Grupos de WhatsApp **mezclados con los chats 1:1 (con interruptor por linea).\n    - **Pestañas nuevas**: Canales, Archivados y Premios a pagar.\n    - **Contadores de no-leidos en vivo en cada pestaña.**",
-            "en": "    - **Payment summaries** below each chat: first payment, number of payments, and total amount paid.\n    - **Date headers in the list**.\n    - **WhatsApp groups** mixed with 1-on-1 chats (with a toggle switch per line).\n    - **New tabs**: Channels, Archived, and Rewards to Be Paid.\n    - **Live unread counters on each tab.**"
+            "en": "    - **Payment summaries** below each chat: first payment, number of payments, and total paid.\n    - **Date headers in the list**.\n    - **WhatsApp groups** mixed with 1-on-1 chats (with a toggle switch per row).\n    - **New tabs**: Channels, Archived, and Rewards to Be Paid.\n    - **Live unread counters on each tab.**"
           }
         },
         {
@@ -546,7 +546,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "    - **Automatiza el panel de Ganamos** sin que nadie tenga que entrar a mano: crear usuario, cargar fichas, retirar fichas, vincular usuario e informacion del jugador.\n    - **Verifica** contra HG.Cash que el dinero haya entrado **ANTES** de cargar las fichas.\n    - **Lector de comprobantes y reintento de apareo** cuando el comprobante llega antes que el dinero.\n    - **Minimo de carga** con salida a** devolucion**, y **bonos aplicados** por el panel (sin doble bono). Estos bonos son de **Bienvenida** o **Permanentes**.\n    - **Usuarios generados automáticamente**, cortos y sin repetir.\n    - ** Retiro**: saca **TODAS** las fichas primero y despues **calcula el premio a transferir**.",
-            "en": "    - **Automate the Ganamos dashboard** so that no one has to enter data manually: create users, load tokens, withdraw tokens, and link users to player information.\n    - **Verify** against HG.Cash that the funds have been received **BEFORE** loading the chips.\n    - **Receipt reader and match retry** when the receipt arrives before the funds.\n    - **Minimum top-up** with an option for **refund**, and **bonuses applied** by the dashboard (no double bonuses). These bonuses are either **Welcome** or **Permanent**.\n    - **Automatically generated users**, short-lived and non-repeating.\n    - **Withdrawal**: Withdraw **ALL** chips first, then **calculate the prize to be transferred**."
+            "en": "    - **Automate the Ganamos dashboard** so that no one has to enter data manually: create users, load tokens, withdraw tokens, and link users to player information.\n    - **Verify** against HG.Cash that the funds have been received **BEFORE** loading the tokens.\n    - **Receipt reader and match retry** when the receipt arrives before the funds.\n    - **Minimum top-up** with an option for **refund**, and **bonuses applied** by the dashboard (no double bonuses). These bonuses are either **Welcome** or **Permanent**.\n    - **Automatically generated users**, short-lived and non-repeating.\n    - **Withdrawal**: Withdraw **ALL** chips first, then **calculate the prize to be transferred**."
           }
         }
       ]
@@ -593,7 +593,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "En este nuevo **Buzón**, podrás dejar en cola los clientes a los que su premio está en espera. De esta forma no pierdes el seguimiento del cliente en los chats.\nPara **agregarlo** al buzón es sencillo, solo basta con hacer click derecho (o mantener apretado en caso del celular) el chat del cliente, hasta que salga el menú que posea la opción \"Ganador de premio\". De esta forma su chat viaja al buzón de premios. Para **quitarlo** del buzón de premios, es la misma acción que la anterior.",
-            "en": "In this new **Inbox**, you can place customers whose prizes are pending in a queue. This way, you won't lose track of them in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** them from the prize inbox, follow the same steps as above."
+            "en": "In this new **Inbox**, you can place customers whose prizes are pending in a queue. This way, you won't lose track of them in the chats.\n**Adding** them to the inbox is easy—just right-click (or press and hold on a mobile device) on the customer’s chat until the menu appears with the “Prize Winner” option. This will move their chat to the prize inbox. To **remove** them from the prize inbox, follow the same steps as above."
           }
         },
         {
@@ -603,13 +603,13 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "Los errores a destacar son:\n- La **descarga de pdf's** no existía: al querer descargar un pdf o documento que es recibido, en el momento de querer descargar ese documento, el CRM no realizaba nada. Esto se debe a que el botón de descargar estaba **redireccionando mal hacia el documento**.\n- *Mal redimensionamiento de los menús**: Al ingresar a una pestaña de configuraciones, las pestañas se veían en modo computadoras, por lo que **recortaba la visión de varias funciones** y botones que posee la pestaña, haciendo que el agente/moderador no pueda trabajar de forma adecuada o cambiar configuraciones. \n- **Despliegue de menú configuraciones no funcionaba**: Al clickear en el engranaje de configuraciones para desplegar las funcionalidades, este nos redirigía de forma **automática** hacia _Configuración de la cuenta_. Esto sucedía solo para la versión 1.0 y 1.1 de android, por lo que ya fue [green]corregido[/green].",
-            "en": "The errors to note are:\n- The **PDF download** feature was not working: when attempting to download a received PDF or document, the CRM did not respond. This was because the download button was **incorrectly redirecting to the document**.\n- *Incorrect menu resizing**: When accessing a settings tab, the tabs were displayed in desktop mode, which **cut off the view of several functions** and buttons on the tab, preventing the agent/moderator from working properly or changing settings. \n- **Settings menu dropdown not working**: When clicking the settings gear icon to display the features, it would **automatically** redirect us to _Account Settings_. This only happened in Android versions 1.0 and 1.1, so it has already been [green]fixed[/green]."
+            "en": "The errors to note are:\n- The **PDF download** feature was missing: when attempting to download a received PDF or document, the CRM did not respond. This was because the download button was **incorrectly redirecting to the document**.\n- *Incorrect menu resizing**: When accessing a settings tab, the tabs were displayed in desktop mode, which **cropped out several functions** and buttons on the tab, preventing the agent/moderator from working properly or changing settings. \n- **Settings menu dropdown not working**: When clicking the settings gear icon to display the features, it would **automatically** redirect us to _Account Settings_. This only occurred in Android versions 1.0 and 1.1, so it has already been [green]fixed[/green]."
           }
         },
         {
           "t": {
             "es": "Al loguearse en el CRM con otro agente, el caché queda almacenado",
-            "en": "When another agent logs into the CRM, the cache is saved"
+            "en": "When another agent logs in to the CRM, the cache is saved"
           },
           "desc": {
             "es": "El CRM **cachea** los datos del lado del cliente (navegador), por lo que, por más de iniciar sesión con otra cuenta, vas a ver los datos de tu cuenta anterior. Esto se debe a que la **base de datos local** se identifica solo por cuenta, no por usuario. Dos usuarios distintos de la **misma cuenta** comparten el mismo caché.",
@@ -633,7 +633,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "El error existía porque las **URLs **de archivos se firmaban con 5 minutos de validez, y el navegador cachea el redirect que lleva a ellas, también en 5 minutos. Por ende, esto generaba **Ventanas idénticas**, es decir, que, si el navegador reusa el redirect cacheado cuando la URL ya venció, la imagen no carga.",
-            "en": "The error occurred because the **URLs** of the files were signed with a 5-minute validity period, and the browser caches the redirect leading to them for 5 minutes as well. Consequently, this resulted in **identical windows**—that is, if the browser reuses the cached redirect after the URL has expired, the image fails to load."
+            "en": "The error occurred because the **URLs** of the files were signed with a 5-minute validity period, and the browser caches the redirect leading to them for 5 minutes as well. Consequently, this resulted in **identical windows**; that is, if the browser reuses the cached redirect after the URL has expired, the image does not load."
           }
         }
       ]
@@ -662,7 +662,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "Se dejó de depender del EvolutionAPI genérico: ahora es un **motor creado de 0** basado en Baileys (rc13).\n\n- **Conexión estable** — se terminó el loop de \"Iniciando sesión…\" / QR que rebotaba y el device_removed.\n- **Recepción instantánea** — los mensajes del cliente entran enseguida (antes tardaban 58s por Baileys).\n- **Envío arreglado** — se corrigió el error 463 que provocaba fallos en los envíos 1 a 1.\n- **Import de historial** — se importan miles de mensajes al vincular (con EvolutionAPI antes no funcionaba).\n- **LID resuelto** — los contactos y grupos con identificador interno (LID) ahora se resuelven al número real: se ven con nombre y número del usuario, y **se les puede enviar mensajes** (antes daba \"no es un número de WhatsApp válido\").\n- **Sin chats duplicados** — se normaliza el sufijo de dispositivo para que el chat importado y el chat en vivo sean el mismo.\n- **Contactos con nombre de agenda** — al vincular, sincroniza tu agenda y trae los contactos con el nombre que vos les pusiste, no solo el número.\n- **Sin crasheos en el import** — se deduplican los contactos antes de guardarlos (antes un choque de duplicados abortaba todo el import).",
-            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — the \"Logging in…\" loop, the bouncing QR code, and the \"device_removed\" error are a thing of the past.\n- **Instant reception** — client messages arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this didn’t work with the EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone number: they appear with the user’s name and number, and **you can send them messages** (previously it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just their numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
+            "en": "We no longer rely on the generic EvolutionAPI: it is now an **engine built from scratch** based on Baileys (rc13).\n\n- **Stable connection** — the \"Logging in…\" loop, the bouncing QR code, and the \"device_removed\" error are a thing of the past.\n- **Instant reception** — client messages arrive immediately (previously it took 58 seconds with Baileys).\n- **Sending fixed** — Error 463, which caused failures in one-on-one messages, has been fixed.\n- **History import** — Thousands of messages are imported upon linking (this did not work with the EvolutionAPI before).\n- **LID resolved** — contacts and groups with an internal identifier (LID) are now resolved to their actual phone numbers: they appear with the user’s name and number, and **you can send them messages** (previously, it displayed “not a valid WhatsApp number”).\n- **No duplicate chats** — the device suffix is normalized so that the imported chat and the live chat are the same.\n- **Contacts with address book names** — when linking, it syncs your address book and imports contacts with the names you assigned them, not just the numbers.\n- **No crashes during import** — contacts are deduplicated before being saved (previously, a duplicate conflict would abort the entire import)."
           }
         },
         {
@@ -672,7 +672,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Solo QR** — se quitó la opción de código por número (poco estable en WhatsApp Web).\n- **Historial de importación (días)** — un campo para definir cuántos días de chats importar.\n- **Pantalla de carga con progreso** — tras escanear, muestra el avance de la carga de contactos y mensajes.\n- **Cancelar y eliminar** — elimina las líneas más rápido y sin dejarlas huérfanas.",
-            "en": "- **QR Only** — the option to import via code number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress bar** — after scanning, displays the progress of the contacts and messages being loaded.\n- **Cancel and delete** — deletes lines faster without leaving them as orphans."
+            "en": "- **QR Only** — the option to import via code number has been removed (it was unstable on WhatsApp Web).\n- **Import History (days)** — a field to specify how many days of chats to import.\n- **Loading screen with progress** — after scanning, it shows the progress of loading contacts and messages.\n- **Cancel and delete** — deletes lines faster without leaving them as orphans."
           }
         },
         {
@@ -682,7 +682,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "Un rol intermedio, asignado por equipos y líneas, que ve y controla solo su entorno.\n\n- Ve y gestiona solo **sus líneas** y los **agentes de sus equipos**.\n- Tiene habilitadas las métricas de informes, contactos y campañas, acotadas a sus líneas.\n- Puede crear y borrar **solo líneas de WhatsApp** (WAME), no otros canales, para evitar problemas.\n- Se corrigieron 6 bugs, incluido un **agujero de seguridad** (el moderador llegaba a ver los tokens de la línea).",
-            "en": "An intermediate role, assigned by teams and lines, that views and controls only its own environment.\n\n- Views and manages only **its lines** and the **agents on its teams**.\n- Has access to reporting metrics, contacts, and campaigns, limited to its lines.\n- Can create and delete **only WhatsApp lines** (WAME), not other channels, to avoid issues.\n- Six bugs were fixed, including a **security vulnerability** (the moderator could view the line’s tokens)."
+            "en": "An intermediate role, assigned by teams and lines, that views and manages only its own environment.\n\n- Views and manages only **its lines** and the **agents on its teams**.\n- Has access to reporting metrics, contacts, and campaigns, limited to its lines.\n- Can create and delete **only WhatsApp lines** (WAME), not other channels, to avoid issues.\n- Six bugs were fixed, including a **security vulnerability** (the moderator could view the line’s tokens)."
           }
         },
         {
@@ -702,7 +702,7 @@ window.BRAVOS_CONTENT = {
           },
           "desc": {
             "es": "- **Español completo** — barrido de traducción de toda la interfaz (~1600 textos).\n- **2FA** — verificación en dos pasos obligatoria según el rol.\n- **Login por usuario o correo** — el nombre de usuario ahora es único; podés entrar con el usuario o el correo.\n- **Métrica \"Ventas\"** — se cargan con el comando #cliente monto.\n- **Menú móvil** — se corrigió la interfaz para celular.\n- **Optimización completa** — CRM más liviano para móviles de pocos recursos.\n- **Sesión persistente** — ya no se cierra sola si vos no lo permitís.",
-            "en": "- **Full Spanish localization** — translation of the entire interface (~1,600 text strings).\n- **2FA** — mandatory two-factor authentication based on role.\n- **Login by username or email** — usernames are now unique; you can log in with either your username or email address.\n- **\"Sales\" metrics** — loaded using the #client amount command.\n- **Mobile menu** — the mobile interface has been fixed.\n- **Complete optimization** — a lighter CRM for low-resource mobile devices.\n- **Persistent session** — it no longer closes on its own unless you allow it to."
+            "en": "- **Full Spanish localization** — translation of the entire interface (~1,600 text strings).\n- **2FA** — mandatory two-factor authentication based on role.\n- **Login by username or email** — usernames are now unique; you can log in with either your username or email address.\n- **\"Sales\" metrics** — loaded using the #client amount command.\n- **Mobile menu** — the mobile interface has been fixed.\n- **Complete optimization** — a lighter CRM for low-resource mobile devices.\n- **Persistent session** — it no longer logs you out automatically unless you allow it."
           }
         }
       ]
@@ -844,7 +844,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Corrección del bug \"missing messages\" (algunos agentes no veían ciertos mensajes en el chat).",
-            "en": "Fixed the \"missing messages\" bug (some agents were unable to see certain messages in the chat)."
+            "en": "Fixed the \"missing messages\" bug (some agents were not seeing certain messages in the chat)."
           }
         },
         {
@@ -856,7 +856,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Corrección \"Exportar Contactos\": no leía el correo empresarial y lanzaba error.",
-            "en": "\"Export Contacts\" fix: It wasn't reading the work email and was triggering an error."
+            "en": "\"Export Contacts\" fix: It wasn't reading the work email and was causing an error."
           }
         }
       ],
@@ -911,7 +911,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Menú de ajustes de perfil y cambio de diseño.",
-            "en": "Profile settings and theme change menu."
+            "en": "Profile settings and theme selection menu."
           }
         },
         {
@@ -929,7 +929,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "Etiquetado en clientes, prioridad de chats y urgencias.",
-            "en": "Tagged under customers, chat priority, and urgent matters."
+            "en": "Tagged under clients, chat priority, and urgent matters."
           }
         }
       ],
@@ -956,14 +956,14 @@ window.BRAVOS_CONTENT = {
     },
     "sub": {
       "es": "En qué estamos trabajando para mejorar nuestros servicios.",
-      "en": "What we're working on to improve our services."
+      "en": "What we're doing to improve our services."
     }
   },
   "working": [
     {
       "code": "AA-04",
       "tone": "purple",
-      "progress": 0,
+      "progress": 19,
       "status": {
         "es": "Planeado",
         "en": "Planned"
@@ -974,9 +974,16 @@ window.BRAVOS_CONTENT = {
       },
       "desc": {
         "es": "\t- **Implementación de la billetera Riven** dentro de PinaccleBot.\n\t- **Se van a agregar más paneles dentro de pinacclebot**.\n\t- **Optimizar PinaccleBot** para que disminuír el consumo de memoria RAM.\n\t- **Cambio de diseño en los grupos**: Se busca que los chats tengan foto de perfil y que, al clickear el número, se despliegue el menú de opciones como en whatsapp (Agregar contacto y enviar mensaje).\n\t- **Implementación de métrica \"Global\"**: Va a mostrar una google sheet con datos que se van a poder ir modificando.\n\t- **Implementación**: La gente puede elegir cuántas fichas a retirar.\n\t- PinaccleBot va a estar disponible para responder en los grupos.",
-        "en": "\t- **Implementation of the Riven wallet** within PinaccleBot.\n  - **More panels will be added within PinaccleBot**.\n  - **Optimize PinaccleBot** to reduce RAM usage.\n\t- **Design changes to groups**: The goal is for chats to have profile pictures and, when you click on the number, for the options menu to appear like in WhatsApp (Add contact and Send message).\n\t- **Implementation of \"Global\" metrics**: This will display a Google Sheet with data that can be modified over time.\n  - **Implementation**: Users can choose how many tokens to withdraw.\n  - PinaccleBot will be available to respond in the groups."
+        "en": "\t- **Implementation of the Riven wallet** within PinaccleBot.\n  - **More panels will be added within PinaccleBot**.\n  - **Optimize PinaccleBot** to reduce RAM usage.\n\t- **Design change for groups**: The goal is for chats to have profile pictures and, when the number is clicked, to display a menu of options like in WhatsApp (Add contact and Send message).\n\t- **Implementation of \"Global\" metrics**: This will display a Google Sheet with data that can be modified over time.\n  - **Implementation**: Users can choose how many tokens to withdraw.\n  - PinaccleBot will be available to respond in the groups."
       },
-      "items": [],
+      "items": [
+        {
+          "t": {
+            "es": "**PinaccleBot está disponible para grupos**",
+            "en": "**PinaccleBot is available for groups**"
+          }
+        }
+      ],
       "glow": true
     },
     {
@@ -993,7 +1000,7 @@ window.BRAVOS_CONTENT = {
       },
       "desc": {
         "es": "Bot que automatiza tareas con la plataforma ganamos (crear usuario, retirar fichas, cargar fichas) y ciertos bancos S.A que brindan api key (comprobar ingreso de transferencias). Con esto se busca que tu cajero no salga de la plataforma.",
-        "en": "A bot that automates tasks on the Ganamos platform (creating user accounts, withdrawing tokens, loading tokens) and with certain banks, S.A., that provide API keys (checking for incoming transfers). The goal is to ensure that your cashier never has to leave the platform."
+        "en": "A bot that automates tasks using the Ganamos platform (creating user accounts, withdrawing tokens, loading tokens) and certain S.A. banks that provide API keys (checking for incoming transfers). The goal is to ensure that your cashier never has to leave the platform."
       },
       "items": [
         {
@@ -1023,7 +1030,7 @@ window.BRAVOS_CONTENT = {
         {
           "t": {
             "es": "En PinaccleBot se pueden asignar jugadores a los clientes de forma manual. De esta forma, si ya contás con clientes antes de Pinaccle, podés cargarle a los  clientes su usuario jugador para guardarlo dentro de su base de datos.",
-            "en": "In PinaccleBot, you can manually assign players to customers. This way, if you already have customers from before you started using Pinaccle, you can enter their player IDs to save them in the database."
+            "en": "In PinaccleBot, you can manually assign players to customers. This way, if you already have customers from before you started using Pinaccle, you can enter their player IDs for those customers and save them in the database."
           }
         }
       ],
@@ -1048,13 +1055,13 @@ window.BRAVOS_CONTENT = {
       },
       "desc": {
         "es": "Las aplicaciónes están en fase beta, pero no están subidas a la store (IOS Store | PlayStore). Podés encontrarlas en la pestaña \"Aplicaciones\" de nuestra web",
-        "en": "The apps are in beta, but they haven't been uploaded to the app stores (App Store | Google Play). You can find them under the \"Apps\" tab on our website."
+        "en": "The apps are in beta, but they haven't been uploaded to the app stores (App Store | Google Play). You can find them on the \"Apps\" tab on our website."
       },
       "items": [
         {
           "t": {
             "es": "¡BravosCRM desde tu bolsillo! Estamos trabajando arduamente para mejorar nuestros servicios para el cliente. La versión Original de Chatwoot quedó obsoleta.",
-            "en": "BravosCRM right in your pocket! We're working hard to improve our customer services. The original version of Chatwoot is now obsolete."
+            "en": "BravosCRM right in your pocket! We're working hard to improve our customer services. The Original version of Chatwoot is now obsolete."
           }
         }
       ]
@@ -1114,7 +1121,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "BravosCRM es una plataforma para gestionar ventas y conversaciones por WhatsApp y SMS, con automatizaciones, informes y administración de agentes. No nos responsabilizamos por el mal uso que se le pueda dar a nuestro software (spam, divulgación de información, entre otros).",
-        "en": "BravosCRM is a platform for managing sales and conversations via WhatsApp and SMS, featuring automations, reports, and agent management. We are not responsible for any misuse of our software (such as spam or the disclosure of information, among other things)."
+        "en": "BravosCRM is a platform for managing sales and conversations via WhatsApp and SMS, featuring automation, reporting, and agent management. We are not responsible for any misuse of our software (such as spam or the disclosure of information, among other things)."
       }
     },
     {
@@ -1134,7 +1141,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "El uso de WhatsApp Cloud, Twilio y Evolution API queda sujeto a las políticas de cada proveedor. Debés cumplir las normas de WhatsApp Business y a las regulaciones de mensajería aplicables.",
-        "en": "The use of WhatsApp Cloud, Twilio, and the Evolution API is subject to each provider's policies. You must comply with WhatsApp Business guidelines and applicable messaging regulations."
+        "en": "The use of WhatsApp Cloud, Twilio, and the Evolution API is subject to each provider’s policies. You must comply with WhatsApp Business guidelines and applicable messaging regulations."
       }
     },
     {
@@ -1144,7 +1151,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "No está permitido enviar spam, contenido ilegal ni mensajería masiva no solicitada. El incumplimiento puede derivar en la suspensión de la cuenta del CRM y del baneo permanente de tu número de WhatsApp.",
-        "en": "Spam, illegal content, and unsolicited bulk messaging are not permitted. Failure to comply may result in the suspension of your CRM account and the permanent banning of your WhatsApp number."
+        "en": "Spam, illegal content, and unsolicited bulk messaging are not permitted. Failure to comply may result in the suspension of your CRM account and a permanent ban on your WhatsApp number."
       }
     },
     {
@@ -1154,7 +1161,7 @@ window.BRAVOS_CONTENT = {
       },
       "p": {
         "es": "Tratamos los datos según nuestra política de privacidad. Sos responsable de obtener el consentimiento de tus contactos antes de contactarlos. Nuestra empresa no tiene el control ni posee datos de los agentes, clientes ni líneas que posee cada usuario.",
-        "en": "We process data in accordance with our privacy policy. You are responsible for obtaining consent from your contacts before contacting them. Our company does not control or possess data regarding the agents, clients, or lines that each user has."
+        "en": "We process data in accordance with our privacy policy. You are responsible for obtaining consent from your contacts before reaching out to them. Our company does not control or possess any data regarding the agents, clients, or lines that each user has."
       }
     },
     {
